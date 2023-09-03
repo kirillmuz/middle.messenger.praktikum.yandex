@@ -1,0 +1,13 @@
+<div class="itxt-editable">
+    <span class="itxt-editable__label">{{label}}</span>
+    {{#if isEdit}}
+        <input 
+            class="itxt-editable__input" 
+            name="{{name}}"
+            type="{{type}}" 
+            value="{{value}}" 
+        />
+    {{else}}
+        <span class="itxt-editable__value">{{value}}</span>
+    {{/if}}
+</div>

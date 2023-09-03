@@ -1,0 +1,27 @@
+.form-container {
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+    padding: 32px;
+    width: 340px;
+    box-sizing: border-box;
+    min-height: 450px;
+    display: grid;
+}
+
+.form-content {
+    &__form-block {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__fields {
+        gap: 24px;
+    }
+
+    &__actions {
+        gap: 8px;
+        margin-top: auto;
+    }
+}

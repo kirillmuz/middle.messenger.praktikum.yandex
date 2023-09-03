@@ -1,0 +1,18 @@
+$color-baseblack: #1E1E1E;
+
+.tpg-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: $color-baseblack;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__smal {
+        font-size: 16px;
+    }
+    
+    &__bold {
+        font-weight: 600;
+    }
+}

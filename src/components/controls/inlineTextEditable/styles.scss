@@ -1,0 +1,36 @@
+$color-lightgray: #999;
+$color-blue: #3369F3;
+$color-baseblack: #1E1E1E;
+$color-red: #FF2F2F;
+
+.itxt-editable {
+    width: 100%;
+    border-bottom: 1px solid #EAEAEA;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    
+    &__label {
+        color: $color-baseblack;
+    }
+
+    &__value {
+        color: $color-lightgray;
+        width: 100%;
+        text-align: end;
+    }
+
+    &__input {
+        width: 100%;
+        text-align: end;
+        outline: none;
+        border: none;
+        color: $color-lightgray;
+        font-size: 14px;
+        font-weight: 600;
+    }
+}

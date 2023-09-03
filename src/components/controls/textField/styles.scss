@@ -1,0 +1,34 @@
+$color-lightgray: #999;
+$color-blue: #3369F3;
+$color-baseblack: #1E1E1E;
+$color-red: #FF2F2F;
+
+.text-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &__label {
+        font-size: 9px;
+        color: $color-lightgray;
+    }
+
+    &__input {
+        border: none;
+        border-bottom: 1px solid $color-blue;
+        outline: none;
+        font-weight: 600;
+        color: $color-baseblack;
+
+        &::placeholder {
+            color: $color-lightgray;
+            font-weight: 400;
+            color: $color-lightgray;
+        }
+    }
+    
+    &__error {
+        font-size: 8px;
+        color: $color-red;
+    }
+}
