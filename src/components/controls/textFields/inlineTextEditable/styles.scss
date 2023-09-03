@@ -16,6 +16,7 @@ $color-red: #FF2F2F;
     
     &__label {
         color: $color-baseblack;
+        white-space: nowrap;
     }
 
     &__value {

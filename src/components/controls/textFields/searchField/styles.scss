@@ -1,0 +1,15 @@
+.search-field {
+    border: none;
+    outline: none;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    height: 32px;
+    font-weight: 600;
+    color: #999;
+    box-sizing: border-box;
+    width: 100%;
+    background-image: url('../../../../assets/icons/searchIcon.svg');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    padding-left: 30px;
+}

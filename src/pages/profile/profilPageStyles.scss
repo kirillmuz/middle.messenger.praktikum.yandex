@@ -2,6 +2,9 @@
     width: 64px;
     background: #FBFBFB;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         opacity: 0.9;
@@ -31,6 +34,16 @@
     &__part {
         .inline-button:last-child, .itxt-editable:last-child {
             border-bottom: none;
+        }
+    }
+
+    &__buttons-standart-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &_btn-sized {
+            width: 280px;
         }
     }
 }

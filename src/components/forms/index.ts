@@ -1,2 +1,2 @@
-export { AutorizationForm } from './autorization';
-export { RegistrationForm } from './registration';
+export * from './identityForms';
+export * from './profileForms';

@@ -1,0 +1,17 @@
+.go-forward-button {
+    box-sizing: border-box;
+    width: 28px;
+    max-width: 28px;
+    height: 28px;
+    max-height: 28px;
+    border-radius: 50%;
+    background-image: url('../../../../assets/icons/goForwardIcon.svg');
+    background-color: #3369F3;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}

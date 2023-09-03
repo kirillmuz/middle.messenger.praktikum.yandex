@@ -29,8 +29,17 @@ const pages: Array<PageItem> = [{
     name: 'registration',
     template: Pages.RegistrationPage
 }, {
+    name: 'chats',
+    template: Pages.ChatsPage
+}, {
     name: 'profile',
     template: Pages.ProfilePage
+},{
+    name: 'chngeprofiledata',
+    template: Pages.ChangeProfileDataPage
+},{
+    name: 'chngeprofilepassword',
+    template: Pages.ChangeProfilePasswordPage
 }];
 
 Object.entries(Components).forEach(([name, component]) => {
@@ -43,7 +52,6 @@ const navigate = (page: string) => {
         const pageItem = pages.find(p => p.name === page);
         if (pageItem) {
             root.innerHTML = Handlebars.compile(pageItem.template)(pageItem.context);
-            //root.innerHTML = Handlebars.compile(Pages.ProfilePage)({});
         }
     }
 }

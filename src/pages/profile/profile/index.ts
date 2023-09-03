@@ -1,4 +1,4 @@
 import '../../pagesStyles.scss';
-import './styles.scss';
+import '../profilPageStyles.scss';
 
 export { default as ProfilePage } from './profilePage.hbs?raw';
