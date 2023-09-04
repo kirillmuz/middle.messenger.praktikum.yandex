@@ -1,3 +1,3 @@
-import './styles.scss';
+import './avatarStyles.scss';
 
 export { default as Avatar } from './avatar.hbs?raw';

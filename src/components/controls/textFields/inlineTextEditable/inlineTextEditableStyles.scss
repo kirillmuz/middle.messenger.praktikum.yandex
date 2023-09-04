@@ -1,7 +1,5 @@
-$color-lightgray: #999;
-$color-blue: #3369F3;
-$color-baseblack: #1E1E1E;
-$color-red: #FF2F2F;
+
+@import '../../../../styles/variables.scss';
 
 .itxt-editable {
     width: 100%;
@@ -20,7 +18,7 @@ $color-red: #FF2F2F;
     }
 
     &__value {
-        color: $color-lightgray;
+        color: $color-grey;
         width: 100%;
         text-align: end;
     }
@@ -30,7 +28,7 @@ $color-red: #FF2F2F;
         text-align: end;
         outline: none;
         border: none;
-        color: $color-lightgray;
+        color: $color-grey;
         font-size: 14px;
         font-weight: 600;
     }

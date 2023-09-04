@@ -1,4 +1,4 @@
 import '../../pagesStyles.scss';
-import '../profilPageStyles.scss';
+import '../profilePageStyles.scss';
 
 export { default as ChangeProfilePasswordPage } from './changeProfilePasswordPage.hbs?raw';

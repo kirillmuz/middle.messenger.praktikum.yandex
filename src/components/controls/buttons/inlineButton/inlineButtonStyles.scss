@@ -1,14 +1,11 @@
-$color-lightgray: #999;
-$color-blue: #3369F3;
-$color-white: #FFFFFF;
-
+@import '../../../../styles/variables.scss';
 
 .inline-button {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid $color-lightgrey;
 
     &__button {
         justify-content: start;

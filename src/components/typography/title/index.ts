@@ -1,3 +1,3 @@
-import './styles.scss';
+import './titleStyles.scss';
 
-export {default as Title} from './title.hbs?raw';
+export { default as Title } from './title.hbs?raw';

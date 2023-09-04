@@ -1,6 +1,8 @@
+@import '../../../../styles/variables.scss';
+
 .go-to-button {
     cursor: pointer;
-    color: #999;
+    color: $color-grey;
     font-size: 12px;
     background: transparent;
     border: none;

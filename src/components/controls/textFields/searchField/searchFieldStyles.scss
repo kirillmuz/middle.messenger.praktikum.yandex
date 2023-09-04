@@ -1,11 +1,13 @@
+@import '../../../../styles/variables.scss';
+
 .search-field {
     border: none;
     outline: none;
-    background-color: #EFEFEF;
+    background-color: $color-softgrey;
     border-radius: 5px;
     height: 32px;
     font-weight: 600;
-    color: #999;
+    color: $color-grey;
     box-sizing: border-box;
     width: 100%;
     background-image: url('../../../../assets/icons/searchIcon.svg');

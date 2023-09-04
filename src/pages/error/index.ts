@@ -1,4 +1,4 @@
 import '../pagesStyles.scss';
-import './styles.scss';
+import './errorPageStyles.scss';
 
 export { default as ErrorPage } from './errorPage.hbs?raw';

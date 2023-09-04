@@ -1,3 +1,5 @@
+@import '../../../../styles/variables.scss';
+
 .go-back-button {
     box-sizing: border-box;
     width: 28px;
@@ -6,10 +8,11 @@
     max-height: 28px;
     border-radius: 50%;
     background-image: url('../../../../assets/icons/goBackIcon.svg');
-    background-color: #3369F3;
+    background-color: $color-blue;
     background-repeat: no-repeat;
     background-position: center;
     border: none;
+    cursor: pointer;
     
     &:hover {
         opacity: 0.9;

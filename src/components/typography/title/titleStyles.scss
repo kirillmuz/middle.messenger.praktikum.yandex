@@ -1,6 +1,6 @@
-$color-baseblack: #1E1E1E;
+@import '../../../styles/variables.scss';
 
-.tpg-title {
+.typography-title {
     font-size: 20px;
     font-weight: 500;
     color: $color-baseblack;

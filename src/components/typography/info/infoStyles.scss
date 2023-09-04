@@ -1,6 +1,6 @@
-$color-baseblack: #1E1E1E;
+@import '../../../styles/variables.scss';
 
-.tpg-info {
+.typography-info {
     font-size: 40px;
     font-weight: 500;
     color: $color-baseblack;

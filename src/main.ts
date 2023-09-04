@@ -2,7 +2,8 @@ import Handlebars from 'handlebars';
 import * as Components from './components';
 import * as Pages from './pages';
 import { PageItem } from './types/pages';
-import { ErrorPageContext, InlineTextEditableContext } from './types/contexts';
+import { ErrorPageContext } from './types/contexts';
+import './styles/globalStyles.scss';
 
 const pages: Array<PageItem> = [{
     name: 'internalServerError',

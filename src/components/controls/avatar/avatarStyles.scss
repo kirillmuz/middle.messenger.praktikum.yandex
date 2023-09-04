@@ -1,7 +1,4 @@
-$color-lightgray: #999;
-$color-softgrey: #EFEFEF;
-$color-blue: #3369F3;
-$color-white: #FFFFFF;
+@import '../../../styles/variables.scss';
 
 .avatar {
     background-color: $color-softgrey;
@@ -26,7 +23,7 @@ $color-white: #FFFFFF;
 
     &__action {
         padding: 15px;
-        background-color: #00000080;
+        background-color: $color-overlay;
         opacity: 0;
 
         &:hover {
