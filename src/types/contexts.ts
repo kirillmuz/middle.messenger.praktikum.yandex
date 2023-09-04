@@ -52,4 +52,4 @@ export interface InlineTextEditableContext {
      * Значение
      */
     value: string;
-}
+};
