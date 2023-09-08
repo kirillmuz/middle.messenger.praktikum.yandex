@@ -1,0 +1,15 @@
+@import '../../../../styles/variables.scss';
+
+.inline-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    border-bottom: 1px solid $color-lightgrey;
+
+    &__button {
+        justify-content: start;
+        padding: 10px 0px;
+        min-height: 0px;
+    }
+}
