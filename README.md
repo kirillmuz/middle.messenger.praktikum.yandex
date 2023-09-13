@@ -61,3 +61,7 @@ npm run preview
 4.2) Кнопка "Изменить пароль" ведет на страницу "Редактировать пароль"
 
 4.3) Кнопка "Выйти" ведет на страницу "Вход"
+
+
+## Pull request первого спринта:
+https://github.com/kirillmuz/middle.messenger.praktikum.yandex/pull/2
