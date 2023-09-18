@@ -1,0 +1,19 @@
+<div class="form-wrapper">
+    {{#> FormContainer className="form-content" }}
+        {{{ Title text="Регистрация" }}}
+        <div class="form-content__form-block form-content__fields">
+            {{{ TextField label="Почта" type="email" placeholder="Почта" name="email" }}}
+            {{{ TextField label="Логин" type="text" placeholder="Логин" name="login" }}}
+            {{{ TextField label="Фамилия" type="text" placeholder="Фамилия" name="second_name" }}}
+            {{{ TextField label="Имя" type="text" placeholder="Имя" name="first_name" }}}
+            {{{ TextField label="Отчество" type="text" placeholder="Отчество" name="middle_name" }}}
+            {{{ TextField label="Телефон" type="text" type="tel" placeholder="Телефон" name="phone" }}}
+            {{{ TextField label="Пароль" type="text" type="password" placeholder="Пароль" name="password" }}}
+            {{{ TextField label="Повторить пароль" type="password" placeholder="Повторить пароль" name="repeate_password" }}}
+        </div>
+        <div class="form-content__form-block form-content__actions">
+            {{{ Button text="Зарегистрироваться" type="prymary" goToPage="chats" onClick=onRegister }}}
+            {{{ Button text="Войти" type="secondary" goToPage="login" onClick=onLogin }}}
+        </div>
+    {{/FormContainer}}
+</div>

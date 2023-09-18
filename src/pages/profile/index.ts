@@ -1,3 +1,3 @@
 export { ChangeProfileDataPage } from './changeData';
-export { ChangeProfilePasswordPage } from './changePassword';
+export { ChangePasswordPage } from './changePassword';
 export { ProfilePage } from './profile';

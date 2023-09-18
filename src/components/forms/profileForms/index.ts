@@ -1,2 +1,2 @@
 export { ChangeProfileDataForm } from './changeProfileData';
-export { ChangeProfilePasswordForm } from './profilePassword';
+export { ChangePasswordForm } from './profilePassword';

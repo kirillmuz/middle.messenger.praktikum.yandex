@@ -1,0 +1,11 @@
+<div class="text-field">
+    <label class="text-field__label" for{{name}}>{{label}}</label>
+    {{{InputBase name=name
+        ref="input"    
+        type=type
+        placeholder=placeholder
+        onBlur=onBlur
+        className="text-field__input" 
+    }}}
+    <span class="text-field__error">{{errorMessage}}</span>
+</div>

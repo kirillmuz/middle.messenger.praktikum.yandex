@@ -20,7 +20,14 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "strictNullChecks": true 
+    "strictNullChecks": true,
+
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@components": ["src/components"],
+      "@core": ["src/core"]
+    }
   },
   "include": ["src", "server/server.js"]
 }

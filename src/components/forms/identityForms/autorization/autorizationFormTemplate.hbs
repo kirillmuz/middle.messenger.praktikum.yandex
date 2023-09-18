@@ -1,0 +1,13 @@
+<div class="form-wrapper">
+    {{#> FormContainer className="form-content" }}
+        {{{ Title text="Вход" }}}
+        <div class="form-content__form-block form-content__fields">
+            {{{ TextField label="Логин" type="text" placeholder="Логин" name="login" }}}
+            {{{ TextField label="Пароль" type="password" placeholder="Пароль" name="password" }}}
+        </div>
+        <div class="form-content__form-block form-content__actions">
+            {{{ Button text="Войти" type="prymary" goToPage="chats" onClick=onLogin }}}
+            {{{ Button text="Зарегистрироваться" type="secondary"  goToPage="registration" onClick=onRegister }}}
+        </div>
+    {{/FormContainer}}
+</div>
