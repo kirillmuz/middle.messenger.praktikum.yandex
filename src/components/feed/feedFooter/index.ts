@@ -1,0 +1,1 @@
+export { FeedFooter } from './FeedFooter';

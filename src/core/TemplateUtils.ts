@@ -1,15 +1,15 @@
 import Handlebars from 'handlebars';
 import Block from "./Block";
 import {HelperOptions} from "handlebars";
-import Partial, { PartialComponent } from './Partial';
+import Partial from './Partial';
 
 export interface BlockComponent {
     element(): Element;
 }
 
-interface BlockComponentClass<T> extends BlockComponent {
-    new (props: unknown): T;
-}
+// interface BlockComponentClass<T> extends BlockComponent {
+//     new (props: unknown): T;
+// }
 
 export const generateGUID = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

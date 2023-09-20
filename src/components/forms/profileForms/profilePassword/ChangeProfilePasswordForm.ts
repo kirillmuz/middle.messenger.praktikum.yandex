@@ -1,4 +1,6 @@
 import Block from '../../../../core/Block';
+import { PagesNames } from '../../../../constants/commonConstants';
+import { navigate } from '../../../../utils/navigationUtils';
 import template from './changePasswordFormTemplate.hbs?raw';
 
 /**
@@ -14,7 +16,7 @@ export class ChangePasswordForm extends Block {
         super({
             onSave: (event: any) => {
                 event.preventDefault();
-                alert('Login click');
+                navigate(PagesNames.Profile);
             }
         });
     }

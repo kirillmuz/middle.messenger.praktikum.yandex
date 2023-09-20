@@ -1,4 +1,6 @@
 import Block from '../../../core/Block';
+import { PagesNames } from '../../../constants/commonConstants';
+import { navigate } from '../../../utils/navigationUtils';
 import template from './changePasswordPageTemplate.hbs?raw';
 import '../../pagesStyles.scss';
 import '../profilePageStyles.scss';
@@ -8,7 +10,12 @@ import '../profilePageStyles.scss';
  */
 export class ChangePasswordPage extends Block {
     constructor() {
-        super();
+        super({
+            returnToProfile: (event: any) => {
+                event.preventDefault();
+                navigate(PagesNames.Profile);
+            }
+        });
     }
 
     protected render(): string {

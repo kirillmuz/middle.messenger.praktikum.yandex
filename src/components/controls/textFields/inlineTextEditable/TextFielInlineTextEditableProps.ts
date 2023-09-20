@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from 'types/commonTypes';
+import { HTMLInputTypeAttribute } from '../../../../types/commonTypes';
 
 /**
  * Свойства компонента TextFielInlineTextEditable 

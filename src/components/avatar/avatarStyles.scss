@@ -1,8 +1,8 @@
-@import '../../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .avatar {
     background-color: $color-softgrey;
-    background-image: url('../../../assets/icons/noImage.svg');
+    background-image: url('../../assets/icons/noImage.svg');
     background-repeat: no-repeat;
     background-position: center;
     color: $color-white;

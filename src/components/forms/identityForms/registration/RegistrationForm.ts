@@ -1,5 +1,7 @@
 
 import Block from '../../../../core/Block';
+import { navigate } from '../../../../utils/navigationUtils';
+import { PagesNames } from '../../../../constants/commonConstants';
 import template from './registrationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
 
@@ -16,11 +18,12 @@ export class RegistrationForm extends Block {
         super({
             onLogin: (event: any) => {
                 event.preventDefault();
-                alert('Login click')
+                navigate(PagesNames.Login);
             },
             onRegister: (event: any) => {
                 event.preventDefault();
-                alert('Register click')
+                console.log(RegistrationForm.Name);
+                navigate(PagesNames.Chats);
             }
         });
     }

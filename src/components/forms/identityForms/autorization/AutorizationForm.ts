@@ -1,5 +1,6 @@
-
 import Block from '../../../../core/Block';
+import { navigate } from '../../../../utils/navigationUtils';
+import { PagesNames } from '../../../../constants/commonConstants';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
 
@@ -16,19 +17,12 @@ export class AutorizationForm extends Block {
         super({
             onLogin: (event: any) => {
                 event.preventDefault();
-                alert('Login click')
-                
-                //const login =  this.refs.login.value();
-                //const password =  this.refs.password.value();
-
-                /*console.log({
-                    login,
-                    password
-                })*/
+                console.log(AutorizationForm.Name);
+                navigate(PagesNames.Chats);
             },
             onRegister: (event: any) => {
                 event.preventDefault();
-                alert('Register click')
+                navigate(PagesNames.Registration);
             }
         });
     }

@@ -1,4 +1,4 @@
-import Block from '../../../core/Block';
+import Block from '../../core/Block';
 import template from './avatarTemplate.hbs?raw';
 import { AvatarProps } from './AvatarProps';
 import './avatarStyles.scss';

@@ -1,18 +1,5 @@
 @import '../../styles/variables.scss';
 
-.profile-navigation {
-    width: 64px;
-    background: $color-whitegrey;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-        opacity: 0.9;
-    }
-}
-
 .profile {
     display: flex;
     align-items: center;

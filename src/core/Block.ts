@@ -105,7 +105,7 @@ import { compileTemplate, prepareTemplate as prepareTemplateUtil } from "./Templ
     }
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any) {
+  protected componentDidUpdate(_oldProps: any, _newProps: any) {
     return true;
   }
 

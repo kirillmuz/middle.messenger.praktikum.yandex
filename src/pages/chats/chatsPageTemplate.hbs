@@ -2,7 +2,7 @@
     <div class="chats-page__chats">
         <div class="chats-page__chats-header">
             <div class="chats-page__to-profile-container">
-                {{{ GoToButton text="Профиль" goToPage="profile" }}}
+                {{{ GoToButton text="Профиль" onClick=openProfile }}}
             </div>
             {{{ SearchField }}}
         </div>
@@ -20,69 +20,8 @@
         </div>
     </div>
     <div class="chats-page__feed">
-        <div class="feed-header">
-            <div class="feed-header__image"></div>
-            <span class="feed-header__title">Вадим</span>
-            <div class="feed-header__menu">
-                <svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="1.5" cy="2" r="1.5" fill="#1E1E1E"/>
-                    <circle cx="1.5" cy="8" r="1.5" fill="#1E1E1E"/>
-                    <circle cx="1.5" cy="14" r="1.5" fill="#1E1E1E"/>
-                </svg>
-            </div>
-        </div>
-
-
-        
-        <div class="feed-body">
-            <div class="feed-body__message feed-body__message_incoming">
-                <p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
-                <p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.</p>
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                <p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
-                <p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.</p>
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                <p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
-                <p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.</p>
-            </div>
-            <div class="feed-body__message feed-body__message_outgoing">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam quasi iure corrupti, similique dolorem reiciendis nulla quaerat magni voluptatibus at dolore maxime officia omnis tenetur velit ut repudiandae est repellat?
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                И вот еще что...
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                Буду
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                писать
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                по
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                одному
-            </div>
-            <div class="feed-body__message feed-body__message_incoming">
-                слову
-            </div>
-            <div class="feed-body__message feed-body__message_outgoing">
-                Ты больной?
-            </div>
-        </div>
-        
-        
-        
-        <div class="feed-footer">
-            <div class="feed-footer__attach-btn"></div>
-            {{{ Message }}}
-            {{{ GoForwardButton }}}
-        </div>
-        {{!-- <div>
-            {{{ Button text="Посмотреть страницу ошибки 404" type="secondary" goToPage="notFoundError" }}}
-            {{{ Button text="Посмотреть страницу ошибки 500" type="secondary" goToPage="internalServerError" }}}
-        </div> --}}
+        {{{ FeedHeader title=selectedChat }}}
+        {{{ FeedBody messagesList=selectedChatMessagesList }}}
+        {{{ FeedFooter }}}
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { TitleType } from "types/commonTypes";
+import { TitleType } from '../../../types/commonTypes';
 
 /**
  * Свойства компонента Title

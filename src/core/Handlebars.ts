@@ -8,9 +8,9 @@ interface BlockComponentClass<T> extends BlockComponent {
     new (props: unknown): T;
 }
 
-type StaticMethods = {
-    componentName: string;
-}
+// type StaticMethods = {
+//     componentName: string;
+// }
 
 export const compile = (template: string, context: object) => {
     const data = {

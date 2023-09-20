@@ -1,7 +1,5 @@
 <div class="fullscreen-page">
-    <div class="profile-navigation"  goToPage="chats">
-        {{{ GoBackButton goToPage="chats" }}}
-    </div>
+    {{{ StreachButtonLeft onClick=returnToChats }}}
     <div class="profile">
         <div class="profile__container">
             <div class="profile__avatar">
@@ -18,9 +16,9 @@
                 {{{ InlineTextEditable label="Телефон" isEdit=false name="phone" type="phone" value="8-800-535-35-35" }}}
             </div>
             <div class="profile__part">
-                {{{ InlineButton text="Изменить данные" type="secondary" goToPage="chngeprofiledata" }}}
-                {{{ InlineButton text="Изменить пароль" type="secondary" goToPage="chngeprofilepassword" }}}
-                {{{ InlineButton text="Выйти" type="important" goToPage="login" }}}
+                {{{ InlineButton text="Изменить данные" type="secondary" onClick=openChangeDataPage }}}
+                {{{ InlineButton text="Изменить пароль" type="secondary" onClick=openChangePasswordPage }}}
+                {{{ InlineButton text="Выйти" type="important" onClick=logOut }}}
             </div>
         </div>
     </div>

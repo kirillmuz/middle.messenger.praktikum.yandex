@@ -1,14 +1,17 @@
+import { FeedMessage } from '../../types/commonTypes';
 import { ChatItemProps } from '../../components/chatItem/chatItemProps';
+import { PagesNames } from '../../constants/commonConstants';
+import { navigate } from '../../utils/navigationUtils';
 
 export const Chats: Array<ChatItemProps> = [{
-    chatName: 'Андрей',
-    onClick: ()=>console.log('Clicked on chat: Андрей'),
+    chatName: 'Тут ошибка 500',
+    onClick: ()=>navigate(PagesNames.Error500),
     lastMessage: 'Изображение',
     sentTime: '10:49',
     unreadedMessagesCount: 2
 },{
-    chatName: 'Киноклуб',
-    onClick: ()=>console.log('Clicked on chat: Киноклуб'),
+    chatName: 'Тут ошибка 404',
+    onClick: ()=>navigate(PagesNames.Error404),
     lastMessage: 'Кино отстой!',
     sentTime: '12:00',
     who: 'Вы'
@@ -23,14 +26,14 @@ export const Chats: Array<ChatItemProps> = [{
     onClick: ()=>console.log('Clicked on chat: Вадим'),
     lastMessage: 'Круто!',
     sentTime: 'Пт',
-    who: 'Вы',
-    selected: true
+    who: 'Вы'
 },{
-    chatName: 'тет-а-теты',
-    onClick: ()=>console.log('Clicked on chat: тет-а-теты'),
-    lastMessage: 'Никто не должен это увидеть!',
+    chatName: 'Для своих',
+    onClick: ()=>console.log('Clicked on chat: Для своих'),
+    lastMessage: 'Ну ладно',
     sentTime: 'Ср',
-    who: 'Сережа'
+    who: 'Сережа',
+    selected: true
 },{
     chatName: 'Работа',
     onClick: ()=>console.log('Clicked on chat: Работа'),
@@ -90,4 +93,70 @@ export const Chats: Array<ChatItemProps> = [{
     sentTime: 'Пт',
     who: 'Марго',
     unreadedMessagesCount: 1
-}]
+}];
+
+export const Messages: Array<FeedMessage> = [{
+    message: 'Привет, есть тема!)',
+    sentTime: '12:32',
+    type: 'incoming',
+    who: 'Сережа'
+}, {
+    message: 'Какая?',
+    sentTime: '12:33',
+    type: 'incoming',
+    who: 'Олег'
+}, {
+    message: 'Ага, заинтриговал, что за тема?',
+    sentTime: '12:33',
+    type: 'outgoing'
+}, {
+    message: 'Короче, для моковой длинной строки можно ввести "lorem", и IDE сгенерирует длинную строку',
+    sentTime: '12:34',
+    type: 'incoming',
+    who: 'Сережа'
+}, {
+    message: 'Типа того:',
+    sentTime: '12:36',
+    type: 'incoming',
+    who: 'Сережа'
+}, {
+    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut commodi quisquam quaerat qui consequuntur animi culpa, exercitationem temporibus eius porro. Modi qui, neque eos inventore sapiente repellendus fugit. Numquam, amet?',
+    sentTime: '12:36',
+    type: 'incoming',
+    who: 'Сережа'
+}, {
+    message: 'Ты серьезно? Это ж каждый дурак знает!))',
+    sentTime: '12:37',
+    type: 'outgoing'
+}, {
+    message: 'Ахах, ага)',
+    sentTime: '12:38',
+    type: 'incoming',
+    who: 'Олег'
+}, {
+    message: 'Ой, все! Вот и делись с вами чем-то полезным...',
+    sentTime: '12:40',
+    type: 'incoming',
+    who: 'Сережа'
+}, {
+    message: 'Уйду я от вас, злые вы!',
+    sentTime: '12:45',
+    type: 'incoming',
+    who: 'Сережа'
+}, {
+    message: 'Да ладно тебе, не обижайся!',
+    sentTime: '12:46',
+    type: 'incoming',
+    who: 'Олег'
+}, {
+    message: 'Ну да, не кипятись, это на самом деле полезная инфа',
+    sentTime: '12:48',
+    type: 'outgoing'
+}, {
+    message: 'Ну ладно',
+    sentTime: '12:49',
+    type: 'incoming',
+    who: 'Сережа'
+}];
+
+export const SelectedChat = 'Для своих';
