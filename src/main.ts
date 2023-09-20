@@ -6,6 +6,7 @@ import * as Pages from './pages';
 import './styles/globalStyles.scss';
 
 import { registerComponent, registerPartial } from './core/TemplateUtils';
+import { Chats } from './pages/chats/mokeData';
 
 // const pages: Array<PageItem> = [{
 //     name: 'internalServerError',
@@ -62,6 +63,7 @@ registerComponent(Components.GoToButton.Name, Components.GoToButton);
 registerComponent(Components.InlineButton.Name, Components.InlineButton);
 registerComponent(Components.InputBase.Name, Components.InputBase);
 registerComponent(Components.InlineTextEditable.Name, Components.InlineTextEditable);
+registerComponent(Components.Message.Name, Components.Message);
 registerComponent(Components.TextField.Name, Components.TextField);
 registerComponent(Components.SearchField.Name, Components.SearchField);
 registerComponent(Components.Title.Name, Components.Title);
@@ -70,6 +72,7 @@ registerComponent(Components.AutorizationForm.Name, Components.AutorizationForm)
 registerComponent(Components.RegistrationForm.Name, Components.RegistrationForm);
 registerComponent(Components.ChangeProfileDataForm.Name, Components.ChangeProfileDataForm);
 registerComponent(Components.ChangePasswordForm.Name, Components.ChangePasswordForm);
+registerComponent(Components.ChatItem.Name, Components.ChatItem);
 
 
 //registerComponent(Components.Form.Name, Components.Form);
@@ -98,7 +101,9 @@ const navigate = (page: string) => {
         });*/
 
         const Component = Pages.ChatsPage;
-        const component = new Component();
+        const component = new Component({
+            chatsList: Chats
+        });
         root?.append(component.getElement()!);
     }
 }

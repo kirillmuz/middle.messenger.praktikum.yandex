@@ -1,0 +1,31 @@
+@import '../../../../styles/variables.scss';
+
+.message-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+    &__input {
+        box-sizing: border-box;
+        height: 32px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        font-weight: 500;
+        color: $color-baseblack;
+        background: $color-softgrey;
+        border-radius: 30px;
+        padding: 10px 20px;
+
+        &::placeholder {
+            color: $color-grey;
+            font-weight: 500;
+        }
+    }
+    
+    &__error {
+        font-size: 8px;
+        color: $color-error;
+    }
+}
