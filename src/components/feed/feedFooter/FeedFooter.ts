@@ -1,4 +1,5 @@
 import Block from '../../../core/Block';
+import { Message } from '../../controls';
 import { FeedFooterProps } from './feedFooterProps';
 import template from './feedFooterTemplate.hbs?raw';
 import './feedFooterStyles.scss';
@@ -13,10 +14,17 @@ export class FeedFooter extends Block {
     public static Name = 'FeedFooter';
 
     constructor(props: FeedFooterProps) {
-        super(props);
-        this.props.events = {
-            click: this.props.onClick || (() => {})
-        }
+        super({
+            ...props,
+            sendMessage: (event: MouseEvent) => {
+                event.preventDefault();
+                const message =  (this.refs.message as Message)?.value();
+                console.log({
+                    component: FeedFooter.Name,
+                    message
+                });
+            }
+        });
     }
 
     protected render(): string {

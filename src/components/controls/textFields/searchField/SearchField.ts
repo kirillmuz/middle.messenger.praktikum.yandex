@@ -18,6 +18,17 @@ export class SearchField extends Block {
         });
     }
 
+    /**
+     * Получить значение
+     */
+    public value() {
+        if(this.refs.input instanceof Block) {
+            return (this.refs.input.getElement() as HTMLInputElement)?.value ?? '';
+        } else {
+            return (this.refs.input as HTMLInputElement)?.value ?? '';
+        }
+    }
+
     protected render(): string {
         return template;
     }

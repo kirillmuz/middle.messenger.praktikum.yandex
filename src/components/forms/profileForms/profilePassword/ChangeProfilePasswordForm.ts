@@ -1,4 +1,5 @@
 import Block from '../../../../core/Block';
+import { InlineTextEditable } from '../../../controls';
 import { PagesNames } from '../../../../constants/commonConstants';
 import { navigate } from '../../../../utils/navigationUtils';
 import template from './changePasswordFormTemplate.hbs?raw';
@@ -14,8 +15,17 @@ export class ChangePasswordForm extends Block {
 
     constructor() {
         super({
-            onSave: (event: any) => {
+            onSave: (event: MouseEvent) => {
                 event.preventDefault();
+                const oldPassword =  (this.refs.oldPassword as InlineTextEditable)?.value();
+                const newPassword =  (this.refs.newPassword as InlineTextEditable)?.value();
+                const repeateNewPassword =  (this.refs.repeateNewPassword as InlineTextEditable)?.value();
+                console.log({
+                    component: ChangePasswordForm.Name,
+                    oldPassword,
+                    newPassword,
+                    repeateNewPassword
+                });
                 navigate(PagesNames.Profile);
             }
         });

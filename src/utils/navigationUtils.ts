@@ -2,6 +2,7 @@ import { Chats, Messages, SelectedChat } from '../pages/chats/mokeData';
 import { ChatsPageProps } from '../pages/chats/chatsPageProps';
 import { ErrorPageProps } from '../pages/error/errorPageProps';
 import { PagesNames } from '../constants/commonConstants';
+import { ChangeProfileDataPageProps } from '../pages/profile/changeData/changeProfileDataPageProps';
 import * as Pages from '../pages';
 
 /**
@@ -69,7 +70,20 @@ export const navigate = (page: string) => {
                     errorText: 'Мы работаем над устранением проблемы',
                     goBackText: 'Вернуться к чатам',
                     goBackPage: PagesNames.Chats
-                } as ErrorPageProps; 
+                } as ErrorPageProps;
+                break;
+            case PagesNames.ChangeProfileData:
+                context = {
+                    profile: {
+                        displayName: 'Иван',
+                        email: 'iiivanov@yandex.ru',
+                        firstName: 'Иван',
+                        login: 'iiivanov',
+                        midleName: 'Иванович',
+                        phone: '8-800-535-35-35',
+                        secondName: 'Иванов'
+                    }
+                } as ChangeProfileDataPageProps; 
                 break;
         }
         const component = context ? new Component(context) : new Component();

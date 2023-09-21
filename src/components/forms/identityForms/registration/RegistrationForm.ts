@@ -1,5 +1,5 @@
-
 import Block from '../../../../core/Block';
+import { InlineTextEditable } from '../../../controls';
 import { navigate } from '../../../../utils/navigationUtils';
 import { PagesNames } from '../../../../constants/commonConstants';
 import template from './registrationFormTemplate.hbs?raw';
@@ -16,13 +16,31 @@ export class RegistrationForm extends Block {
 
     constructor() {
         super({
-            onLogin: (event: any) => {
+            onLogin: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(PagesNames.Login);
             },
-            onRegister: (event: any) => {
+            onRegister: (event: MouseEvent) => {
                 event.preventDefault();
-                console.log(RegistrationForm.Name);
+                const email =  (this.refs.email as InlineTextEditable)?.value();
+                const login =  (this.refs.login as InlineTextEditable)?.value();
+                const secondName =  (this.refs.secondName as InlineTextEditable)?.value();
+                const firstName =  (this.refs.firstName as InlineTextEditable)?.value();
+                const midleName =  (this.refs.midleName as InlineTextEditable)?.value();
+                const phone =  (this.refs.phone as InlineTextEditable)?.value();
+                const password =  (this.refs.password as InlineTextEditable)?.value();
+                const repeatePassword =  (this.refs.repeatePassword as InlineTextEditable)?.value();
+                console.log({
+                    component: RegistrationForm.Name,
+                    email,
+                    login,
+                    secondName,
+                    firstName,
+                    midleName,
+                    phone,
+                    password,
+                    repeatePassword
+                });
                 navigate(PagesNames.Chats);
             }
         });
