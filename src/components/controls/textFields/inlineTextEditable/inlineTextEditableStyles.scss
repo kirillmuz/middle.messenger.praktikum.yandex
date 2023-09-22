@@ -1,6 +1,11 @@
 
 @import '../../../../styles/variables.scss';
 
+.itxt-editable-wrapper {
+    box-sizing: border-box;
+    border: none;
+}
+
 .itxt-editable {
     width: 100%;
     border-bottom: 1px solid #EAEAEA;

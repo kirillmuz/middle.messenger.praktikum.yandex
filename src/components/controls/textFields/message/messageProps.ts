@@ -6,11 +6,6 @@ export interface MessageProps {
      * Имя компонента
      */
     name: string;
-    
-    /**
-     * Сообщение валидации
-     */
-    errorMessage?: string;
 
     /**
      * Событие потери фокуса на компоненте
@@ -20,5 +15,10 @@ export interface MessageProps {
     /**
      * Значение
      */
-    value?: string;    
+    value?: string;
+
+    /**
+     * Валидация
+     */
+    validate?: (value?: string) => string;
 }

@@ -14,6 +14,7 @@ registerComponent(Components.GoForwardButton.Name, Components.GoForwardButton);
 registerComponent(Components.GoToButton.Name, Components.GoToButton);
 registerComponent(Components.StreachButtonLeft.Name, Components.StreachButtonLeft);
 registerComponent(Components.InlineButton.Name, Components.InlineButton);
+registerComponent(Components.ValidationMessage.Name, Components.ValidationMessage);
 registerComponent(Components.InputBase.Name, Components.InputBase);
 registerComponent(Components.InlineTextEditable.Name, Components.InlineTextEditable);
 registerComponent(Components.Message.Name, Components.Message);

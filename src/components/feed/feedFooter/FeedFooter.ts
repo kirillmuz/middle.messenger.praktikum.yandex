@@ -16,6 +16,11 @@ export class FeedFooter extends Block {
     constructor(props: FeedFooterProps) {
         super({
             ...props,
+            validate: {
+                message: (value: string) =>{
+                    return value.length === 0 ? `Поле не должно быть пустым` : '';
+                }
+            },
             sendMessage: (event: MouseEvent) => {
                 event.preventDefault();
                 const message =  (this.refs.message as Message)?.value();

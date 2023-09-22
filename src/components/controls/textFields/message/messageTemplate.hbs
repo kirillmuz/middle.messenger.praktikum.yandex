@@ -7,5 +7,7 @@
             onBlur=onBlur
             className="message-field__input" 
     }}}
-    <span class="message-field__error">{{errorMessage}}</span>
+    <div class="message-field__validation">
+        {{{ ValidationMessage ref="validationMessage" }}}
+    </div>
 </div>

@@ -1,3 +1,4 @@
+export { Avatar } from './avatar';
 export { ChatItem } from './chatItem';
 export * from './containers';
 export * from './controls';

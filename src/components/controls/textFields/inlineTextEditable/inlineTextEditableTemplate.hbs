@@ -1,15 +1,19 @@
-<div class="itxt-editable">
-    <span class="itxt-editable__label">{{label}}</span>
-    {{#if isEdit}}
-        {{{
-            InputBase name=name
-            ref="input"    
-            type=type
-            value=value
-            placeholder=placeholder
-            className="itxt-editable__input" 
-        }}}
-    {{else}}
-        <span class="itxt-editable__value">{{value}}</span>
-    {{/if}}
+<div class="itxt-editable-wrapper">
+    <div class="itxt-editable">
+        <span class="itxt-editable__label">{{label}}</span>
+        {{#if isEdit}}
+            {{{
+                InputBase name=name
+                ref="input"    
+                type=type
+                value=value
+                placeholder=placeholder
+                onBlur=onBlur
+                className="itxt-editable__input"
+            }}}
+        {{else}}
+            <span class="itxt-editable__value">{{value}}</span>
+        {{/if}}
+    </div>
+    {{{ ValidationMessage ref="validationMessage" }}}
 </div>

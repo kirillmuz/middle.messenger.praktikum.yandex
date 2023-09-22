@@ -1,6 +1,7 @@
 import Block from '../../../../core/Block';
+import { ValidationMessage } from '../../validationMessage';
 import template from './inlineTextEditableTemplate.hbs?raw';
-import { TextFielInlineTextEditableProps } from './TextFielInlineTextEditableProps';
+import { InlineTextEditableProps } from './inlineTextEditableProps';
 import './inlineTextEditableStyles.scss';
 
 /**
@@ -12,10 +13,10 @@ export class InlineTextEditable extends Block {
      */
     public static Name = 'InlineTextEditable';
 
-    constructor(props: TextFielInlineTextEditableProps) {
+    constructor(props: InlineTextEditableProps) {
         super({
             ...props,
-            onBlur: () => console.log('Blur') //this.validate()
+            onBlur: () => this.validate()
         });
     }
 
@@ -23,11 +24,35 @@ export class InlineTextEditable extends Block {
      * Получить значение
      */
     public value() {
+        if (!this.validate()) {
+            return false;
+        }
+        return this.getValue();
+    }
+
+    private getValue() {
         if(this.refs.input instanceof Block) {
             return (this.refs.input.getElement() as HTMLInputElement)?.value ?? '';
         } else {
             return (this.refs.input as HTMLInputElement)?.value ?? '';
         }
+    }
+
+    private validate() {
+        const value = this.getValue();
+        const props = this.props as InlineTextEditableProps;
+        const error = props.validate ? props.validate(value) : '';
+        const validationMessage = (this.refs.validationMessage as ValidationMessage);
+        if (error) {
+            validationMessage?.setProps({
+                validationMessage: error
+            });
+            return false;
+        }
+        validationMessage?.setProps({
+            validationMessage: ''
+        });
+        return true;
     }
 
     protected render(): string {

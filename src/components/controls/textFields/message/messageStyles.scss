@@ -24,8 +24,8 @@
         }
     }
     
-    &__error {
-        font-size: 8px;
-        color: $color-error;
+    &__validation {
+        display: flex;
+        justify-content: center;
     }
 }

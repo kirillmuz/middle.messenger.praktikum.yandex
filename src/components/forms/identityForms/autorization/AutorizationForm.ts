@@ -2,8 +2,18 @@ import Block from '../../../../core/Block';
 import { TextField } from '../../../controls';
 import { navigate } from '../../../../utils/navigationUtils';
 import { PagesNames } from '../../../../constants/commonConstants';
+import { validationUtils } from '../../../../utils/validationUtils';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
+
+
+/**
+ * Значение полей формы
+ */
+interface FieldsValues {
+    login?: boolean | string;
+    password?: boolean | string;
+}
 
 /**
  * Форма авторизации
@@ -16,16 +26,26 @@ export class AutorizationForm extends Block {
 
     constructor() {
         super({
+            // Здесь вылидация только на обязательность полей,
+            // т.к. на логинке рассказывать про формат логина и пароля
+            // неправильно, более обширная валидация будет на лругих формах
+            validate: {
+                login: (value: string) =>{
+                    return validationUtils.required(value);
+                },
+                password: (value: string) =>{
+                    return validationUtils.required(value);
+                }
+            },
             onLogin: (event: MouseEvent) => {
                 event.preventDefault();
-                const login =  (this.refs.login as TextField)?.value();
-                const password =  (this.refs.password as TextField)?.value();
+                if(!this.validate()) {
+                    return;
+                }
                 console.log({
                     component: AutorizationForm.Name,
-                    login,
-                    password
+                    ...this.getFieldsValues()
                 });
-                
                 navigate(PagesNames.Chats);
             },
             onRegister: (event: MouseEvent) => {
@@ -33,6 +53,29 @@ export class AutorizationForm extends Block {
                 navigate(PagesNames.Registration);
             }
         });
+    }
+
+    /**
+     * Валидация
+     */
+    private validate(): boolean {
+        const fieldsValues = this.getFieldsValues();
+        const checkInvalid = (value?: boolean | string) => 
+            typeof value === 'boolean' && value === false;
+        if(checkInvalid(fieldsValues.login) || checkInvalid(fieldsValues.password)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Получить значения полей
+     */
+    private getFieldsValues(): FieldsValues {
+        return {
+            login: (this.refs.login as TextField)?.value(),
+            password: (this.refs.password as TextField)?.value()
+        }
     }
 
     protected render(): string {

@@ -5,14 +5,9 @@ import { HTMLInputTypeAttribute } from '../../../../types/commonTypes';
  */
 export interface TextFieldProps {
     /**
-     * ИМя компонента
+     * Имя компонента
      */
     name: string;
-    
-    /**
-     * Сообщение валидации
-     */
-    errorMessage?: string;
     
     /**
      * Подпись
@@ -39,7 +34,8 @@ export interface TextFieldProps {
      */
     value?: string;
 
-    
-
-    
+    /**
+     * Валидация
+     */
+    validate?: (value?: string) => string;
 }

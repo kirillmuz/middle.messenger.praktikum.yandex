@@ -1,10 +1,10 @@
 import { HTMLInputTypeAttribute } from '../../../../types/commonTypes';
 
 /**
- * Свойства компонента TextFielInlineTextEditable 
+ * Свойства компонента InlineTextEditableProps 
  * (поле ввода с инлайн редактированием)
  */
-export interface TextFielInlineTextEditableProps {
+export interface InlineTextEditableProps {
     /**
      * Имя компонента
      */
@@ -30,4 +30,9 @@ export interface TextFielInlineTextEditableProps {
      * Значение
      */
     value?: string;
+
+    /**
+     * Валидация
+     */
+    validate?: (value?: string) => string;
 }
