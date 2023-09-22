@@ -2,9 +2,10 @@
 import {EventBus} from './EventBus';
 import { compileTemplate } from './TemplateUtils';
 
-//TODO: для пропсов использован тип any,
-//т.к. они могут быть любого типа и типизируются 
-//на уровне компонентов-наследников
+interface IProps extends Record<string, any> {
+    events?: object;
+} 
+
 /**
  * Базовый класс компонента
  */
@@ -17,14 +18,14 @@ class Block {
         FLOW_CWUM: 'flow:component-will-unmount'
     };
 
-    protected props: any;
+    protected props: IProps;
     protected refs: Record<string, Block | HTMLElement> = {};
     public children: Record<string, Block>;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
 
-    constructor(propsWithChildren: any = {}) {
-        const {props, children} = this._getChildrenAndProps(propsWithChildren);
+    constructor(propsWithChildren?: IProps) {
+        const {props, children} = this._getChildrenAndProps(propsWithChildren ?? {});
         this.children = children;
         this.props = this._makePropsProxy(props, this);
 
@@ -34,8 +35,8 @@ class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildrenAndProps(childrenAndProps: any) {
-        const props: Record<string, any> = {};
+    _getChildrenAndProps(childrenAndProps: IProps) {
+        const props: IProps = {};
         const children: Record<string, Block> = {};
 
         Object.entries(childrenAndProps).forEach(([key, value]) => {
@@ -68,7 +69,7 @@ class Block {
     _registerEvents(eventBus: EventBus) {
         eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this, {}, this.props));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CWUM, this._componentWillUnmount.bind(this));
     }
@@ -92,7 +93,7 @@ class Block {
         Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
     }
 
-    private _componentDidUpdate(oldProps: any, newProps: any) {
+    private _componentDidUpdate(oldProps: IProps, newProps: IProps) {
         if (this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
@@ -100,7 +101,7 @@ class Block {
 
     // отключаем линтер, т.к. это сигнатура переопределяемого метода
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    protected componentDidUpdate(_oldProps: any, _newProps: any) {
+    protected componentDidUpdate(_oldProps: IProps, _newProps: IProps) {
         return true;
     }
 
@@ -111,11 +112,11 @@ class Block {
 
     protected componentWillUnmount() {}
 
-    setProps = (nextProps: any) => {
+    setProps = (nextProps: IProps) => {
         if (!nextProps) {
             return;
         }
-        Object.assign(this.props, nextProps);
+        Object.assign(this.props ?? {}, nextProps);
     };
 
     get element() {
@@ -163,15 +164,15 @@ class Block {
         return this.element as HTMLElement;
     }
 
-    _makePropsProxy(props: { [index: string | symbol]: unknown }, self: Block) {
+    _makePropsProxy(props: IProps, self: Block) {
         return new Proxy(props, {
             get(target, prop) {
-                const value = target[prop];
+                const value = target[prop.toString()];
                 return typeof value === 'function' ? value.bind(target) : value;
             },
             set(target, prop, value) {
                 const oldTarget = {...target};
-                target[prop] = value;
+                target[prop.toString()] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
                 return true;
             },
