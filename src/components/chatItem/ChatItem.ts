@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 import { ChatItemProps } from './chatItemProps';
 import template from './chatItemTemplare.hbs?raw';
 import './chatItemStyles.scss';
@@ -22,4 +22,4 @@ export class ChatItem extends Block {
     protected render(): string {
         return template;
     }
-};
+}

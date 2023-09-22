@@ -11,7 +11,7 @@ import '../profilePageStyles.scss';
 export class ChangePasswordPage extends Block {
     constructor() {
         super({
-            returnToProfile: (event: any) => {
+            returnToProfile: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(PagesNames.Profile);
             }

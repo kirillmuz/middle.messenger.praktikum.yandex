@@ -61,7 +61,7 @@ export class ChangePasswordForm extends Block {
         const fieldsValues = this.getFieldsValues();
         const checkInvalid = (value?: boolean | string) => 
             typeof value === 'boolean' && value === false;
-        Object.entries(fieldsValues).forEach(([_, value]) => {
+        Object.entries(fieldsValues).forEach(([, value]) => {
             if(checkInvalid(value)) {
                 isValid = false;
             }

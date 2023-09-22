@@ -18,7 +18,7 @@ export class ChatsPage extends Block {
     constructor(props: ChatsPageProps) {
         super({
             ...props,
-            openProfile: (event: any) => {
+            openProfile: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(PagesNames.Profile);
             },

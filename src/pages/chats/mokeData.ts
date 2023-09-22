@@ -18,7 +18,9 @@ export const Chats: Array<ChatItemProps> = [{
 },{
     chatName: 'Илья',
     onClick: ()=>console.log('Clicked on chat: Илья'),
-    lastMessage: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique officiis magni error tempore id. Officiis, optio quae voluptatum laborum aperiam possimus ducimus modi perferendis obcaecati, eius deleniti at omnis voluptate.',
+    lastMessage: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Similique officiis magni error tempore id. Officiis, optio quae voluptatum 
+        laborum aperiam possimus ducimus modi perferendis obcaecati, eius deleniti at omnis voluptate.`,
     sentTime: '15:12',
     unreadedMessagesCount: 4
 },{
@@ -120,7 +122,9 @@ export const Messages: Array<FeedMessage> = [{
     type: 'incoming',
     who: 'Сережа'
 }, {
-    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut commodi quisquam quaerat qui consequuntur animi culpa, exercitationem temporibus eius porro. Modi qui, neque eos inventore sapiente repellendus fugit. Numquam, amet?',
+    message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Similique officiis magni error tempore id. Officiis, optio quae voluptatum 
+        laborum aperiam possimus ducimus modi perferendis obcaecati, eius deleniti at omnis voluptate.`,
     sentTime: '12:36',
     type: 'incoming',
     who: 'Сережа'

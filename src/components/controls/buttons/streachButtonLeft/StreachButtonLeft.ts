@@ -1,4 +1,4 @@
-import Block from "../../../../core/Block";
+import Block from '../../../../core/Block';
 import { StreachButtonLeftProps } from './streachButtonLeftProps';
 import template from './streachButtonLeftTemplate.hbs?raw';
 import './streachButtonLeftStyles.scss';
@@ -22,4 +22,4 @@ export class StreachButtonLeft extends Block {
     protected render(): string {
         return template;
     }
-};
+}

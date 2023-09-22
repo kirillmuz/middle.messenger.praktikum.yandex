@@ -16,19 +16,19 @@ export class ProfilePage extends Block {
 
     constructor() {
         super({
-            returnToChats: (event: any) => {
+            returnToChats: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(PagesNames.Chats);
             },
-            openChangeDataPage: (event: any) => {
+            openChangeDataPage: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(PagesNames.ChangeProfileData);
             },
-            openChangePasswordPage: (event: any) => {
+            openChangePasswordPage: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(PagesNames.ChangePassword);
             },
-            logOut: (event: any) => {
+            logOut: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(PagesNames.Login);
             }

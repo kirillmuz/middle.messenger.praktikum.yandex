@@ -20,11 +20,11 @@ const notOnlyNumbers = (value?: string) => {
 
 const login =  (value?: string) => {
     if(!value) return '';
-    const checkLoginSpecsympols = /[^a-zA-Z0-9а-яА-Я\-\_]/g;
+    const checkLoginSpecsympols = /[^a-zA-Z0-9а-яА-Я\-\\_]/g;
     if(checkLoginSpecsympols.test(value!)) {
         return 'Поле не должно содержать спецсимволы';
     }
-    const checkLoginLatin = /[^a-zA-Z0-9\-\_]/g;
+    const checkLoginLatin = /[^a-zA-Z0-9\-\\_]/g;
     if(checkLoginLatin.test(value)) {
         return 'Поле должно быть написано латиницей';
     }
@@ -56,7 +56,7 @@ const password = (value?: string) => {
 
 const personNameData = (value?: string) => {
     if(!value) return '';
-    const checkNameSpecsymbols = /[^a-zA-Zа-яА-Я\-]/g;
+    const checkNameSpecsymbols = /[^a-zA-Zа-яА-Я\\-]/g;
     if(checkNameSpecsymbols.test(value)) {
         return 'Поле не должно содержать спецсимволы или цифры';
     }

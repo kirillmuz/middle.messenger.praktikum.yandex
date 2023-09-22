@@ -1,4 +1,4 @@
-import Block from "../../../../core/Block";
+import Block from '../../../../core/Block';
 import { ButtonProps } from './buttonProps';
 import template from './buttonTemplate.hbs?raw';
 import './buttonStyles.scss';
@@ -22,4 +22,4 @@ export class Button extends Block {
     protected render(): string {
         return template;
     }
-};
+}

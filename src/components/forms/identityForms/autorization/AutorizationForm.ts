@@ -40,7 +40,7 @@ export class AutorizationForm extends Block {
             onLogin: (event: MouseEvent) => {
                 event.preventDefault();
                 if(!this.validate()) {
-                     return;
+                    return;
                 }
                 console.log({
                     component: AutorizationForm.Name,
@@ -64,7 +64,7 @@ export class AutorizationForm extends Block {
         const checkInvalid = (value?: boolean | string) => 
             typeof value === 'boolean' && value === false;
         
-        Object.entries(fieldsValues).forEach(([_, value]) => {
+        Object.entries(fieldsValues).forEach(([, value]) => {
             if(checkInvalid(value)) {
                 isValid = false;
             }

@@ -17,7 +17,7 @@ export class ErrorPage extends Block {
     constructor(props: ErrorPageProps) {
         super({
             ...props,
-            onGoBack: (event:any) => {
+            onGoBack: (event: MouseEvent) => {
                 event.preventDefault();
                 navigate(props.goBackPage);
             }

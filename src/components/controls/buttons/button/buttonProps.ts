@@ -1,4 +1,4 @@
-import { ButtonType } from "../../../../types/commonTypes"
+import { ButtonType } from '../../../../types/commonTypes'
 
 /**
  * Свойства компонента кнопки

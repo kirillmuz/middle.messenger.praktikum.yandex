@@ -22,4 +22,4 @@ export class Avatar extends Block {
     protected render(): string {
         return template;
     }
-};
+}

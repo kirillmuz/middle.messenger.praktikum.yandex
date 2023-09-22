@@ -22,4 +22,4 @@ export class FeedBody extends Block {
     protected render(): string {
         return template;
     }
-};
+}

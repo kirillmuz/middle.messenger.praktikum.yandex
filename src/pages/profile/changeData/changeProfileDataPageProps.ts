@@ -1,4 +1,4 @@
-import { ProfileData } from "../../../types/commonTypes";
+import { ProfileData } from '../../../types/commonTypes';
 
 /**
  * Свойства компонента страницы изменения данных профиля пользователя

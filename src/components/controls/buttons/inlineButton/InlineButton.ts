@@ -1,4 +1,4 @@
-import Block from "../../../../core/Block";
+import Block from '../../../../core/Block';
 import { InlineButtonProps } from './inlineButtonProps';
 import template from './inlineButtonTemplate.hbs?raw';
 import './inlineButtonStyles.scss';
@@ -22,4 +22,4 @@ export class InlineButton extends Block {
     protected render(): string {
         return template;
     }
-};
+}

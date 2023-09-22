@@ -1,4 +1,4 @@
-import Block from "../../../../core/Block";
+import Block from '../../../../core/Block';
 import { GoToButtonProps } from './goToButtonProps';
 import template from './goToButtonTemplate.hbs?raw';
 import './goToButtonStyles.scss';
@@ -22,4 +22,4 @@ export class GoToButton extends Block {
     protected render(): string {
         return template;
     }
-};
+}

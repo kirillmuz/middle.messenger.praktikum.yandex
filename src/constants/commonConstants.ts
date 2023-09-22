@@ -10,4 +10,4 @@ export enum PagesNames {
     Login = 'login',
     Profile = 'profile',
     Registration = 'registration'
-};
+}

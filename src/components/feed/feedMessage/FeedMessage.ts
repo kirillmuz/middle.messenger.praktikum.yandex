@@ -19,4 +19,4 @@ export class FeedMessage extends Block {
     protected render(): string {
         return template;
     }
-};
+}

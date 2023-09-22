@@ -1,4 +1,4 @@
-import Block from "../../../../core/Block";
+import Block from '../../../../core/Block';
 import { GoForwardButtonProps } from './goForwardButtonProps';
 import template from './goForwardButtonTemplate.hbs?raw';
 import './goForwardButtonStyles.scss';
@@ -22,4 +22,4 @@ export class GoForwardButton extends Block {
     protected render(): string {
         return template;
     }
-};
+}

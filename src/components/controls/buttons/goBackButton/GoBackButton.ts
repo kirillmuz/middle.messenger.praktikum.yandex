@@ -1,4 +1,4 @@
-import Block from "../../../../core/Block";
+import Block from '../../../../core/Block';
 import { GoBackButtonProps } from './goBackButtonProps';
 import template from './goBackButtonTemplate.hbs?raw';
 import './goBackButtonStyles.scss';
@@ -22,4 +22,4 @@ export class GoBackButton extends Block {
     protected render(): string {
         return template;
     }
-};
+}

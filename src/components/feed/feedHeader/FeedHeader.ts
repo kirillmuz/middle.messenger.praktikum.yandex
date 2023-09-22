@@ -22,4 +22,4 @@ export class FeedHeader extends Block {
     protected render(): string {
         return template;
     }
-};
+}

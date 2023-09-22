@@ -20,6 +20,7 @@ interface PagesListItem {
     /**
      * Компонент страницы
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     page: any;
 }
 
@@ -49,42 +50,42 @@ export const navigate = (page: string) => {
         }
         let context: unknown = null;
         switch(page) {
-            case PagesNames.Chats:
-                context = {
-                    chatsList: Chats,
-                    selectedChatMessagesList: Messages,
-                    selectedChat: SelectedChat
-                } as ChatsPageProps;
-                break;
-            case PagesNames.Error404:
-                context = {
-                    errorCode: '404',
-                    errorText: 'Запрашиваемый ресурс не найден',
-                    goBackText: 'Вернуться к чатам',
-                    goBackPage: PagesNames.Chats
-                } as ErrorPageProps;
-                break;
-            case PagesNames.Error500:
-                context = {
-                    errorCode: '500',
-                    errorText: 'Мы работаем над устранением проблемы',
-                    goBackText: 'Вернуться к чатам',
-                    goBackPage: PagesNames.Chats
-                } as ErrorPageProps;
-                break;
-            case PagesNames.ChangeProfileData:
-                context = {
-                    profile: {
-                        displayName: 'Иван',
-                        email: 'iiivanov@yandex.ru',
-                        firstName: 'Иван',
-                        login: 'iiivanov',
-                        midleName: 'Иванович',
-                        phone: '8-800-535-35-35',
-                        secondName: 'Иванов'
-                    }
-                } as ChangeProfileDataPageProps; 
-                break;
+        case PagesNames.Chats:
+            context = {
+                chatsList: Chats,
+                selectedChatMessagesList: Messages,
+                selectedChat: SelectedChat
+            } as ChatsPageProps;
+            break;
+        case PagesNames.Error404:
+            context = {
+                errorCode: '404',
+                errorText: 'Запрашиваемый ресурс не найден',
+                goBackText: 'Вернуться к чатам',
+                goBackPage: PagesNames.Chats
+            } as ErrorPageProps;
+            break;
+        case PagesNames.Error500:
+            context = {
+                errorCode: '500',
+                errorText: 'Мы работаем над устранением проблемы',
+                goBackText: 'Вернуться к чатам',
+                goBackPage: PagesNames.Chats
+            } as ErrorPageProps;
+            break;
+        case PagesNames.ChangeProfileData:
+            context = {
+                profile: {
+                    displayName: 'Иван',
+                    email: 'iiivanov@yandex.ru',
+                    firstName: 'Иван',
+                    login: 'iiivanov',
+                    midleName: 'Иванович',
+                    phone: '88005353535',
+                    secondName: 'Иванов'
+                }
+            } as ChangeProfileDataPageProps; 
+            break;
         }
         const component = context ? new Component(context) : new Component();
         root.innerHTML = '';
