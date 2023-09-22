@@ -2,10 +2,10 @@ import Block from '../../../../core/Block';
 import { TextField } from '../../../controls';
 import { navigate } from '../../../../utils/navigationUtils';
 import { PagesNames } from '../../../../constants/commonConstants';
-import { validationUtils } from '../../../../utils/validationUtils';
+import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
+import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
-
 
 /**
  * Значение полей формы
@@ -31,10 +31,10 @@ export class AutorizationForm extends Block {
             // неправильно, более обширная валидация будет на лругих формах
             validate: {
                 login: (value?: string) =>{
-                    return validationUtils.required(value);
+                    return fieldsValidationUtils.required(value);
                 },
                 password: (value?: string) =>{
-                    return validationUtils.required(value);
+                    return fieldsValidationUtils.required(value);
                 }
             },
             onLogin: (event: MouseEvent) => {
@@ -59,17 +59,8 @@ export class AutorizationForm extends Block {
      * Валидация
      */
     private validate(): boolean {
-        let isValid = true;
-        const fieldsValues = this.getFieldsValues();
-        const checkInvalid = (value?: boolean | string) => 
-            typeof value === 'boolean' && value === false;
-        
-        Object.entries(fieldsValues).forEach(([, value]) => {
-            if(checkInvalid(value)) {
-                isValid = false;
-            }
-        });
-        return isValid;
+        return formsValidationUtils
+            .validateForm(this.getFieldsValues());
     }
 
     /**

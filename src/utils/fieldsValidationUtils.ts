@@ -1,15 +1,24 @@
+/**
+ * Обязательное поле
+ */
 const required = (value?: string) => {
     if(!value) {
         return 'Обязательное поле';
     }
 };
 
+/**
+ * Заполненное поле
+ */
 const notEmpty = (value?: string) => {
     if(!value) {
         return 'Поле не должно быть пустым';
     }
 };
 
+/**
+ * Не только цифры
+ */
 const notOnlyNumbers = (value?: string) => {
     if(!value) return '';
     const regexp = /^\d+$/;
@@ -18,6 +27,9 @@ const notOnlyNumbers = (value?: string) => {
     }
 }
 
+/**
+ * Логин
+ */
 const login =  (value?: string) => {
     if(!value) return '';
     const checkLoginSpecsympols = /[^a-zA-Z0-9а-яА-Я\-\\_]/g;
@@ -38,6 +50,9 @@ const login =  (value?: string) => {
     }
 };
 
+/**
+ * Пароль
+ */
 const password = (value?: string) => {
     if(!value) return '';
     const checkLength = /^.{8,40}$/;
@@ -54,6 +69,9 @@ const password = (value?: string) => {
     }
 }
 
+/**
+ * Элемент ФИО
+ */
 const personNameData = (value?: string) => {
     if(!value) return '';
     const checkNameSpecsymbols = /[^a-zA-Zа-яА-Я\\-]/g;
@@ -66,6 +84,9 @@ const personNameData = (value?: string) => {
     }
 }
 
+/**
+ * Телефон
+ */
 const phone = (value?: string) => {
     if(!value) return '';
     const checkLength = /^.{10,15}$/;
@@ -78,6 +99,9 @@ const phone = (value?: string) => {
     }
 }
 
+/**
+ * Email
+ */
 const email = (value?: string) => {
     if(!value) return '';
     const checkEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -86,7 +110,10 @@ const email = (value?: string) => {
     }
 }
 
-export const validationUtils = {
+/**
+ * Утилиты валидации полей
+ */
+export const fieldsValidationUtils = {
     login,
     password,
     personNameData,

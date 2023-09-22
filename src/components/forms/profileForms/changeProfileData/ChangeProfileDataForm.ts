@@ -3,7 +3,8 @@ import { InlineTextEditable } from '../../../controls';
 import { ProfileData } from '../../../../types/commonTypes';
 import { PagesNames } from '../../../../constants/commonConstants';
 import { navigate } from '../../../../utils/navigationUtils';
-import { validationUtils } from '../../../../utils/validationUtils';
+import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
+import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import template from './changeProfileDataFormTemplate.hbs?raw';
 
 /**
@@ -34,30 +35,30 @@ export class ChangeProfileDataForm extends Block {
             ...profile,
             validate: {
                 email: (value?: string) =>{
-                    return validationUtils.required(value)
-                        || validationUtils.email(value);
+                    return fieldsValidationUtils.required(value)
+                        || fieldsValidationUtils.email(value);
                 },
                 login: (value?: string) =>{
-                    return validationUtils.required(value)
-                        || validationUtils.login(value);
+                    return fieldsValidationUtils.required(value)
+                        || fieldsValidationUtils.login(value);
                 },
                 secondName: (value?: string) =>{
-                    return validationUtils.required(value)
-                        || validationUtils.personNameData(value);
+                    return fieldsValidationUtils.required(value)
+                        || fieldsValidationUtils.personNameData(value);
                 },
                 firstName: (value?: string) =>{
-                    return validationUtils.required(value)
-                        || validationUtils.personNameData(value);
+                    return fieldsValidationUtils.required(value)
+                        || fieldsValidationUtils.personNameData(value);
                 },
                 midleName: (value?: string) =>{
-                    return validationUtils.personNameData(value);
+                    return fieldsValidationUtils.personNameData(value);
                 },
                 displayName: (value?: string) =>{
-                    return validationUtils.required(value);
+                    return fieldsValidationUtils.required(value);
                 },
                 phone: (value?: string) =>{
-                    return validationUtils.required(value)
-                        || validationUtils.phone(value);
+                    return fieldsValidationUtils.required(value)
+                        || fieldsValidationUtils.phone(value);
                 }
             },
             onSave: (event: MouseEvent) => {
@@ -78,17 +79,8 @@ export class ChangeProfileDataForm extends Block {
      * Валидация
      */
     private validate(): boolean {
-        let isValid = true;
-        const fieldsValues = this.getFieldsValues();
-        const checkInvalid = (value?: boolean | string) => 
-            typeof value === 'boolean' && value === false;
-        
-        Object.entries(fieldsValues).forEach(([, value]) => {
-            if(checkInvalid(value)) {
-                isValid = false;
-            }
-        });
-        return isValid;
+        return formsValidationUtils
+            .validateForm(this.getFieldsValues());
     }
 
     /**

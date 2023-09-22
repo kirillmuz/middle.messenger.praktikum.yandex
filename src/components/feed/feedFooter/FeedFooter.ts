@@ -1,6 +1,6 @@
 import Block from '../../../core/Block';
 import { Message } from '../../controls';
-import { validationUtils } from '../../../utils/validationUtils';
+import { fieldsValidationUtils } from '../../../utils/fieldsValidationUtils';
 import { FeedFooterProps } from './feedFooterProps';
 import template from './feedFooterTemplate.hbs?raw';
 import './feedFooterStyles.scss';
@@ -20,7 +20,7 @@ export class FeedFooter extends Block {
             ...props,
             validate: {
                 message: (value?: string) =>{
-                    return validationUtils.notEmpty(value);
+                    return fieldsValidationUtils.notEmpty(value);
                 }
             },
             sendMessage: (event: MouseEvent) => {

@@ -2,7 +2,8 @@ import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
 import { PagesNames } from '../../../../constants/commonConstants';
 import { navigate } from '../../../../utils/navigationUtils';
-import { validationUtils } from '../../../../utils/validationUtils';
+import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
+import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import template from './changePasswordFormTemplate.hbs?raw';
 
 /**
@@ -28,15 +29,15 @@ export class ChangePasswordForm extends Block {
             validate: {
                 oldPassword: (value?: string) =>{
                     // Текущий пароль проверяем только на обязательность
-                    return validationUtils.required(value);
+                    return fieldsValidationUtils.required(value);
                 },
                 newPassword: (value?: string) =>{
-                    return validationUtils.required(value)
-                        || validationUtils.password(value);
+                    return fieldsValidationUtils.required(value)
+                        || fieldsValidationUtils.password(value);
                 },
                 repeateNewPassword: (value?: string) =>{
-                    return validationUtils.required(value)
-                        || validationUtils.password(value);
+                    return fieldsValidationUtils.required(value)
+                        || fieldsValidationUtils.password(value);
                 }
             },
             onSave: (event: MouseEvent) => {
@@ -57,16 +58,8 @@ export class ChangePasswordForm extends Block {
      * Валидация
      */
     private validate(): boolean {
-        let isValid = true;
-        const fieldsValues = this.getFieldsValues();
-        const checkInvalid = (value?: boolean | string) => 
-            typeof value === 'boolean' && value === false;
-        Object.entries(fieldsValues).forEach(([, value]) => {
-            if(checkInvalid(value)) {
-                isValid = false;
-            }
-        });
-        return isValid;
+        return formsValidationUtils
+            .validateForm(this.getFieldsValues());
     }
 
     /**
