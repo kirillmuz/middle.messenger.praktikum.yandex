@@ -19,16 +19,13 @@ const notOnlyNumbers = (value?: string) => {
 }
 
 const login =  (value?: string) => {
-    const requiredMessage = required(value);
-    if(requiredMessage) {
-       return requiredMessage;
-    }
+    if(!value) return '';
     const checkLoginSpecsympols = /[^a-zA-Z0-9а-яА-Я\-\_]/g;
     if(checkLoginSpecsympols.test(value!)) {
         return 'Поле не должно содержать спецсимволы';
     }
     const checkLoginLatin = /[^a-zA-Z0-9\-\_]/g;
-    if(checkLoginLatin.test(value!)) {
+    if(checkLoginLatin.test(value)) {
         return 'Поле должно быть написано латиницей';
     }
     const notOnlyNumbersMessage = notOnlyNumbers(value);
@@ -36,26 +33,23 @@ const login =  (value?: string) => {
         return notOnlyNumbersMessage;
     }
     const checkLength = /^.{3,20}$/;
-    if(!checkLength.test(value!)) {
+    if(!checkLength.test(value)) {
         return 'Длинна должна составлять от 3 до 20 символов';
     }
 };
 
 const password = (value?: string) => {
-    const requiredMessage = required(value);
-    if(requiredMessage) {
-       return requiredMessage;
-    }
+    if(!value) return '';
     const checkLength = /^.{8,40}$/;
-    if(!checkLength.test(value!)) {
+    if(!checkLength.test(value)) {
         return 'Длинна должна составлять от 8 до 40 символов';
     }
     const checkDigits = /\d/;
-    if(!checkDigits.test(value!)) {
+    if(!checkDigits.test(value)) {
         return 'Поле должно содержать хотябы 1 цифру';
     }
     const checkCapitals = /[А-ЯA-Z]/;
-    if(!checkCapitals.test(value!)) {
+    if(!checkCapitals.test(value)) {
         return 'Поле должно содержать хотябы 1 заглавную букву';
     }
 }
@@ -66,7 +60,7 @@ const personNameData = (value?: string) => {
     if(checkNameSpecsymbols.test(value)) {
         return 'Поле не должно содержать спецсимволы или цифры';
     }
-    const checkNameNotCapital = /^[A-Z]/g;
+    const checkNameNotCapital = /^[A-ZА-Я]/g;
     if(!checkNameNotCapital.test(value)) {
         return 'Поле должно начинаться с заглавной буквы';
     }

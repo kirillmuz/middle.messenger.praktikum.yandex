@@ -32,11 +32,36 @@ export class RegistrationForm extends Block {
     constructor() {
         super({
             validate: {
-                login: (value: string) =>{
-                    return validationUtils.required(value);
+                email: (value?: string) => {
+                    return validationUtils.required(value)
+                        || validationUtils.email(value);
                 },
-                password: (value: string) =>{
-                    return validationUtils.required(value);
+                login: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.login(value);
+                },
+                secondName: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.personNameData(value);
+                },
+                firstName: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.personNameData(value);
+                },
+                midleName: (value?: string) =>{
+                    return validationUtils.personNameData(value);
+                },
+                phone: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.phone(value);
+                },
+                password: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.password(value);
+                },
+                repeatePassword: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.password(value);
                 }
             },
             onLogin: (event: MouseEvent) => {
@@ -61,20 +86,16 @@ export class RegistrationForm extends Block {
      * Валидация
      */
     private validate(): boolean {
+        let isValid = true;
         const fieldsValues = this.getFieldsValues();
         const checkInvalid = (value?: boolean | string) => 
             typeof value === 'boolean' && value === false;
-        if(checkInvalid(fieldsValues.email) 
-            || checkInvalid(fieldsValues.firstName) 
-            || checkInvalid(fieldsValues.secondName)
-            || checkInvalid(fieldsValues.phone) 
-            || checkInvalid(fieldsValues.login) 
-            || checkInvalid(fieldsValues.password) 
-            || checkInvalid(fieldsValues.repeatePassword) 
-        ) {
-            return false;
-        }
-        return true;
+        Object.entries(fieldsValues).forEach(([_, value]) => {
+            if(checkInvalid(value)) {
+                isValid = false;
+            }
+        });
+        return isValid;
     }
 
     /**

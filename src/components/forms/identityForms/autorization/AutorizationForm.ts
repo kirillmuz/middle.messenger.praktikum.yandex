@@ -30,17 +30,17 @@ export class AutorizationForm extends Block {
             // т.к. на логинке рассказывать про формат логина и пароля
             // неправильно, более обширная валидация будет на лругих формах
             validate: {
-                login: (value: string) =>{
+                login: (value?: string) =>{
                     return validationUtils.required(value);
                 },
-                password: (value: string) =>{
+                password: (value?: string) =>{
                     return validationUtils.required(value);
                 }
             },
             onLogin: (event: MouseEvent) => {
                 event.preventDefault();
                 if(!this.validate()) {
-                    return;
+                     return;
                 }
                 console.log({
                     component: AutorizationForm.Name,
@@ -59,13 +59,17 @@ export class AutorizationForm extends Block {
      * Валидация
      */
     private validate(): boolean {
+        let isValid = true;
         const fieldsValues = this.getFieldsValues();
         const checkInvalid = (value?: boolean | string) => 
             typeof value === 'boolean' && value === false;
-        if(checkInvalid(fieldsValues.login) || checkInvalid(fieldsValues.password)) {
-            return false;
-        }
-        return true;
+        
+        Object.entries(fieldsValues).forEach(([_, value]) => {
+            if(checkInvalid(value)) {
+                isValid = false;
+            }
+        });
+        return isValid;
     }
 
     /**

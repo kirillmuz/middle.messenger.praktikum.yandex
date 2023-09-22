@@ -1,8 +1,10 @@
 import Block from '../../../core/Block';
 import { Message } from '../../controls';
+import { validationUtils } from '../../../utils/validationUtils';
 import { FeedFooterProps } from './feedFooterProps';
 import template from './feedFooterTemplate.hbs?raw';
 import './feedFooterStyles.scss';
+
 
 /**
  * Компонент "Подвал ленты"
@@ -17,8 +19,8 @@ export class FeedFooter extends Block {
         super({
             ...props,
             validate: {
-                message: (value: string) =>{
-                    return value.length === 0 ? `Поле не должно быть пустым` : '';
+                message: (value?: string) =>{
+                    return validationUtils.notEmpty(value);
                 }
             },
             sendMessage: (event: MouseEvent) => {

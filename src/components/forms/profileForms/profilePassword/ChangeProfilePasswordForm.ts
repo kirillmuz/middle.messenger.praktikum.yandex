@@ -2,6 +2,7 @@ import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
 import { PagesNames } from '../../../../constants/commonConstants';
 import { navigate } from '../../../../utils/navigationUtils';
+import { validationUtils } from '../../../../utils/validationUtils';
 import template from './changePasswordFormTemplate.hbs?raw';
 
 /**
@@ -25,14 +26,17 @@ export class ChangePasswordForm extends Block {
     constructor() {
         super({
             validate: {
-                oldPassword: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                oldPassword: (value?: string) =>{
+                    // Текущий пароль проверяем только на обязательность
+                    return validationUtils.required(value);
                 },
-                newPassword: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                newPassword: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.password(value);
                 },
-                repeateNewPassword: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                repeateNewPassword: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.password(value);
                 }
             },
             onSave: (event: MouseEvent) => {
@@ -53,16 +57,16 @@ export class ChangePasswordForm extends Block {
      * Валидация
      */
     private validate(): boolean {
+        let isValid = true;
         const fieldsValues = this.getFieldsValues();
         const checkInvalid = (value?: boolean | string) => 
             typeof value === 'boolean' && value === false;
-        if(checkInvalid(fieldsValues.newPassword)
-            || checkInvalid(fieldsValues.oldPassword)
-            || checkInvalid(fieldsValues.repeateNewPassword)
-        ) {
-            return false;
-        }
-        return true;
+        Object.entries(fieldsValues).forEach(([_, value]) => {
+            if(checkInvalid(value)) {
+                isValid = false;
+            }
+        });
+        return isValid;
     }
 
     /**

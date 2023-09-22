@@ -3,6 +3,7 @@ import { InlineTextEditable } from '../../../controls';
 import { ProfileData } from '../../../../types/commonTypes';
 import { PagesNames } from '../../../../constants/commonConstants';
 import { navigate } from '../../../../utils/navigationUtils';
+import { validationUtils } from '../../../../utils/validationUtils';
 import template from './changeProfileDataFormTemplate.hbs?raw';
 
 /**
@@ -32,23 +33,31 @@ export class ChangeProfileDataForm extends Block {
         super({
             ...profile,
             validate: {
-                email: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                email: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.email(value);
                 },
-                login: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                login: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.login(value);
                 },
-                secondName: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                secondName: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.personNameData(value);
                 },
-                firstName: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                firstName: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.personNameData(value);
                 },
-                displayName: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                midleName: (value?: string) =>{
+                    return validationUtils.personNameData(value);
                 },
-                phone: (value: string) =>{
-                    return value.length === 0 ? `Поле обязательное` : '';
+                displayName: (value?: string) =>{
+                    return validationUtils.required(value);
+                },
+                phone: (value?: string) =>{
+                    return validationUtils.required(value)
+                        || validationUtils.phone(value);
                 }
             },
             onSave: (event: MouseEvent) => {
@@ -69,19 +78,17 @@ export class ChangeProfileDataForm extends Block {
      * Валидация
      */
     private validate(): boolean {
+        let isValid = true;
         const fieldsValues = this.getFieldsValues();
         const checkInvalid = (value?: boolean | string) => 
             typeof value === 'boolean' && value === false;
-        if(checkInvalid(fieldsValues.email)
-            || checkInvalid(fieldsValues.firstName)
-            || checkInvalid(fieldsValues.secondName)
-            || checkInvalid(fieldsValues.phone)
-            || checkInvalid(fieldsValues.login)
-            || checkInvalid(fieldsValues.displayName)
-        ) {
-            return false;
-        }
-        return true;
+        
+        Object.entries(fieldsValues).forEach(([_, value]) => {
+            if(checkInvalid(value)) {
+                isValid = false;
+            }
+        });
+        return isValid;
     }
 
     /**
