@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/variables';
 
 .chats-page {
     &__chats {
@@ -31,7 +31,6 @@
         margin: 0 10px;
         display: flex;
         flex-direction: column;
-
         max-height: 100%;
         overflow: auto;
 

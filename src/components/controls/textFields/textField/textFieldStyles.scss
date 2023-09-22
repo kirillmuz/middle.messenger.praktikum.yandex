@@ -1,4 +1,4 @@
-@import '../../../../styles/variables.scss';
+@import '../../../../styles/variables';
 
 .text-field {
     display: flex;
@@ -20,7 +20,6 @@
         &::placeholder {
             color: $color-grey;
             font-weight: 400;
-            color: $color-grey;
         }
     }
 }
