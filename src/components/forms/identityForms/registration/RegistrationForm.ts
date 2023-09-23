@@ -4,6 +4,7 @@ import { navigate } from '../../../../utils/navigationUtils';
 import { PagesNames } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { RegistrationFormProps } from './registrationFormProps';
 import template from './registrationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
 
@@ -30,8 +31,9 @@ export class RegistrationForm extends Block {
      */
     public static Name = 'RegistrationForm';
 
-    constructor() {
+    constructor(props: RegistrationFormProps) {
         super({
+            ...props,
             validate: {
                 email: (value?: string) => {
                     return fieldsValidationUtils.required(value)

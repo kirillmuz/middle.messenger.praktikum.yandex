@@ -1,11 +1,12 @@
 <div class="text-field">
-    <label class="text-field__label" for{{name}}>{{label}}</label>
-    {{{InputBase name=name
-        ref="input"    
-        type=type
-        placeholder=placeholder
-        onBlur=onBlur
-        className="text-field__input" 
-    }}}
+    <label class="text-field__wrapper" for{{name}}>
+        {{{InputBase name=name
+            ref="input"    
+            type=type
+            onBlur=onBlur
+            className="text-field__input" 
+        }}}
+        <div class="text-field__label">{{label}}</div>
+    </label>
     {{{ ValidationMessage ref="validationMessage" }}}
 </div>

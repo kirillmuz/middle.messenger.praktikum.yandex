@@ -4,6 +4,7 @@ import { PagesNames } from '../../../../constants/commonConstants';
 import { navigate } from '../../../../utils/navigationUtils';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { ChangeProfilePasswordFormProps } from './changeProfilePasswordFormProps';
 import template from './changePasswordFormTemplate.hbs?raw';
 
 /**
@@ -24,8 +25,9 @@ export class ChangePasswordForm extends Block {
      */
     public static Name = 'ChangePasswordForm';
 
-    constructor() {
+    constructor(props: ChangeProfilePasswordFormProps) {
         super({
+            ...props,
             validate: {
                 oldPassword: (value?: string) =>{
                     // Текущий пароль проверяем только на обязательность

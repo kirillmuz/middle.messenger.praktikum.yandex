@@ -4,6 +4,7 @@ import { navigate } from '../../../../utils/navigationUtils';
 import { PagesNames } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { AutorizationFormProps } from './autorizationFormProps';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
 
@@ -24,8 +25,9 @@ export class AutorizationForm extends Block {
      */
     public static Name = 'AutorizationForm';
 
-    constructor() {
+    constructor(props: AutorizationFormProps) {
         super({
+            ...props,
             // Здесь вылидация только на обязательность полей,
             // т.к. на логинке рассказывать про формат логина и пароля
             // неправильно, более обширная валидация будет на лругих формах
