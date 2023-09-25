@@ -1,0 +1,13 @@
+<div class="message-field">
+    {{{
+        InputBase name=name
+            ref="input"    
+            type="text"
+            placeholder="Сообщение"
+            onBlur=onBlur
+            className="message-field__input" 
+    }}}
+    <div class="message-field__validation">
+        {{{ ValidationMessage ref="validationMessage" }}}
+    </div>
+</div>

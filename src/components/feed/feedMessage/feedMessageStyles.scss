@@ -1,0 +1,36 @@
+@import '../../../styles/variables';
+
+.feed-message {
+    max-width: calc(50% - 30px);
+    min-width: 75px;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 11px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px 0 $color-messageshadow;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: $color-baseblack;
+    font-size: 14px;
+
+    &_incoming {
+        background: $color-beige;
+    }
+
+    &_outgoing {
+        background: $color-lightblue;
+        margin-left: auto;
+    }
+
+    &__who {
+        font-weight: 600;
+    }
+
+    &__time {
+        color: $color-grey;
+        font-size: 10px;
+        font-weight: 600;
+        margin-left: auto;
+    }
+}

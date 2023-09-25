@@ -15,5 +15,5 @@ export interface PageItem {
     /**
      * Контекст
      */
-    context?: any;
-};
+    context?: unknown;
+}

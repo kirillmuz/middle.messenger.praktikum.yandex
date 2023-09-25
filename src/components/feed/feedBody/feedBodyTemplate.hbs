@@ -1,0 +1,5 @@
+<div class="feed-body">
+    {{#each messagesList}}
+        {{{ FeedMessage message=this.message type=this.type who=this.who sentTime=this.sentTime }}}
+    {{/each}}
+</div>

@@ -1,13 +1,25 @@
-@import '../../../../styles/variables.scss';
+@import '../../../../styles/variables';
 
 .text-field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    height: 36px;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-content: flex-end;
+        height: 16px;
+    }
 
     &__label {
-        font-size: 9px;
+        transform: translateY(-21px);
         color: $color-grey;
+        font-size: 14px;
+        font-weight: 500;
+        user-select: none;
+        transition:
+        font-size 0.5s,
+        transform 0.5s;
+        
     }
 
     &__input {
@@ -16,16 +28,12 @@
         outline: none;
         font-weight: 600;
         color: $color-baseblack;
-
-        &::placeholder {
-            color: $color-grey;
-            font-weight: 400;
-            color: $color-grey;
-        }
+        height: 28px;
     }
-    
-    &__error {
-        font-size: 8px;
-        color: $color-error;
+
+    &__input:not(:placeholder-shown) + &__label,
+    &__input:focus + &__label {
+        transform: translateY(-32px);
+        font-size: 10px;
     }
 }

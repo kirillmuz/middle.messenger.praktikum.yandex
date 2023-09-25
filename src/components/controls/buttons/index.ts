@@ -3,3 +3,4 @@ export { GoBackButton } from './goBackButton';
 export { GoForwardButton } from './goForwardButton';
 export { GoToButton } from './goToButton';
 export { InlineButton } from './inlineButton';
+export { StreachButtonLeft } from './streachButtonLeft';

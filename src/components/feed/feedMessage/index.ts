@@ -1,0 +1,1 @@
+export { FeedMessage } from './FeedMessage';

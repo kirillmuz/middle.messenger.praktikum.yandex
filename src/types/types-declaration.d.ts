@@ -1,9 +1,9 @@
-declare module "*.hbs" {
+declare module '*.hbs' {
     const _: string;
     export default _;
-};
+}
 
-declare module "*.hbs?raw" {
+declare module '*.hbs?raw' {
     const _: string;
     export default _;
-};
+}

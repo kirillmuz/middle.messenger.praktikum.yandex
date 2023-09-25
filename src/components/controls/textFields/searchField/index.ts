@@ -1,3 +1,1 @@
-import './searchFieldStyles.scss';
-
-export { default as SearchField } from './searchField.hbs?raw';
+export { SearchField } from './SearchField';

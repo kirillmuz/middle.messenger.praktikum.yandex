@@ -1,0 +1,14 @@
+@import '../../../../styles/variables';
+
+.streach-btn {
+    width: 64px;
+    background: $color-whitegrey;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}

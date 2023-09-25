@@ -21,7 +21,7 @@ export interface ErrorPageContext {
      * Страница на которую возвращаемся
      */
     goBackPage: string;
-};
+}
 
 /**
  * Контекст компонента InlineTextEditable
@@ -52,4 +52,4 @@ export interface InlineTextEditableContext {
      * Значение
      */
     value: string;
-};
+}

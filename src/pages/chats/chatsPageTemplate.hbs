@@ -1,0 +1,27 @@
+<div class="fullscreen-page chats-page">
+    <div class="chats-page__chats">
+        <div class="chats-page__chats-header">
+            <div class="chats-page__to-profile-container">
+                {{{ GoToButton text="Профиль" onClick=openProfile }}}
+            </div>
+            {{{ SearchField }}}
+        </div>
+        <div class="chats-page__chats-list">
+            {{#each chatsList}}
+                {{{ ChatItem chatName=this.chatName 
+                        unreadedMessagesCount=this.unreadedMessagesCount 
+                        sentTime=this.sentTime
+                        who=this.who
+                        lastMessage=this.lastMessage
+                        selected=this.selected
+                        onClick=this.onClick
+                }}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="chats-page__feed">
+        {{{ FeedHeader title=selectedChat }}}
+        {{{ FeedBody messagesList=selectedChatMessagesList }}}
+        {{{ FeedFooter }}}
+    </div>
+</div>

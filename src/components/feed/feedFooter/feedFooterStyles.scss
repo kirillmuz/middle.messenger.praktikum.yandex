@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+
+.feed-footer {
+    box-sizing: border-box;
+    min-height: 64px;
+    max-height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid $color-lightgrey;
+
+    &__attach-btn {
+        cursor: pointer;
+        min-width: 32px;
+        max-width: 32px;
+        min-height: 32px;
+        max-height: 32px;
+        background-image: url('../../../assets/icons/clipIcon.svg');
+    }
+}

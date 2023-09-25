@@ -1,0 +1,45 @@
+@import '../../../styles/variables';
+
+.feed-header {
+    box-sizing: border-box;
+    min-height: 54px;
+    max-height: 54px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid $color-lightgrey;
+
+    &__image {
+        min-width: 34px;
+        max-width: 34px;
+        min-height: 34px;
+        max-height: 34px;
+        border-radius: 50%;
+        background: $color-softgrey;
+    }
+
+    &__title {
+        font-size: 14px;
+        color: $color-baseblack;
+        font-weight: 700;
+    }
+
+    &__menu {
+        background-image: url('../../../assets/icons/menuKebabaIcon.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        margin-left: auto;
+        width: 10px;
+        height: 28px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background-color: $color-dirtywhite;
+        }
+    }
+}
