@@ -86,3 +86,7 @@ npm run stylelint
 
 ## Pull request первого спринта:
 https://github.com/kirillmuz/middle.messenger.praktikum.yandex/pull/2
+
+
+## Pull request второго спринта:
+https://github.com/kirillmuz/middle.messenger.praktikum.yandex/pull/3
