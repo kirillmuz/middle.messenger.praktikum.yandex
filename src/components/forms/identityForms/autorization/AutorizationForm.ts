@@ -1,10 +1,10 @@
 import Block from '../../../../core/Block';
 import { TextField } from '../../../controls';
-import { navigate } from '../../../../utils/navigationUtils';
-import { PagesNames } from '../../../../constants/commonConstants';
+import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { AutorizationFormProps } from './autorizationFormProps';
+import Router from '../../../../core/Router';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
 
@@ -25,6 +25,11 @@ export class AutorizationForm extends Block {
      */
     public static Name = 'AutorizationForm';
 
+    /**
+     * Роутер
+     */
+    private _router: Router;
+
     constructor(props: AutorizationFormProps) {
         super({
             ...props,
@@ -32,29 +37,30 @@ export class AutorizationForm extends Block {
             // т.к. на логинке рассказывать про формат логина и пароля
             // неправильно, более обширная валидация будет на лругих формах
             validate: {
-                login: (value?: string) =>{
+                login: (value?: string) => {
                     return fieldsValidationUtils.required(value);
                 },
-                password: (value?: string) =>{
+                password: (value?: string) => {
                     return fieldsValidationUtils.required(value);
                 }
             },
             onLogin: (event: MouseEvent) => {
                 event.preventDefault();
-                if(!this.validate()) {
+                if (!this.validate()) {
                     return;
                 }
                 console.log({
                     component: AutorizationForm.Name,
                     ...this.getFieldsValues()
                 });
-                navigate(PagesNames.Chats);
+                this._router.go(RoutesAdresses.Chats);
             },
             onRegister: (event: MouseEvent) => {
                 event.preventDefault();
-                navigate(PagesNames.Registration);
+                this._router.go(RoutesAdresses.Registration);
             }
         });
+        this._router = new Router();
     }
 
     /**

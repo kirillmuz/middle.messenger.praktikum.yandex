@@ -1,10 +1,10 @@
 import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
 import { ProfileData } from '../../../../types/commonTypes';
-import { PagesNames } from '../../../../constants/commonConstants';
-import { navigate } from '../../../../utils/navigationUtils';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { RoutesAdresses } from '../../../../constants/commonConstants';
+import Router from '../../../../core/Router';
 import template from './changeProfileDataFormTemplate.hbs?raw';
 
 /**
@@ -28,6 +28,11 @@ export class ChangeProfileDataForm extends Block {
      * Имя компонента
      */
     public static Name = 'ChangeProfileDataForm';
+
+    /**
+     * Роутер
+     */
+    private _router: Router;
 
     constructor(props: {profile: ProfileData}) {
         const { profile } = props;
@@ -70,9 +75,10 @@ export class ChangeProfileDataForm extends Block {
                     component: ChangeProfileDataForm.Name,
                     ...this.getFieldsValues()
                 });
-                navigate(PagesNames.Profile);
+                this._router.go(RoutesAdresses.Profile);
             }
         });
+        this._router = new Router();
     }
 
     /**

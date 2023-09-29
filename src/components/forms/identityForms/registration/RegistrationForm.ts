@@ -1,10 +1,10 @@
 import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
-import { navigate } from '../../../../utils/navigationUtils';
-import { PagesNames } from '../../../../constants/commonConstants';
+import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { RegistrationFormProps } from './registrationFormProps';
+import Router from '../../../../core/Router';
 import template from './registrationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
 
@@ -30,6 +30,11 @@ export class RegistrationForm extends Block {
      * Имя компонента
      */
     public static Name = 'RegistrationForm';
+
+    /**
+     * Роутер
+     */
+    private _router: Router;
 
     constructor(props: RegistrationFormProps) {
         super({
@@ -69,7 +74,7 @@ export class RegistrationForm extends Block {
             },
             onLogin: (event: MouseEvent) => {
                 event.preventDefault();
-                navigate(PagesNames.Login);
+                this._router.go(RoutesAdresses.Login);
             },
             onRegister: (event: MouseEvent) => {
                 event.preventDefault();
@@ -80,9 +85,10 @@ export class RegistrationForm extends Block {
                     component: RegistrationForm.Name,
                     ...this.getFieldsValues()
                 });
-                navigate(PagesNames.Chats);
+                this._router.go(RoutesAdresses.Chats);
             }
         });
+        this._router = new Router();
     }
 
     /**

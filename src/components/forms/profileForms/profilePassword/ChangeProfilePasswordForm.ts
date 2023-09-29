@@ -1,10 +1,10 @@
 import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
-import { PagesNames } from '../../../../constants/commonConstants';
-import { navigate } from '../../../../utils/navigationUtils';
+import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { ChangeProfilePasswordFormProps } from './changeProfilePasswordFormProps';
+import Router from '../../../../core/Router';
 import template from './changePasswordFormTemplate.hbs?raw';
 
 /**
@@ -24,6 +24,11 @@ export class ChangePasswordForm extends Block {
      * Имя компонента
      */
     public static Name = 'ChangePasswordForm';
+
+    /**
+     * Роутер
+     */
+    private _router: Router;
 
     constructor(props: ChangeProfilePasswordFormProps) {
         super({
@@ -51,9 +56,10 @@ export class ChangePasswordForm extends Block {
                     component: ChangePasswordForm.Name,
                     ...this.getFieldsValues()
                 });
-                navigate(PagesNames.Profile);
+                this._router.go(RoutesAdresses.Profile);
             }
         });
+        this._router = new Router();
     }
 
     /**

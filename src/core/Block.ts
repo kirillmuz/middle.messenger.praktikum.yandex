@@ -2,7 +2,7 @@
 import {EventBus} from './EventBus';
 import { compileTemplate } from './TemplateUtils';
 
-interface IProps extends Record<string, any> {
+export interface IProps extends Record<string, any> {
     events?: object;
 } 
 
@@ -180,6 +180,10 @@ class Block {
                 throw new Error('Нет доступа');
             }
         });
+    }
+
+    unmount() {
+        this._componentWillUnmount();
     }
 }
 

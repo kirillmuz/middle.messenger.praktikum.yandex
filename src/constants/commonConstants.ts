@@ -1,13 +1,13 @@
 /**
- * Список имен страниц
+ * Список адресов
  */
-export enum PagesNames {
-    ChangePassword = 'changePassword',
-    ChangeProfileData = 'changeProfileData',
-    Chats = 'chats',
-    Error500 = 'error500',
-    Error404 = 'error404',
-    Login = 'login',
-    Profile = 'profile',
-    Registration = 'registration'
+export enum RoutesAdresses {
+    Login = '/',
+    Registration = '/sign-up',
+    Chats = '/messenger',
+    Profile = '/settings',
+    ChangePassword = '/change-password',
+    ChangeProfileData = '/change-data',
+    Error500 = '/internal-server-error',
+    Error404 = '/not-found'
 }

@@ -1,7 +1,6 @@
 
 import { registerComponent, registerPartial } from './core/TemplateUtils';
-import { PagesNames } from './constants/commonConstants';
-import { navigate } from './utils/navigationUtils';
+import { registerRoutes } from './utils/navigationUtils';
 import * as Components from './components';
 import './styles/globalStyles.scss';
 
@@ -32,4 +31,4 @@ registerComponent(Components.FeedFooter.Name, Components.FeedFooter);
 registerComponent(Components.FeedHeader.Name, Components.FeedHeader);
 registerComponent(Components.FeedMessage.Name, Components.FeedMessage);
 
-navigate(PagesNames.Login);
+registerRoutes();

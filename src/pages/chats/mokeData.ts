@@ -1,17 +1,15 @@
 import { FeedMessage } from '../../types/commonTypes';
 import { ChatItemProps } from '../../components/chatItem/chatItemProps';
-import { PagesNames } from '../../constants/commonConstants';
-import { navigate } from '../../utils/navigationUtils';
 
 export const Chats: Array<ChatItemProps> = [{
     chatName: 'Тут ошибка 500',
-    onClick: ()=>navigate(PagesNames.Error500),
+    onClick: ()=>{}, //navigate(PagesNames.Error500),
     lastMessage: 'Изображение',
     sentTime: '10:49',
     unreadedMessagesCount: 2
 },{
     chatName: 'Тут ошибка 404',
-    onClick: ()=>navigate(PagesNames.Error404),
+    onClick: ()=>{}, //navigate(PagesNames.Error404),
     lastMessage: 'Кино отстой!',
     sentTime: '12:00',
     who: 'Вы'
