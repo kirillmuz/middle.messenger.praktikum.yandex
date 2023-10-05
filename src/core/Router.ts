@@ -9,7 +9,6 @@ const render = (query: string, component: Block) => {
     }
 }
 
-
 const isEqual = (lhs?: string | null, rhs?: string | null) => lhs === rhs;
   
 
@@ -44,7 +43,7 @@ class Route {
     }
 
     render() {
-        if (!this._block && this._blockClass) {
+        if (/*!this._block && */this._blockClass) {
             this._block = new this._blockClass(this._props);
             render('root', this._block);
             return;

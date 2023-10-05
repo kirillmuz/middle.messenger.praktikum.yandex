@@ -1,6 +1,8 @@
 import Block from '../../../core/Block';
-import { RoutesAdresses } from '../../../constants/commonConstants';
 import Router from '../../../core/Router';
+import { RoutesAdresses } from '../../../constants/commonConstants';
+import { connect } from '../../../utils/storeUtils';
+import { ChangePasswordPageProps } from './changePasswordPageProps';
 import template from './changePasswordPageTemplate.hbs?raw';
 import '../../pagesStyles.scss';
 import '../profilePageStyles.scss';
@@ -8,7 +10,7 @@ import '../profilePageStyles.scss';
 /**
  * Страница изменения пароля пользователя
  */
-export class ChangePasswordPage extends Block {
+class ChangePasswordPage extends Block {
     /**
      * Имя компонента
      */
@@ -19,13 +21,14 @@ export class ChangePasswordPage extends Block {
      */
     private _router: Router;
 
-    constructor() {
+    constructor(props: ChangePasswordPageProps) {
         super({
+            ...props,
             returnToProfile: (event: MouseEvent) => {
                 event.preventDefault();
                 this._router.go(RoutesAdresses.Profile);
             }
-        });
+        } as ChangePasswordPageProps);
         this._router = new Router();
     }
 
@@ -33,3 +36,5 @@ export class ChangePasswordPage extends Block {
         return template;
     }
 }
+
+export default connect((state) => ({user: state.currentUser}))(ChangePasswordPage);

@@ -1,3 +1,5 @@
+import { ApiHost } from '../constants/commonConstants';
+
 /**
  * Методы запроса
  */
@@ -32,27 +34,48 @@ const queryStringify = (data: object) => {
  * Класс взаимодействия с API
  */
 class HTTPTransport {
-    get = (url: string, options: RequestOptions) => {		 
-        return this.request(url, {...options, method: RequestMethods.GET}, options.timeout);
+    private url: string = '';
+
+    constructor(path: string) {
+        this.url = `${ApiHost}${path}`;
+    }
+
+    get = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
+        return this.request<TResponse>(
+            endpoint,
+            {...options, method: RequestMethods.GET}, 
+            options?.timeout
+        );
     };
-    request = (url: string, options: RequestOptions, timeout = 5000) => {
+
+    request = <TResponse>(endpoint: string, options: RequestOptions, timeout = 5000) => {
         const {method, headers, data} = options;
 
-        return new Promise((resolve, reject) => {
+        return new Promise<TResponse>((resolve, reject) => {
             const isGet = method === RequestMethods.GET || !data; 
             const xhr = new XMLHttpRequest();  
-            xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
+            xhr.open(method, isGet && !!data 
+                ? `${this.url}${endpoint}${queryStringify(data)}` 
+                : `${this.url}${endpoint}`
+            );
 
             if(headers && typeof(headers) === 'object') {
                 Object.entries(headers).forEach(([key, value]) => {
                     xhr.setRequestHeader(key, value);
                 })
             }
-
             xhr.timeout = timeout;
-        
+            xhr.withCredentials = true;
+
             xhr.onload = function() {
-                resolve(xhr);
+                if(xhr.status != 200) {
+                    reject(xhr.responseText);
+                }
+                if(xhr.response === 'OK') {
+                    resolve(xhr.response as unknown as TResponse);
+                } else {
+                    resolve(JSON.parse(xhr.response) as unknown as TResponse);
+                }
             };
 
             xhr.onabort = reject;

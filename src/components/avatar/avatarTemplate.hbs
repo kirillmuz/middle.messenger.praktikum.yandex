@@ -1,3 +1,7 @@
-<div class="avatar avatar__container" name="avatar">
+<div class="avatar avatar__container" name="avatar" 
+    {{#if avatar}}
+        style="background-image: url({{avatar}}); background-size: cover;"
+    {{/if}}
+>
     <div class="avatar__container avatar__action">Поменять аватар</div>
 </div>

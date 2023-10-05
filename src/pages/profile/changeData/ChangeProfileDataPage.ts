@@ -1,7 +1,8 @@
 import Block from '../../../core/Block';
-import { RoutesAdresses } from '../../../constants/commonConstants';
-import { ChangeProfileDataPageProps } from './changeProfileDataPageProps';
 import Router from '../../../core/Router';
+import { RoutesAdresses } from '../../../constants/commonConstants';
+import { connect } from '../../../utils/storeUtils';
+import { ChangeProfileDataPageProps } from './changeProfileDataPageProps';
 import template from './changeProfileDataPageTemplate.hbs?raw';
 import '../../pagesStyles.scss';
 import '../profilePageStyles.scss';
@@ -9,7 +10,7 @@ import '../profilePageStyles.scss';
 /**
  * Страница изменения данных профиля пользователя
  */
-export class ChangeProfileDataPage extends Block {
+class ChangeProfileDataPage extends Block {
     /**
      * Имя компонента
      */
@@ -27,7 +28,7 @@ export class ChangeProfileDataPage extends Block {
                 event.preventDefault();
                 this._router.go(RoutesAdresses.Profile);
             }
-        });
+        } as ChangeProfileDataPageProps);
         this._router = new Router();
     }
 
@@ -35,3 +36,5 @@ export class ChangeProfileDataPage extends Block {
         return template;
     }
 }
+
+export default connect((state) => ({profile: state.currentUser}))(ChangeProfileDataPage);

@@ -3,6 +3,15 @@ import { registerComponent, registerPartial } from './core/TemplateUtils';
 import { registerRoutes } from './utils/navigationUtils';
 import * as Components from './components';
 import './styles/globalStyles.scss';
+import { AppStore } from './core/AppStore';
+import { AppState } from './types/core';
+import { initStore } from './utils/storeUtils';
+
+declare global {
+  interface Window {
+    store?: AppStore<AppState>;
+  }
+}
 
 registerPartial(Components.FormContainer);
 
@@ -32,3 +41,5 @@ registerComponent(Components.FeedHeader.Name, Components.FeedHeader);
 registerComponent(Components.FeedMessage.Name, Components.FeedMessage);
 
 registerRoutes();
+
+initStore();

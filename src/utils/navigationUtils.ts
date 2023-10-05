@@ -7,6 +7,8 @@ import * as Pages from '../pages';
 import Router from '../core/Router';
 
 export const registerRoutes = () => {
+    console.log('registerRoutes');
+
     const router = new Router();
     router
         .use(RoutesAdresses.Login, Pages.LoginPage)
@@ -18,17 +20,7 @@ export const registerRoutes = () => {
         } as ChatsPageProps)
         .use(RoutesAdresses.Profile, Pages.ProfilePage)
         .use(RoutesAdresses.ChangePassword, Pages.ChangePasswordPage)
-        .use(RoutesAdresses.ChangeProfileData, Pages.ChangeProfileDataPage, {
-            profile: {
-                displayName: 'Иван',
-                email: 'iiivanov@yandex.ru',
-                firstName: 'Иван',
-                login: 'iiivanov',
-                midleName: 'Иванович',
-                phone: '88005353535',
-                secondName: 'Иванов'
-            }
-        } as ChangeProfileDataPageProps)
+        .use(RoutesAdresses.ChangeProfileData, Pages.ChangeProfileDataPage)
         .use(RoutesAdresses.Error500, Pages.ErrorPage, {
             errorCode: '500',
             errorText: 'Мы работаем над устранением проблемы',

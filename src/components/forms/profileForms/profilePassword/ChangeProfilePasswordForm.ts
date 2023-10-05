@@ -66,6 +66,12 @@ export class ChangePasswordForm extends Block {
      * Валидация
      */
     private validate(): boolean {
+        const {newPassword, repeateNewPassword} = this.getFieldsValues();
+        if(newPassword !== repeateNewPassword) {
+            (this.refs.validationMessage as Block)
+                ?.setProps({validationMessage: 'Новый и повторенный пароль не совпадают'});
+            return false;
+        }
         return formsValidationUtils
             .validateForm(this.getFieldsValues());
     }

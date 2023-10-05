@@ -1,10 +1,12 @@
 import Block from '../../../../core/Block';
+import Router from '../../../../core/Router';
 import { TextField } from '../../../controls';
 import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { login, parseAuthError } from '../../../../services/AuthService';
+import { LoginRequest } from '../../../../types/api/authTypes';
 import { AutorizationFormProps } from './autorizationFormProps';
-import Router from '../../../../core/Router';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
 
@@ -49,11 +51,11 @@ export class AutorizationForm extends Block {
                 if (!this.validate()) {
                     return;
                 }
-                console.log({
-                    component: AutorizationForm.Name,
-                    ...this.getFieldsValues()
-                });
-                this._router.go(RoutesAdresses.Chats);
+                login(this.getFieldsValues() as LoginRequest)
+                    .catch((err) => {
+                        (this.refs.validationMessage as Block)
+                            ?.setProps({validationMessage: parseAuthError(err)})
+                    });
             },
             onRegister: (event: MouseEvent) => {
                 event.preventDefault();
