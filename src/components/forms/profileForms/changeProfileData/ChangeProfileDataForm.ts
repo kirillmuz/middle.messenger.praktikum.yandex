@@ -3,8 +3,8 @@ import { InlineTextEditable } from '../../../controls';
 import { ProfileData } from '../../../../types/commonTypes';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
-import { RoutesAdresses } from '../../../../constants/commonConstants';
-import Router from '../../../../core/Router';
+import { changeProfileData, parseUserServiceError } from '../../../../services/UsersService';
+import { User } from '../../../../types/users';
 import template from './changeProfileDataFormTemplate.hbs?raw';
 
 /**
@@ -28,11 +28,6 @@ export class ChangeProfileDataForm extends Block {
      * Имя компонента
      */
     public static Name = 'ChangeProfileDataForm';
-
-    /**
-     * Роутер
-     */
-    private _router: Router;
 
     constructor(props: {profile: ProfileData}) {
         const { profile } = props;
@@ -71,14 +66,13 @@ export class ChangeProfileDataForm extends Block {
                 if(!this.validate()) {
                     return;
                 }
-                console.log({
-                    component: ChangeProfileDataForm.Name,
-                    ...this.getFieldsValues()
-                });
-                this._router.go(RoutesAdresses.Profile);
+                changeProfileData(this.getFieldsValues() as User)
+                    .catch(err => {
+                        (this.refs.validationMessage as Block)
+                            ?.setProps({validationMessage: parseUserServiceError(err)})
+                    });
             }
         });
-        this._router = new Router();
     }
 
     /**

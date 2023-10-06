@@ -1,10 +1,9 @@
 import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
-import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { changePassword, parseUserServiceError } from '../../../../services/UsersService';
 import { ChangeProfilePasswordFormProps } from './changeProfilePasswordFormProps';
-import Router from '../../../../core/Router';
 import template from './changePasswordFormTemplate.hbs?raw';
 
 /**
@@ -24,11 +23,6 @@ export class ChangePasswordForm extends Block {
      * Имя компонента
      */
     public static Name = 'ChangePasswordForm';
-
-    /**
-     * Роутер
-     */
-    private _router: Router;
 
     constructor(props: ChangeProfilePasswordFormProps) {
         super({
@@ -52,14 +46,16 @@ export class ChangePasswordForm extends Block {
                 if(!this.validate()) {
                     return;
                 }
-                console.log({
-                    component: ChangePasswordForm.Name,
-                    ...this.getFieldsValues()
+                const fieldsValues = this.getFieldsValues()
+                changePassword({
+                    newPassword: fieldsValues.newPassword!.toString(),
+                    oldPassword: fieldsValues.oldPassword!.toString()
+                }).catch(err => {
+                    (this.refs.validationMessage as Block)
+                        ?.setProps({validationMessage: parseUserServiceError(err)})
                 });
-                this._router.go(RoutesAdresses.Profile);
             }
         });
-        this._router = new Router();
     }
 
     /**

@@ -1,7 +1,8 @@
-import { ApiHost } from '../../constants/commonConstants';
 import Block from '../../core/Block';
-import template from './avatarTemplate.hbs?raw';
+import { ApiHost } from '../../constants/commonConstants';
+import { changeAvatar } from '../../services/UsersService';
 import { AvatarProps } from './AvatarProps';
+import template from './avatarTemplate.hbs?raw';
 import './avatarStyles.scss';
 
 /**
@@ -19,7 +20,18 @@ export class Avatar extends Block {
             avatar: props.avatar ? `${ApiHost}/resources/${props.avatar}` : undefined
         } as AvatarProps);
         this.props.events = {
-            click: this.props.chooseAvatar || (() => {})
+            click: () => {
+                const avaFile = document.getElementById('file');
+                if(avaFile) {
+                    avaFile.click();
+                    avaFile.onchange = (e: Event) => {
+                        const filesList = (e.target as HTMLInputElement)?.files ?? [];
+                        if(filesList.length > 0) {
+                            changeAvatar(filesList[0]);
+                        }
+                    }
+                }
+            }
         }
     }
 

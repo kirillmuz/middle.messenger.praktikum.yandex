@@ -5,7 +5,7 @@ import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { login, parseAuthError } from '../../../../services/AuthService';
-import { LoginRequest } from '../../../../types/api/authTypes';
+import { LoginDto } from '../../../../types/api/authTypes';
 import { AutorizationFormProps } from './autorizationFormProps';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../identityFormsStyles.scss';
@@ -51,7 +51,7 @@ export class AutorizationForm extends Block {
                 if (!this.validate()) {
                     return;
                 }
-                login(this.getFieldsValues() as LoginRequest)
+                login(this.getFieldsValues() as LoginDto)
                     .catch((err) => {
                         (this.refs.validationMessage as Block)
                             ?.setProps({validationMessage: parseAuthError(err)})

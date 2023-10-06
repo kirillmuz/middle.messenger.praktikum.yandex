@@ -1,8 +1,11 @@
 import AuthApi from '../api/AuthApi';
-import { Errors, RoutesAdresses } from '../constants/commonConstants';
 import Router from '../core/Router';
-import { LoginRequest } from '../types/api/authTypes';
+import { Errors, RoutesAdresses } from '../constants/commonConstants';
+import { LoginDto } from '../types/api/authTypes';
+import { UserDto, UserRegistrationRequestDto } from '../types/api/userTypes';
+import { RegisteringUser } from '../types/users';
 import { mapUserDtoToModel } from '../utils/mapDtoToModels';
+import { mapRegisteringUserToDto } from '../utils/mapModelsToDto';
 import { initStore } from '../utils/storeUtils';
 
 initStore();
@@ -15,14 +18,36 @@ const router = new Router();
 const getCurrentUser = async() => {
     const currentUser = await authApi.getCurrentUser();
     if(currentUser) {
-        return mapUserDtoToModel(currentUser);
+        return mapUserDtoToModel(currentUser as UserDto);
     }
 };
 
 /**
+ * Зарегистрировать пользователя
+ */
+const register = async (data: RegisteringUser) => {
+    const currentUserIdData = await authApi.register(mapRegisteringUserToDto(data))
+    if(currentUserIdData) {
+        window.store?.set({
+            currentUser: {
+                id: (currentUserIdData as UserRegistrationRequestDto).id,
+                avatar: '',
+                displayName: '',
+                email: data.email,
+                firstName: data.firstName,
+                login: data.login,
+                phone: data.phone,
+                secondName: data.secondName
+            }
+        });
+        router.go(RoutesAdresses.Chats);
+    }
+}
+
+/**
  * Войти
  */
-const login = async(data: LoginRequest) => {
+const login = async(data: LoginDto) => {
     await authApi.login(data);
     const currentUser = await getCurrentUser();
     window.store?.set({
@@ -52,12 +77,15 @@ const parseAuthError = (errorText: string) => {
         return 'Вы уже вошли в систему';
     case Errors.IncorrectCreds:
         return 'Неверные логин или пароль';
+    case Errors.EmailAlreadyExists:
+        return 'Пользователь с таким email уже зарегистрирован';
     default:
         return 'Произошла непредвиденная ошибка';
     }
 };
 
 export {
+    register,
     login,
     logout,
     parseAuthError

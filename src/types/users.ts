@@ -42,3 +42,40 @@ export interface User {
      */
     secondName: string;
 }
+
+/**
+ * Регистрируемый пользователь
+ */
+export interface RegisteringUser {
+    /**
+     * Почта
+     */
+    email: string;
+
+    /**
+     * Имя
+     */
+    firstName: string;
+
+    /**
+     * Логин
+     */
+    login: string;
+    
+    /**
+     * Пароль
+     */
+    password: string;
+
+    /**
+     * Телефон
+     */
+    phone: string;
+    
+    /**
+     * Фамилия
+     */
+    secondName: string;
+}
+
+

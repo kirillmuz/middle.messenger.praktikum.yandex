@@ -7,7 +7,6 @@ export interface RegistrationFormProps {
         login: (value?: string) => boolean;
         secondName: (value?: string) => boolean;
         firstName: (value?: string) => boolean;
-        midleName: (value?: string) => boolean;
         phone: (value?: string) => boolean;
         password: (value?: string) => boolean;
         repeatePassword: (value?: string) => boolean;

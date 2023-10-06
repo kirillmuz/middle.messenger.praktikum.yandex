@@ -1,10 +1,10 @@
-import { UserRequest } from '../types/api/authTypes';
+import { UserDto } from '../types/api/userTypes';
 import { User } from '../types/users';
 
 /**
  * Замапить поля ответа на модель пользователя
  */
-export const mapUserDtoToModel = (userDto: UserRequest) => {
+export const mapUserDtoToModel = (userDto: UserDto) => {
     return {
         avatar: userDto.avatar,
         displayName: userDto.display_name,
