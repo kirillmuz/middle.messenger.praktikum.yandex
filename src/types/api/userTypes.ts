@@ -1,5 +1,5 @@
 /**
- * Ответ с пользователем
+ * Объект пользователя
  */
 export interface UserDto {
     id: number;
@@ -12,6 +12,9 @@ export interface UserDto {
     email: string;
 }
 
+/**
+ * Объект данных профиля
+ */
 export interface UserProfileDataDto {
     first_name: string;
     second_name: string;
@@ -21,11 +24,17 @@ export interface UserProfileDataDto {
     phone: string;
 }
 
+/**
+ * Объект данных о пароле пользователя
+ */
 export interface UserPasswordDataDto {
     oldPassword: string;
     newPassword: string;
 }
 
+/**
+ * Объект данных регистрации пользователя
+ */
 export interface UserRegistrationDataDto {
     first_name: string;
     second_name: string;
@@ -35,6 +44,21 @@ export interface UserRegistrationDataDto {
     phone: string;
 }
 
+/**
+ * Объект ответа регистрации пользователя
+ */
 export interface UserRegistrationRequestDto {
     id: number;
+}
+
+/**
+ * Объект пользователя в чате
+ */
+export interface ChatUserDto {
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    login: string;
+    avatar: string;
+    id?: number;
 }

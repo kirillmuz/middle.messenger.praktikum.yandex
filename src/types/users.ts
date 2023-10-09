@@ -5,7 +5,7 @@ export interface User {
     /**
      * Аватар
      */
-    avatar: string;
+    avatar: string | null;
     
     /**
      * Никнейм
@@ -78,4 +78,37 @@ export interface RegisteringUser {
     secondName: string;
 }
 
+/**
+ * Модель пользователя чата
+ */
+export interface ChatUser {
+    /**
+     * Аватар
+     */
+    avatar: string | null;
+    
+    /**
+     * Никнейм
+     */
+    displayName: string;
+    
+    /**
+     * Имя
+     */
+    firstName: string;
 
+    /**
+     * Логин
+     */
+    login: string;
+
+    /**
+     * Фамилия
+     */
+    secondName: string;
+
+    /**
+     * Идентификатор
+     */
+    id?: number;
+}

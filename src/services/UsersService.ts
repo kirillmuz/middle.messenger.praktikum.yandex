@@ -1,10 +1,9 @@
 import UserApi from '../api/UserApi';
 import { RoutesAdresses } from '../constants/commonConstants';
 import Router from '../core/Router';
-import { UserDto, UserPasswordDataDto } from '../types/api/userTypes';
+import { ChatUserDto, UserDto, UserPasswordDataDto } from '../types/api/userTypes';
 import { User } from '../types/users';
-//import { Errors } from '../constants/commonConstants';
-import { mapUserDtoToModel } from '../utils/mapDtoToModels';
+import { mapChatUserDtoToModel, mapUserDtoToModel } from '../utils/mapDtoToModels';
 import { mapUserModelToDto } from '../utils/mapModelsToDto';
 import { initStore } from '../utils/storeUtils';
 
@@ -46,6 +45,15 @@ const changePassword = async(data: UserPasswordDataDto) => {
 }
 
 /**
+ * Найти пользователя
+ */
+const findUser = async(login: string) => {
+    const findedUsers = await userApi.findUser(login);
+    const findedUserDto = (findedUsers as Array<ChatUserDto>)[0];
+    return mapChatUserDtoToModel(findedUserDto);
+}
+
+/**
  * Распарсить ошибки авторизации
  */
 const parseUserServiceError = (errorText: string) => {
@@ -60,5 +68,6 @@ export {
     changeAvatar,
     changeProfileData,
     changePassword,
-    parseUserServiceError
+    parseUserServiceError,
+    findUser
 }

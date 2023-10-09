@@ -1,4 +1,4 @@
-import { UserDto, UserPasswordDataDto, UserProfileDataDto } from '../types/api/userTypes';
+import { ChatUserDto, UserDto, UserPasswordDataDto, UserProfileDataDto } from '../types/api/userTypes';
 import HTTPTransport, { RequestMethods } from './HTTPTransport';
 
 const userApi = new HTTPTransport('/user');
@@ -30,9 +30,24 @@ export default class UserApi {
         });
     }
 
+    /**
+     * Запрос на смену пароля
+     */
     async changePassword(data: UserPasswordDataDto): Promise<void | Error> {
         return userApi.request('/password', {
             method: RequestMethods.PUT,
+            headers: {'Content-Type': 'application/json'},
+            data
+        });
+    }
+
+    /**
+     * Найти пользователя
+     */
+    async findUser(login: string): Promise<Array<ChatUserDto> | Error> {
+        const data = {login};
+        return userApi.request('/search', {
+            method: RequestMethods.POST,
             headers: {'Content-Type': 'application/json'},
             data
         });

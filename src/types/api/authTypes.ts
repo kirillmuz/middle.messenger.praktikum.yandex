@@ -1,5 +1,5 @@
 /**
- * Модель логина
+ * Объект логина
  */
 export interface LoginDto {
     login: string;

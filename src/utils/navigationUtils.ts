@@ -1,8 +1,5 @@
-import { Chats, Messages, SelectedChat } from '../pages/chats/mokeData';
-import { ChatsPageProps } from '../pages/chats/chatsPageProps';
 import { ErrorPageProps } from '../pages/error/errorPageProps';
 import { RoutesAdresses } from '../constants/commonConstants';
-import { ChangeProfileDataPageProps } from '../pages/profile/changeData/changeProfileDataPageProps';
 import * as Pages from '../pages';
 import Router from '../core/Router';
 
@@ -13,11 +10,7 @@ export const registerRoutes = () => {
     router
         .use(RoutesAdresses.Login, Pages.LoginPage)
         .use(RoutesAdresses.Registration, Pages.RegistrationPage)
-        .use(RoutesAdresses.Chats, Pages.ChatsPage, {
-            chatsList: Chats,
-            selectedChatMessagesList: Messages,
-            selectedChat: SelectedChat
-        } as ChatsPageProps)
+        .use(RoutesAdresses.Chats, Pages.ChatsPage)
         .use(RoutesAdresses.Profile, Pages.ProfilePage)
         .use(RoutesAdresses.ChangePassword, Pages.ChangePasswordPage)
         .use(RoutesAdresses.ChangeProfileData, Pages.ChangeProfileDataPage)
