@@ -35,15 +35,21 @@ registerComponent(Components.RegistrationForm.Name, Components.RegistrationForm)
 registerComponent(Components.ChangeProfileDataForm.Name, Components.ChangeProfileDataForm);
 registerComponent(Components.ChangePasswordForm.Name, Components.ChangePasswordForm);
 registerComponent(Components.AddChatForm.Name, Components.AddChatForm);
+registerComponent(Components.AddUserForm.Name, Components.AddUserForm);
+registerComponent(Components.DeleteUserForm.Name, Components.DeleteUserForm);
 registerComponent(Components.Underlay.Name, Components.Underlay);
-registerComponent('AddChatDialog', Components.AddChatDialog);
-registerComponent('ChatMenuDialog', Components.ChatMenuDialog);
+registerComponent(Components.AddChatDialog.Name, Components.AddChatDialog);
+registerComponent(Components.AddUserDialog.Name, Components.AddUserDialog);
+registerComponent(Components.DeleteUserDialog.Name, Components.DeleteUserDialog);
+registerComponent(Components.ChatMenuDialog.Name, Components.ChatMenuDialog);
 registerComponent(Components.ChatItem.Name, Components.ChatItem);
+registerComponent(Components.ChatsList.Name, Components.ChatsList);
 registerComponent(Components.FeedBody.Name, Components.FeedBody);
 registerComponent(Components.FeedFooter.Name, Components.FeedFooter);
 registerComponent(Components.ChatMenu.Name, Components.ChatMenu);
 registerComponent(Components.FeedHeader.Name, Components.FeedHeader);
 registerComponent(Components.FeedMessage.Name, Components.FeedMessage);
+registerComponent(Components.Feed.Name, Components.Feed);
 
 registerRoutes();
 

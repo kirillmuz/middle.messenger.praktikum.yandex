@@ -10,6 +10,7 @@ export interface IProps extends Record<string, any> {
  * Базовый класс компонента
  */
 class Block {
+    public static Name: string = '';
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',

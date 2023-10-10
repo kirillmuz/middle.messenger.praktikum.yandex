@@ -1,17 +1,17 @@
 import Block from '../../../core/Block';
 import { connect, initStore } from '../../../utils/storeUtils';
 import { DialogProps } from '../dialogProps';
-import template from './addChatDialogTemplate.hbs?raw';
+import template from './addUserDialogTemplate.hbs?raw';
 import '../dialogsStyles.scss';
 
 /**
- * Класс диалогового окна создания чата
+ * Класс диалогового окна добавления пользователя
  */
-class AddChatDialog extends Block {
+class AddUserDialog extends Block {
     /**
      * Имя компонента
      */
-    public static Name = 'AddChatDialog';
+    public static Name = 'AddUserDialog';
 
     constructor(props: DialogProps) {
         initStore();
@@ -20,7 +20,7 @@ class AddChatDialog extends Block {
             show: props.show,
             onUnderlayClick: () => {
                 window.store?.set({
-                    addChatDialogOpened: false
+                    addUserDialogOpened: false
                 })
             }
         } as DialogProps);
@@ -32,6 +32,6 @@ class AddChatDialog extends Block {
 }
 
 /**
- * Диалоговое окно создания чата
+ * Диалоговое окно добавления пользователя
  */
-export default connect((state) => ({show: state.addChatDialogOpened}))(AddChatDialog);
+export default connect((state) => ({show: state.addUserDialogOpened}))(AddUserDialog);

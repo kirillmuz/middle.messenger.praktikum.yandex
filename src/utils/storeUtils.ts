@@ -9,9 +9,12 @@ import isEqual from './isEqual';
 const initialState: AppState = {
     currentUser: undefined,
     chatsList: [],
+    selectedChat: undefined,
     addChatDialogOpened: false,
-    chatMenuDialogOpened: false
-} 
+    chatMenuDialogOpened: false,
+    addUserDialogOpened: false,
+    deleteUserDialogOpened: false,
+}
 
 /**
  * Инициализировать хранилище

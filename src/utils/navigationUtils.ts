@@ -4,8 +4,6 @@ import * as Pages from '../pages';
 import Router from '../core/Router';
 
 export const registerRoutes = () => {
-    console.log('registerRoutes');
-
     const router = new Router();
     router
         .use(RoutesAdresses.Login, Pages.LoginPage)

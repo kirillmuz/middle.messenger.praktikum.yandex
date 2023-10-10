@@ -7,7 +7,7 @@ import '../dialogsStyles.scss';
 import './chatMenuDialogStyles.scss';
 
 /**
- * Диалоговое окно меню чата
+ * Класс диалогового окна меню чата
  */
 class ChatMenuDialog extends Block {
     /**
@@ -30,20 +30,37 @@ class ChatMenuDialog extends Block {
                     avaFile.click();
                     avaFile.onchange = (e: Event) => {
                         setStateAsync({chatMenuDialogOpened: false});
+                        const chatId = window.store?.getState().selectedChat?.id ?? 0;
                         const filesList = (e.target as HTMLInputElement)?.files ?? [];
                         if(filesList.length > 0) {
-                            changeAvatar(28149, filesList[0]);
+                            changeAvatar(chatId, filesList[0]);
                         }
                     }
                 }
             },
             onAddUser: (event: MouseEvent) => {
                 event.preventDefault();
+                setStateAsync({
+                    chatMenuDialogOpened: false,
+                    addUserDialogOpened: true
+                });
+            },
+            onDeleteUser: (event: MouseEvent) => {
+                event.preventDefault();
+                setStateAsync({
+                    chatMenuDialogOpened: false,
+                    deleteUserDialogOpened: true
+                });
             },
             onDeleteChat: (event: MouseEvent) => {
                 event.preventDefault();
-                setStateAsync({chatMenuDialogOpened: false});
-                deleteChat(0);
+                const selectedChat = window.store?.getState().selectedChat;
+                if(selectedChat) {
+                    setStateAsync({chatMenuDialogOpened: false});
+                    if(confirm('Вы уверены, что хотите удалить чат?')) {
+                        deleteChat(selectedChat.id);
+                    }
+                }
             }
         } as ChatMenuDialogProps);
     }
@@ -53,4 +70,7 @@ class ChatMenuDialog extends Block {
     }
 }
 
+/**
+ * Диалоговое окно меню чата
+ */
 export default connect((state) => ({show: state.chatMenuDialogOpened}))(ChatMenuDialog);

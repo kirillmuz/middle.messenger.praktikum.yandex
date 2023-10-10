@@ -40,8 +40,13 @@ const createChat = async(title: string) => {
  */
 const deleteChat = async(chatId: number) => {
     const deletedChatDto  = await chatsApi.deleteChat({chatId});
+    const chatsList = window.store?.getState().chatsList;
     if(deletedChatDto) {
-        getChatsList();
+        window.store?.set({
+            selectedChat: undefined,
+            chatsList: chatsList?.filter(c=>c.id 
+                !== (deletedChatDto as DeletedChatDto).result?.id)
+        });
     }
     return (deletedChatDto as DeletedChatDto).result.id;
 }
@@ -57,7 +62,10 @@ const changeAvatar = async(chatId: number, file: File) => {
         if(currentChat) {
             currentChat.avatar = (chatDto as ChatDto).avatar;
             window.store?.set({
-                chatsList
+                chatsList,
+                selectedChat: {
+                    ...currentChat
+                }
             });
         }
     }

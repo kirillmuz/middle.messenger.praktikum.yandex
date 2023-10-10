@@ -5,7 +5,12 @@ import { Chat } from '../../types/chats';
  */
 export interface ChatItemProps extends Chat {
     /**
-     * Событие клика по чату
+     * Выбран ли чат
      */
-    onClick: () => void;
+    selected: boolean;
+    
+    /**
+     * Путь к ресурсам
+     */
+    resourcesUrl?: string;
 }

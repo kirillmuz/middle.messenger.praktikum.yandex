@@ -1,2 +1,2 @@
 export { ChatMenu } from './chatMenu';
-export { FeedHeader } from './FeedHeader';
+export { default as FeedHeader } from './FeedHeader';

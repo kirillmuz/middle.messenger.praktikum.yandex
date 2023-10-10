@@ -35,12 +35,6 @@ export class ChatsPage extends Block {
                 window.store?.set({
                     addChatDialogOpened: true
                 });
-                //createChat(`new_chat_${new Date().toLocaleTimeString()}`)
-                //deleteChat(28387);
-                //getChatToken(28149).then(res => console.log(res));
-                //addUserToChat(28389, 'kiraololo').then(res => console.log(res));
-                //deleteUserFromChat(28389, 'kiraololo');
-                
             }
         });
         this._router = new Router();

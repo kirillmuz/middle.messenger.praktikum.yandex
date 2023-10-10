@@ -1,22 +1,14 @@
-import { FeedMessage } from '../../types/commonTypes';
-import { Chat } from '../../types/chats';
-
 /**
  * Свойства компонента страницы чатов
  */
 export interface ChatsPageProps {
     /**
-     * Список чатов
+     * Преейти в профиль
      */
-    chatsList?: Array<Chat>;
-
+    openProfile: (event: MouseEvent) => void;
+    
     /**
-     * Список сообщений выбранного чата
+     * Добавить чат
      */
-    selectedChatMessagesList?: Array<FeedMessage>;
-
-    /**
-     * Выбранный чат
-     */
-    selectedChat?: string; 
+    addChat: (event: MouseEvent) => void;
 }

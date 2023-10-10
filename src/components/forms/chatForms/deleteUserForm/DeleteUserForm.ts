@@ -2,51 +2,52 @@ import Block from '../../../../core/Block';
 import { TextField } from '../../../controls';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
-import { createChat } from '../../../../services/ChatsService';
-import { AddChatFormProps } from './addChatFormProps';
-import template from './addChatFormTemplate.hbs?raw';
+import { deleteUserFromChat } from '../../../../services/ChatsService';
+import { DeleteUserFormProps } from './deleteUserFormProps';
+import template from './deleteUserFormTemplate.hbs?raw';
 import '../chatFormsStyles.scss';
 
 /**
  * Значение полей формы
  */
 interface FieldsValues {
-    chatName?: boolean | string;
+    userLogin?: boolean | string;
 }
 
 /**
- * Форма создания чата
+ * Форма удаления пользователя из чата
  */
-export class AddChatForm extends Block {
+export class DeleteUserForm extends Block {
     /**
      * Имя компонента
      */
-    public static Name = 'AddChatForm';
+    public static Name = 'DeleteUserForm';
 
-    constructor(props: AddChatFormProps) {
+    constructor(props: DeleteUserFormProps) {
         super({
             ...props,
             validate: {
-                chatName: (value?: string) => {
+                userLogin: (value?: string) => {
                     return fieldsValidationUtils.required(value);
                 }
             },
-            onChatCreate: (event: MouseEvent) => {
+            onUserDelete: (event: MouseEvent) => {
                 event.preventDefault();
                 if (!this.validate()) {
                     return;
                 }
-                const { chatName } = this.getFieldsValues();
-                createChat(chatName!.toString()).then(() => {
+                const { userLogin } = this.getFieldsValues();
+                const chatId = window.store?.getState().selectedChat?.id ?? 0;
+                deleteUserFromChat(chatId, userLogin?.toString() ?? '').then(() => {
                     window.store?.set({
-                        addChatDialogOpened: false
+                        deleteUserDialogOpened: false
                     });
                 }).catch(() => {
                     (this.refs.validationMessage as Block)
-                        ?.setProps({validationMessage: 'Произошла непредвиденная ошибка'})
+                        ?.setProps({validationMessage: 'Произошла непредвиденная ошибка'});
                 });
             }
-        });
+        } as DeleteUserFormProps);
     }
 
     /**
@@ -62,7 +63,7 @@ export class AddChatForm extends Block {
      */
     private getFieldsValues(): FieldsValues {
         return {
-            chatName: (this.refs.chatName as TextField)?.value()
+            userLogin: (this.refs.chatName as TextField)?.value()
         }
     }
 

@@ -15,7 +15,9 @@ export class ChatItem extends Block {
     public static Name = 'ChatItem';
 
     constructor(props: ChatItemProps) {
-        const currentUser = window.store?.getState().currentUser;
+        const state = window.store?.getState();
+        const currentUser = state?.currentUser;
+        const selectedChat = state?.selectedChat;
         if(props.lastMessage && isToday(props.lastMessage.time)) {
             props.lastMessage.time = getTime(props.lastMessage.time);    
         } else if(props.lastMessage) {
@@ -28,10 +30,21 @@ export class ChatItem extends Block {
         }
         super({
             ...props,
-            avatar: props.avatar ? `${ApiHost}/resources/${props.avatar}` : undefined
+            resourcesUrl: `${ApiHost}/resources/`,
+            selected: props.id === selectedChat?.id
         } as ChatItemProps);
         this.props.events = {
-            click: this.props.onClick || (() => {})
+            click: (event: MouseEvent) => {
+                event.preventDefault();
+                window.store?.set({selectedChat: {
+                    avatar: props.avatar,
+                    createdBy: props.createdBy,
+                    id: props.id,
+                    title: props.title,
+                    unreadCount: props.unreadCount,
+                    lastMessage: props.lastMessage
+                }});
+            }
         }
     }
 

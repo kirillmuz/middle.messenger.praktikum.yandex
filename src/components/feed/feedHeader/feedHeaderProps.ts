@@ -1,9 +1,16 @@
+import { Chat } from '../../../types/chats';
+
 /**
  * Свойства компонента "Шапка ленты"
  */
 export interface FeedHeaderProps {
     /**
-     * Название
+     * Чат
      */
-    title: string;
+    chat: Chat;
+
+    /**
+     * Путь к ресурсам
+     */
+    resourcesUrl?: string;
 }

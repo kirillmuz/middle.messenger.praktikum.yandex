@@ -18,4 +18,9 @@ export interface ChatMenuDialogProps extends DialogProps {
      * Обработчик удаления чата
      */
     onDeleteChat: (event: MouseEvent) => void;
+
+    /**
+     * Обработчик удаления пользователя
+     */
+    onDeleteUser: (event: MouseEvent) => void;
 }

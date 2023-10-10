@@ -1,0 +1,9 @@
+<div class="feed">
+    {{#if selectedChat}}
+        {{{ FeedHeader }}}
+        {{{ FeedBody }}}
+        {{{ FeedFooter }}}
+    {{else}}
+        <div class="feed__no-selected">Выберите, кому хотите написать...</div>
+    {{/if}}
+</div>

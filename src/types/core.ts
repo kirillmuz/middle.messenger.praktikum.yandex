@@ -14,6 +14,11 @@ export interface AppState extends Record<string, unknown> {
      * Список чатов
      */
     chatsList?: Array<Chat>;
+    
+    /**
+     * Выбранный чат
+     */
+    selectedChat?: Chat;
 
     /**
      * Состояние отображения диалогового 
@@ -26,4 +31,16 @@ export interface AppState extends Record<string, unknown> {
      * диалогового окна меню чата
      */
     chatMenuDialogOpened?: boolean;
+
+    /**
+     * Состояние отображения 
+     * диалогового окна добавления пользователя
+     */
+    addUserDialogOpened?: boolean;
+
+    /**
+     * Состояние отображения 
+     * диалогового окна удаления пользователя
+     */
+    deleteUserDialogOpened?: boolean;
 }

@@ -9,21 +9,7 @@
                 {{{ AddChatDialog }}}
             </div>
         </div>
-        <div class="chats-page__chats-list">
-            {{#each chatsList}}
-                {{{ ChatItem title=this.title 
-                        avatar=this.avatar 
-                        createdBy=this.createdBy
-                        id=this.id
-                        lastMessage=this.lastMessage
-                        unreadCount=this.unreadCount
-                }}}
-            {{/each}}
-        </div>
+        {{{ ChatsList }}}
     </div>
-    <div class="chats-page__feed">
-        {{{ FeedHeader title=selectedChat }}}
-        {{{ FeedBody messagesList=selectedChatMessagesList }}}
-        {{{ FeedFooter }}}
-    </div>
+    {{{ Feed }}}
 </div>
