@@ -1,0 +1,12 @@
+<div class="form-wrapper chat-form {{className}}">
+    {{#> FormContainer className="form-content" }}
+        {{{ Title text="Добавить чат" }}}
+        <div class="form-content__form-block form-content__fields">
+            {{{ TextField label="Название чата" type="text" placeholder="Введите название" name="chatName" ref="chatName" validate=validate.chatName }}}
+        </div>
+        <div class="form-content__form-block form-content__actions">
+            {{{ Button text="Создать" type="prymary" goToPage="chats" onClick=onChatCreate }}}
+        </div>
+        {{{ ValidationMessage validationMessage=error ref="validationMessage" }}}
+    {{/FormContainer}}
+</div>

@@ -49,8 +49,8 @@ const deleteChat = async(chatId: number) => {
 /**
  * Изменить аватар 
  */
-const changeAvatar = async(file: File) => {
-    const chatDto = await chatsApi.changeAvatar(file);
+const changeAvatar = async(chatId: number, file: File) => {
+    const chatDto = await chatsApi.changeAvatar(chatId, file);
     if(chatDto) {
         const chatsList = window.store?.getState().chatsList;
         const currentChat = chatsList?.find(c=>c.id === (chatDto as ChatDto).id);

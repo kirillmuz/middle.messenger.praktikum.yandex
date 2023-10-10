@@ -1,5 +1,9 @@
 <div class="chat-item {{#if selected}}chat-item_selected{{/if}}">
-    <div class="chat-item__image"></div>
+    <div class="chat-item__image" 
+        {{#if avatar}}
+            style="background-image: url({{avatar}}); background-size: cover;"
+        {{/if}}
+    ></div>
     <div class="chat-item__info">
         <div class="chat-item__title">{{title}}</div>
         <span class="chat-item__short-feed">

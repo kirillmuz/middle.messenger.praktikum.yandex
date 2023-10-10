@@ -3,6 +3,7 @@ import Router from '../../core/Router';
 import { RoutesAdresses } from '../../constants/commonConstants';
 import { ChatsPageProps } from './chatsPageProps';
 import { getChatsList } from '../../services/ChatsService';
+import { initStore } from '../../utils/storeUtils';
 import template from './chatsPageTemplate.hbs?raw';
 import '../pagesStyles.scss';
 import './chatsPageStyles.scss';
@@ -22,6 +23,7 @@ export class ChatsPage extends Block {
     private _router: Router;
 
     constructor(props: ChatsPageProps) {
+        initStore();
         super({
             ...props,
             openProfile: (event: MouseEvent) => {
@@ -30,6 +32,9 @@ export class ChatsPage extends Block {
             },
             addChat: (event: MouseEvent) => {
                 event.preventDefault();
+                window.store?.set({
+                    addChatDialogOpened: true
+                });
                 //createChat(`new_chat_${new Date().toLocaleTimeString()}`)
                 //deleteChat(28387);
                 //getChatToken(28149).then(res => console.log(res));

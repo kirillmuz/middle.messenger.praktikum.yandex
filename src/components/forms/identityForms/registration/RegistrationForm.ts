@@ -7,8 +7,8 @@ import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { parseAuthError, register } from '../../../../services/AuthService';
 import { RegistrationFormProps } from './registrationFormProps';
 import template from './registrationFormTemplate.hbs?raw';
+import '../../formsStyles.scss';
 import '../identityFormsStyles.scss';
-
 
 /**
  * Значение полей формы

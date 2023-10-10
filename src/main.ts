@@ -34,9 +34,14 @@ registerComponent(Components.AutorizationForm.Name, Components.AutorizationForm)
 registerComponent(Components.RegistrationForm.Name, Components.RegistrationForm);
 registerComponent(Components.ChangeProfileDataForm.Name, Components.ChangeProfileDataForm);
 registerComponent(Components.ChangePasswordForm.Name, Components.ChangePasswordForm);
+registerComponent(Components.AddChatForm.Name, Components.AddChatForm);
+registerComponent(Components.Underlay.Name, Components.Underlay);
+registerComponent('AddChatDialog', Components.AddChatDialog);
+registerComponent('ChatMenuDialog', Components.ChatMenuDialog);
 registerComponent(Components.ChatItem.Name, Components.ChatItem);
 registerComponent(Components.FeedBody.Name, Components.FeedBody);
 registerComponent(Components.FeedFooter.Name, Components.FeedFooter);
+registerComponent(Components.ChatMenu.Name, Components.ChatMenu);
 registerComponent(Components.FeedHeader.Name, Components.FeedHeader);
 registerComponent(Components.FeedMessage.Name, Components.FeedMessage);
 

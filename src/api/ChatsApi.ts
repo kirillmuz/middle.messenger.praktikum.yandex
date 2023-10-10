@@ -46,8 +46,9 @@ export default class ChatsApi {
     /**
      * Запрос на смену аватара
      */
-    async changeAvatar(file: File): Promise<ChatDto | Error> {
+    async changeAvatar(chatId: number, file: File): Promise<ChatDto | Error> {
         const data = new FormData();
+        data.append('chatId', chatId.toString());
         data.append('avatar', file);
         return chatsApi.request('/avatar', {
             method: RequestMethods.PUT,

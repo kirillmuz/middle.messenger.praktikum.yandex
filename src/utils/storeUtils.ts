@@ -7,7 +7,10 @@ import isEqual from './isEqual';
  * Начальное состояние
  */
 const initialState: AppState = {
-    currentUser: undefined
+    currentUser: undefined,
+    chatsList: [],
+    addChatDialogOpened: false,
+    chatMenuDialogOpened: false
 } 
 
 /**
@@ -21,6 +24,13 @@ const initStore = () => {
         window.store = store;
         sessionStorage.setItem('state', JSON.stringify(store.getState()));
     }
+}
+
+const setStateAsync = (state: AppState) => {
+    initStore();
+    setTimeout(() => {
+        window.store?.set(state)
+    }, 0);
 }
 
 /**
@@ -67,5 +77,6 @@ const connect = (mapStateToProps: (state: AppState) => Partial<AppState>) => {
 
 export {
     initStore,
+    setStateAsync,
     connect
 }

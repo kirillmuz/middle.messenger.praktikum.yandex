@@ -1,4 +1,4 @@
-export { FeedBody } from './feedBody'
-export { FeedFooter } from './feedFooter'
-export { FeedHeader } from './feedHeader'
-export { FeedMessage } from './feedMessage'
+export { FeedBody } from './feedBody';
+export { FeedFooter } from './feedFooter';
+export * from './feedHeader';
+export { FeedMessage } from './feedMessage';

@@ -8,6 +8,7 @@ import { login, parseAuthError } from '../../../../services/AuthService';
 import { LoginDto } from '../../../../types/api/authTypes';
 import { AutorizationFormProps } from './autorizationFormProps';
 import template from './autorizationFormTemplate.hbs?raw';
+import '../../formsStyles.scss';
 import '../identityFormsStyles.scss';
 
 /**
