@@ -1,6 +1,14 @@
 <div class="feed">
     {{#if selectedChat}}
-        {{{ FeedHeader }}}
+        <div class="feed__header">
+            <div class="feed__header-image"
+                {{#if selectedChat.avatar}}
+                    style="background-image: url(https://ya-praktikum.tech/api/v2/resources/{{selectedChat.avatar}}); background-size: cover;"
+                {{/if}}
+            ></div>
+            <span class="feed-header-title">{{selectedChat.title}}</span>
+            {{{ ChatMenu }}}
+        </div>
         {{{ FeedBody }}}
         {{{ FeedFooter }}}
     {{else}}

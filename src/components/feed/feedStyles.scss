@@ -12,4 +12,30 @@
     &__no-selected {
         margin: auto;
     }
+
+    &__header {
+        box-sizing: border-box;
+        min-height: 54px;
+        max-height: 54px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid $color-lightgrey;
+    }
+
+    &__header-image {
+        min-width: 34px;
+        max-width: 34px;
+        min-height: 34px;
+        max-height: 34px;
+        border-radius: 50%;
+        background: $color-softgrey;
+    }
+
+    &__header-title {
+        font-size: 14px;
+        color: $color-baseblack;
+        font-weight: 700;
+    }
 }

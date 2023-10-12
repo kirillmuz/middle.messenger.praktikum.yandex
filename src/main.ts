@@ -47,7 +47,6 @@ registerComponent(Components.ChatsList.Name, Components.ChatsList);
 registerComponent(Components.FeedBody.Name, Components.FeedBody);
 registerComponent(Components.FeedFooter.Name, Components.FeedFooter);
 registerComponent(Components.ChatMenu.Name, Components.ChatMenu);
-registerComponent(Components.FeedHeader.Name, Components.FeedHeader);
 registerComponent(Components.FeedMessage.Name, Components.FeedMessage);
 registerComponent(Components.Feed.Name, Components.Feed);
 
