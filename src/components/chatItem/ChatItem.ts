@@ -1,9 +1,11 @@
 import Block from '../../core/Block';
 import { ApiHost } from '../../constants/commonConstants';
-import { ChatItemProps } from './chatItemProps';
 import { getDate, getTime, isToday } from '../../utils/dateTimeUtils';
+import { initChat } from '../../services/MessagesService';
+import { ChatItemProps } from './chatItemProps';
 import template from './chatItemTemplare.hbs?raw';
 import './chatItemStyles.scss';
+
 
 /**
  * Компонент "Элемент чата"
@@ -44,6 +46,7 @@ export class ChatItem extends Block {
                     unreadCount: props.unreadCount,
                     lastMessage: props.lastMessage
                 }});
+                initChat();
             }
         }
     }

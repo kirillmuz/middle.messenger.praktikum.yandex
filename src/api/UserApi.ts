@@ -52,4 +52,11 @@ export default class UserApi {
             data
         });
     }
+
+    /**
+     * Получить пользователя по id
+     */
+    async getUserById(id: number): Promise<UserDto | Error> {
+        return userApi.get(`/${id}`);
+    }
 }

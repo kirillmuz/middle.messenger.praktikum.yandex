@@ -14,7 +14,10 @@ const convertToDate = (date: Date | string) => {
 /**
  * Является ли дата сегодняшним днем
  */
-export const isToday = (date: Date | string) => {
+export const isToday = (date?: Date | string) => {
+    if(!date) {
+        return false;
+    }
     const today = new Date(); 
     const _date = convertToDate(date);
     return _date.getDate() === today.getDate() 
@@ -25,7 +28,10 @@ export const isToday = (date: Date | string) => {
 /**
  * Получить форматированное строковое знчение даты
  */
-export const getDate = (date: Date | string) => {
+export const getDate = (date?: Date | string) => {
+    if(!date) {
+        return '';
+    }
     const _date = convertToDate(date);
     const day = _date.getDate().toString().padStart(2, '0');
     const month = (_date.getMonth()+1).toString().padStart(2, '0');
@@ -35,7 +41,10 @@ export const getDate = (date: Date | string) => {
 /**
  * Получить форматированное строковое знчение времени
  */
-export const getTime = (date: Date | string, withSeconds = false) => {
+export const getTime = (date?: Date | string, withSeconds = false) => {
+    if(!date) {
+        return '';
+    }
     const _date = convertToDate(date);
     const hours = _date.getHours().toString().padStart(2, '0');
     const minutes = _date.getMinutes().toString().padStart(2, '0');

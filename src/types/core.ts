@@ -1,4 +1,5 @@
 import { Chat } from './chats';
+import { RealtimeMessage } from './messges';
 import { User } from './users';
 
 /**
@@ -43,4 +44,19 @@ export interface AppState extends Record<string, unknown> {
      * диалогового окна удаления пользователя
      */
     deleteUserDialogOpened?: boolean;
+
+    /**
+     * Токен активного чата
+     */
+    token?: string;
+
+    /**
+     * Сообщения чата
+     */
+    messages?: Array<RealtimeMessage>;
+
+    /**
+     * Кэшированные пользователи чата
+     */
+    currentChatCachedUsers?: Array<{id: number, displayName: string}>;
 }

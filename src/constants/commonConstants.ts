@@ -4,6 +4,11 @@
 export const ApiHost = 'https://ya-praktikum.tech/api/v2';
 
 /**
+ * Адрес API для WebSocket
+ */
+export const WebSocketHost = 'wss://ya-praktikum.tech/ws'
+
+/**
  * Список адресов
  */
 export enum RoutesAdresses {

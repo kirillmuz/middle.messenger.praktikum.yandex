@@ -2,11 +2,12 @@ import Block from '../../../core/Block';
 import { FeedBodyProps } from './feedBodyProps';
 import template from './feedBodyTemplate.hbs?raw';
 import './feedBodyStyles.scss';
+import { connect } from '../../../utils/storeUtils';
 
 /**
  * Компонент "Лента"
  */
-export class FeedBody extends Block {
+class FeedBody extends Block {
     /**
      * Имя компонента
      */
@@ -14,12 +15,11 @@ export class FeedBody extends Block {
 
     constructor(props: FeedBodyProps) {
         super(props);
-        this.props.events = {
-            click: this.props.onClick || (() => {})
-        }
     }
 
     protected render(): string {
         return template;
     }
 }
+
+export default connect((state) => ({messagesList: state.messages}))(FeedBody);

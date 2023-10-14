@@ -54,6 +54,14 @@ const findUser = async(login: string) => {
 }
 
 /**
+ * Получить пользователя по id
+ */
+const getUserById = async(id: number) => {
+    const user = await userApi.getUserById(id);
+    return mapUserDtoToModel(user as UserDto);
+}
+
+/**
  * Распарсить ошибки авторизации
  */
 const parseUserServiceError = (errorText: string) => {
@@ -69,5 +77,6 @@ export {
     changeProfileData,
     changePassword,
     parseUserServiceError,
-    findUser
+    findUser,
+    getUserById
 }

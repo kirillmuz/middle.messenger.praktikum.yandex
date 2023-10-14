@@ -14,6 +14,9 @@ const initialState: AppState = {
     chatMenuDialogOpened: false,
     addUserDialogOpened: false,
     deleteUserDialogOpened: false,
+    token: undefined,
+    messages: [],
+    currentChatCachedUsers: []
 }
 
 /**

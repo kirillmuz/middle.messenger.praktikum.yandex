@@ -1,6 +1,8 @@
 import { ChatDto } from '../types/api/chatsTypes';
+import { RealtimeMessageDto } from '../types/api/messagesTypes';
 import { ChatUserDto, UserDto } from '../types/api/userTypes';
 import { Chat, Message } from '../types/chats';
+import { RealtimeMessage } from '../types/messges';
 import { ChatUser, User } from '../types/users';
 
 /**
@@ -57,3 +59,19 @@ export const mapChatDtoToModel = (chatDto: ChatDto) => {
         unreadCount: chatDto.unread_count,
     } as Chat;
 }
+
+/**
+ * Замапить поля объекта на модель пользователя чата
+ */
+export const mapRealtimeMessageDtoToModel = (messageDto: RealtimeMessageDto) => {
+    return {
+        type: messageDto.type,
+        chatId: messageDto.chat_id,
+        content: messageDto.content,
+        file: messageDto.file,
+        id: messageDto.id,
+        isRead: messageDto.is_read,
+        time: messageDto.time,
+        userId: messageDto.user_id
+    } as RealtimeMessage;
+};
