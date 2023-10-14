@@ -2,6 +2,7 @@ import Block from '../../core/Block';
 import { ApiHost } from '../../constants/commonConstants';
 import { getDate, getTime, isToday } from '../../utils/dateTimeUtils';
 import { initChat } from '../../services/MessagesService';
+import { Message } from '../../types/chats';
 import { ChatItemProps } from './chatItemProps';
 import template from './chatItemTemplare.hbs?raw';
 import './chatItemStyles.scss';
@@ -20,20 +21,29 @@ export class ChatItem extends Block {
         const state = window.store?.getState();
         const currentUser = state?.currentUser;
         const selectedChat = state?.selectedChat;
-        if(props.lastMessage && isToday(props.lastMessage.time)) {
-            props.lastMessage.time = getTime(props.lastMessage.time);    
-        } else if(props.lastMessage) {
-            props.lastMessage.time = getDate(props.lastMessage.time);    
+        const prepareLastMessage = (lastMessage?: Message | null) => {
+            if (!lastMessage) {
+                return undefined;
+            }
+            const time = isToday(lastMessage.time) ? getTime(lastMessage.time) : getDate(lastMessage.time);
+            const userDisplayName = currentUser?.login === lastMessage.user.login 
+                ? 'Вы' 
+                : lastMessage.user.displayName ?? `${lastMessage.user.secondName} ${lastMessage.user.firstName}`;
+            return {
+                ...lastMessage,
+                time,
+                user: {
+                    ...lastMessage.user,
+                    displayName: userDisplayName
+                }
+            } as Message;
         }
-        if(props.lastMessage) {
-            props.lastMessage.user.displayName = 
-                props.lastMessage.user.login === currentUser?.login ? 'Вы' 
-                    : props.lastMessage.user.displayName;
-        }
+
         super({
             ...props,
             resourcesUrl: `${ApiHost}/resources/`,
-            selected: props.id === selectedChat?.id
+            selected: props.id === selectedChat?.id,
+            lastMessage: prepareLastMessage(props.lastMessage)
         } as ChatItemProps);
         this.props.events = {
             click: (event: MouseEvent) => {
