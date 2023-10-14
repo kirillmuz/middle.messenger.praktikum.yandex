@@ -28,5 +28,6 @@ export enum RoutesAdresses {
 export const enum Errors {
     UserAlreadyInSystem = 'User already in system',
     IncorrectCreds = 'Login or password is incorrect',
-    EmailAlreadyExists = 'Email already exists'
+    EmailAlreadyExists = 'Email already exists',
+    CookieIsNotValid = 'Cookie is not valid'
 }

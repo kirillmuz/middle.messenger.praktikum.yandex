@@ -12,6 +12,8 @@ export const parseApiError = (errorText: string) => {
         return 'Неверные логин или пароль';
     case Errors.EmailAlreadyExists:
         return 'Пользователь с таким email уже зарегистрирован';
+    case Errors.CookieIsNotValid:
+        return 'Нет прав';
     default:
         return 'Произошла непредвиденная ошибка';
     }

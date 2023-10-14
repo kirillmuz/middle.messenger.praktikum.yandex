@@ -1,7 +1,7 @@
+import { hasPermissionOrRedirectPath } from '../utils/permissionsUtils';
 import Block, { IProps } from './Block';
 
 const render = (query: string, component: Block) => {
-    //const root = document.querySelector(query);
     const root = document.getElementById(query);
     if(root) {
         root.innerHTML = '';
@@ -85,13 +85,19 @@ class Router {
     }
 
     _onRoute(pathname: string) {
-        const route = this.getRoute(pathname);
-        if (route !== this._currentRoute && this._currentRoute && this._currentRoute.leave) {
-            this._currentRoute.leave();
-        }
-
-        this._currentRoute = route ?? null;
-        route?.render();//route, pathname);
+        hasPermissionOrRedirectPath(pathname).then(path => {
+            if(path !== pathname) {
+                this.history?.pushState({}, '', path);
+            }
+            const route = this.getRoute(path);
+            if (route !== this._currentRoute && this._currentRoute && this._currentRoute.leave) {
+                this._currentRoute.leave();
+            }
+            this._currentRoute = route ?? null;
+            route?.render();
+        }).catch(()=>{
+            this.back();
+        });
     }
 
     go(pathname: string) {
