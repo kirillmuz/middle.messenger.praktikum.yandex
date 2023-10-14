@@ -1,12 +1,12 @@
 import AuthApi from '../api/AuthApi';
 import Router from '../core/Router';
-import { Errors, RoutesAdresses } from '../constants/commonConstants';
+import { RoutesAdresses } from '../constants/commonConstants';
 import { LoginDto } from '../types/api/authTypes';
 import { UserDto, UserRegistrationRequestDto } from '../types/api/userTypes';
 import { RegisteringUser } from '../types/users';
 import { mapUserDtoToModel } from '../utils/mapDtoToModels';
 import { mapRegisteringUserToDto } from '../utils/mapModelsToDto';
-import { initStore } from '../utils/storeUtils';
+import { initStore, resetStore } from '../utils/storeUtils';
 
 initStore();
 const authApi = new AuthApi();
@@ -61,32 +61,12 @@ const login = async(data: LoginDto) => {
  */
 const logout = async() => {
     await authApi.logout();
-    window.store?.set({
-        currentUser: undefined
-    })
+    resetStore();
     router.go(RoutesAdresses.Login);
-};
-
-/**
- * Распарсить ошибки авторизации
- */
-const parseAuthError = (errorText: string) => {
-    const errorObject = JSON.parse(errorText) as {reason: string};
-    switch(errorObject.reason) {
-    case Errors.UserAlreadyInSystem:
-        return 'Вы уже вошли в систему';
-    case Errors.IncorrectCreds:
-        return 'Неверные логин или пароль';
-    case Errors.EmailAlreadyExists:
-        return 'Пользователь с таким email уже зарегистрирован';
-    default:
-        return 'Произошла непредвиденная ошибка';
-    }
 };
 
 export {
     register,
     login,
-    logout,
-    parseAuthError
+    logout
 }

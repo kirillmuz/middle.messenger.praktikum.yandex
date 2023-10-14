@@ -3,6 +3,7 @@ import { TextField } from '../../../controls';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { deleteUserFromChat } from '../../../../services/ChatsService';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { DeleteUserFormProps } from './deleteUserFormProps';
 import template from './deleteUserFormTemplate.hbs?raw';
 import '../chatFormsStyles.scss';
@@ -40,11 +41,12 @@ export class DeleteUserForm extends Block {
                 const chatId = window.store?.getState().selectedChat?.id ?? 0;
                 deleteUserFromChat(chatId, userLogin?.toString() ?? '').then(() => {
                     window.store?.set({
-                        deleteUserDialogOpened: false
+                        deleteUserDialogOpened: false,
+                        floatMessage: 'Пользователь успешно удален из чата'
                     });
-                }).catch(() => {
+                }).catch((err: string) => {
                     (this.refs.validationMessage as Block)
-                        ?.setProps({validationMessage: 'Произошла непредвиденная ошибка'});
+                        ?.setProps({validationMessage: parseApiError(err)});
                 });
             }
         } as DeleteUserFormProps);

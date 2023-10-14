@@ -1,5 +1,5 @@
 import Block from '../../../core/Block';
-import { connect, initStore, setStateAsync } from '../../../utils/storeUtils';
+import { connect } from '../../../utils/storeUtils';
 import { changeAvatar, deleteChat } from '../../../services/ChatsService';
 import { ChatMenuDialogProps } from './chatMenuDialogProps';
 import template from './chatMenuDialogTemplate.hbs?raw';
@@ -16,12 +16,11 @@ class ChatMenuDialog extends Block {
     public static Name = 'ChatMenuDialog';
 
     constructor(props: ChatMenuDialogProps) {
-        initStore();
         super({
             ...props,
             show: props.show,
             onUnderlayClick: () => {
-                setStateAsync({chatMenuDialogOpened: false});
+                window.store?.set({chatMenuDialogOpened: false});
             },
             onChangeAvatar: (event: MouseEvent) => {
                 event.preventDefault();
@@ -29,7 +28,7 @@ class ChatMenuDialog extends Block {
                 if(avaFile) {
                     avaFile.click();
                     avaFile.onchange = (e: Event) => {
-                        setStateAsync({chatMenuDialogOpened: false});
+                        window.store?.set({chatMenuDialogOpened: false});
                         const chatId = window.store?.getState().selectedChat?.id ?? 0;
                         const filesList = (e.target as HTMLInputElement)?.files ?? [];
                         if(filesList.length > 0) {
@@ -40,14 +39,14 @@ class ChatMenuDialog extends Block {
             },
             onAddUser: (event: MouseEvent) => {
                 event.preventDefault();
-                setStateAsync({
+                window.store?.set({
                     chatMenuDialogOpened: false,
                     addUserDialogOpened: true
                 });
             },
             onDeleteUser: (event: MouseEvent) => {
                 event.preventDefault();
-                setStateAsync({
+                window.store?.set({
                     chatMenuDialogOpened: false,
                     deleteUserDialogOpened: true
                 });
@@ -56,7 +55,7 @@ class ChatMenuDialog extends Block {
                 event.preventDefault();
                 const selectedChat = window.store?.getState().selectedChat;
                 if(selectedChat) {
-                    setStateAsync({chatMenuDialogOpened: false});
+                    window.store?.set({chatMenuDialogOpened: false});
                     if(confirm('Вы уверены, что хотите удалить чат?')) {
                         deleteChat(selectedChat.id);
                     }

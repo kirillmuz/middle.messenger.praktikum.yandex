@@ -3,6 +3,7 @@ import { TextField } from '../../../controls';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { createChat } from '../../../../services/ChatsService';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { AddChatFormProps } from './addChatFormProps';
 import template from './addChatFormTemplate.hbs?raw';
 import '../chatFormsStyles.scss';
@@ -41,9 +42,9 @@ export class AddChatForm extends Block {
                     window.store?.set({
                         addChatDialogOpened: false
                     });
-                }).catch(() => {
+                }).catch((err: string) => {
                     (this.refs.validationMessage as Block)
-                        ?.setProps({validationMessage: 'Произошла непредвиденная ошибка'})
+                        ?.setProps({validationMessage: parseApiError(err)})
                 });
             }
         });

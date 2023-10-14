@@ -1,8 +1,9 @@
 import Block from '../../../core/Block';
 import Router from '../../../core/Router';
 import { RoutesAdresses } from '../../../constants/commonConstants';
-import { logout, parseAuthError } from '../../../services/AuthService';
+import { logout } from '../../../services/AuthService';
 import { connect } from '../../../utils/storeUtils';
+import { parseApiError } from '../../../utils/errorsUtils';
 import { ProfilePageProps } from './profilePageProps';
 import template from './profilePageTemplate.hbs?raw';
 import '../../pagesStyles.scss';
@@ -39,9 +40,9 @@ class ProfilePage extends Block {
             },
             logOut: (event: MouseEvent) => {
                 event.preventDefault();
-                logout().catch((err) => {
+                logout().catch((err: string) => {
                     (this.refs.validationMessage as Block)
-                        ?.setProps({validationMessage: parseAuthError(err)})
+                        ?.setProps({validationMessage: parseApiError(err)})
                 });
             }
         } as ProfilePageProps);

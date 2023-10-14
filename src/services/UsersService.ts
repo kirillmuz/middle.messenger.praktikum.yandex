@@ -61,22 +61,10 @@ const getUserById = async(id: number) => {
     return mapUserDtoToModel(user as UserDto);
 }
 
-/**
- * Распарсить ошибки авторизации
- */
-const parseUserServiceError = (errorText: string) => {
-    const errorObject = JSON.parse(errorText) as {reason: string};
-    switch(errorObject.reason) {
-    default:
-        return 'Произошла непредвиденная ошибка';
-    }
-};
-
 export {
     changeAvatar,
     changeProfileData,
     changePassword,
-    parseUserServiceError,
     findUser,
     getUserById
 }

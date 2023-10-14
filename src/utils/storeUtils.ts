@@ -16,7 +16,8 @@ const initialState: AppState = {
     deleteUserDialogOpened: false,
     token: undefined,
     messages: [],
-    currentChatCachedUsers: []
+    currentChatCachedUsers: [],
+    floatMessage: undefined
 }
 
 /**
@@ -32,13 +33,6 @@ const initStore = () => {
     }
 }
 
-const setStateAsync = (state: AppState) => {
-    initStore();
-    setTimeout(() => {
-        window.store?.set(state)
-    }, 0);
-}
-
 /**
  * Подключить стейт к компоненту
  */
@@ -49,29 +43,17 @@ const connect = (mapStateToProps: (state: AppState) => Partial<AppState>) => {
             private onChangeStoreCallback: () => void;
             constructor(props: P) {
                 const store = window.store;
-                // сохраняем начальное состояние
                 let state = mapStateToProps(store!.getState());
-  
                 super({...props, ...state});
-
                 this.onChangeStoreCallback = () => {
-
-                    // при обновлении получаем новое состояние
                     const newState = mapStateToProps(store!.getState());
-
-                    // если что-то из используемых данных поменялось, обновляем компонент
                     if (!isEqual(state, newState)) {
                         this.setProps({...newState});
                     }
-
-                    // не забываем сохранить новое состояние
                     state = newState;
                 }
-  
-                // подписываемся на событие
                 store!.on(StoreEvents.Updated, this.onChangeStoreCallback);
             }
-
 
             componentWillUnmount() {
                 super.componentWillUnmount();
@@ -81,8 +63,15 @@ const connect = (mapStateToProps: (state: AppState) => Partial<AppState>) => {
     }
 }
 
+const resetStore = () => {
+    if(window.store) {
+        window.store.set(initialState);
+        sessionStorage.setItem('state', JSON.stringify(initialState));
+    }
+}
+
 export {
     initStore,
-    setStateAsync,
-    connect
+    connect,
+    resetStore
 }

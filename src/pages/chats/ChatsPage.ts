@@ -4,7 +4,7 @@ import { RoutesAdresses } from '../../constants/commonConstants';
 import { ChatsPageProps } from './chatsPageProps';
 import { getChatsList } from '../../services/ChatsService';
 import { initStore } from '../../utils/storeUtils';
-import { initChat } from '../../services/MessagesService';
+import { closeChatConnection, initChat } from '../../services/MessagesService';
 import template from './chatsPageTemplate.hbs?raw';
 import '../pagesStyles.scss';
 import './chatsPageStyles.scss';
@@ -47,6 +47,10 @@ export class ChatsPage extends Block {
             } as ChatsPageProps);
         });
         initChat();
+    }
+
+    protected componentWillUnmount(): void {
+        closeChatConnection();
     }
 
     protected render(): string {

@@ -2,7 +2,8 @@ import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
-import { changePassword, parseUserServiceError } from '../../../../services/UsersService';
+import { changePassword } from '../../../../services/UsersService';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { ChangeProfilePasswordFormProps } from './changeProfilePasswordFormProps';
 import template from './changePasswordFormTemplate.hbs?raw';
 
@@ -52,7 +53,7 @@ export class ChangePasswordForm extends Block {
                     oldPassword: fieldsValues.oldPassword!.toString()
                 }).catch(err => {
                     (this.refs.validationMessage as Block)
-                        ?.setProps({validationMessage: parseUserServiceError(err)})
+                        ?.setProps({validationMessage: parseApiError(err)})
                 });
             }
         });

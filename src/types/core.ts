@@ -59,4 +59,9 @@ export interface AppState extends Record<string, unknown> {
      * Кэшированные пользователи чата
      */
     currentChatCachedUsers?: Array<{id: number, displayName: string}>;
+
+    /**
+     * Всплывающее сообщение
+     */
+    floatMessage?: string;
 }

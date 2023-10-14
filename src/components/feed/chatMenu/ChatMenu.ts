@@ -1,5 +1,4 @@
 import Block from '../../../core/Block';
-import { initStore } from '../../../utils/storeUtils';
 import { ChatMenuProps } from './chatMenuProps';
 import template from './chatMenuTemplate.hbs?raw';
 import './chatMenuStyles.scss';

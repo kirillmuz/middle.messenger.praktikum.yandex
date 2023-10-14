@@ -3,6 +3,7 @@ import { TextField } from '../../../controls';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { addUserToChat } from '../../../../services/ChatsService';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { AddUserFormProps } from './addUserFormProps';
 import template from './addUserFormTemplate.hbs?raw';
 import '../chatFormsStyles.scss';
@@ -40,11 +41,12 @@ export class AddUserForm extends Block {
                 const chatId = window.store?.getState().selectedChat?.id ?? 0;
                 addUserToChat(chatId, userLogin?.toString() ?? '').then(() => {
                     window.store?.set({
-                        addUserDialogOpened: false
+                        addUserDialogOpened: false,
+                        floatMessage: 'Пользователь успешно добавлен в чат'
                     });
-                }).catch(() => {
+                }).catch((err: string) => {
                     (this.refs.validationMessage as Block)
-                        ?.setProps({validationMessage: 'Произошла непредвиденная ошибка'});
+                        ?.setProps({validationMessage: parseApiError(err)});
                 });
             }
         } as AddUserFormProps);

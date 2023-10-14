@@ -51,7 +51,17 @@ const sendMessage = (message: string) => {
     }
 }
 
+/**
+ * Закрыть текущее соединение
+ */
+const closeChatConnection = () => {
+    if(MessagesApi.__instance) {
+        MessagesApi.__instance.closeConnection();
+    }
+}
+
 export {
     initChat,
-    sendMessage
+    sendMessage,
+    closeChatConnection
 }

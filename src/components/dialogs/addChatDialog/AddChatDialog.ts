@@ -1,5 +1,5 @@
 import Block from '../../../core/Block';
-import { connect, initStore } from '../../../utils/storeUtils';
+import { connect } from '../../../utils/storeUtils';
 import { DialogProps } from '../dialogProps';
 import template from './addChatDialogTemplate.hbs?raw';
 import '../dialogsStyles.scss';
@@ -14,7 +14,6 @@ class AddChatDialog extends Block {
     public static Name = 'AddChatDialog';
 
     constructor(props: DialogProps) {
-        initStore();
         super({
             ...props,
             show: props.show,

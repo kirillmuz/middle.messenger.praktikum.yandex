@@ -3,8 +3,9 @@ import { InlineTextEditable } from '../../../controls';
 import { ProfileData } from '../../../../types/commonTypes';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
-import { changeProfileData, parseUserServiceError } from '../../../../services/UsersService';
+import { changeProfileData } from '../../../../services/UsersService';
 import { User } from '../../../../types/users';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import template from './changeProfileDataFormTemplate.hbs?raw';
 
 /**
@@ -69,7 +70,7 @@ export class ChangeProfileDataForm extends Block {
                 changeProfileData(this.getFieldsValues() as User)
                     .catch(err => {
                         (this.refs.validationMessage as Block)
-                            ?.setProps({validationMessage: parseUserServiceError(err)})
+                            ?.setProps({validationMessage: parseApiError(err)})
                     });
             }
         });

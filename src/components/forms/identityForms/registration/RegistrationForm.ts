@@ -4,7 +4,8 @@ import { InlineTextEditable } from '../../../controls';
 import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
-import { parseAuthError, register } from '../../../../services/AuthService';
+import { register } from '../../../../services/AuthService';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { RegistrationFormProps } from './registrationFormProps';
 import template from './registrationFormTemplate.hbs?raw';
 import '../../formsStyles.scss';
@@ -87,9 +88,9 @@ export class RegistrationForm extends Block {
                     password: fieldsValues.password!.toString(),
                     phone: fieldsValues.phone!.toString(),
                     secondName: fieldsValues.secondName!.toString(),
-                }).catch((err) => {
+                }).catch((err: string) => {
                     (this.refs.validationMessage as Block)
-                        ?.setProps({validationMessage: parseAuthError(err)})
+                        ?.setProps({validationMessage: parseApiError(err)})
                 });
             }
         });

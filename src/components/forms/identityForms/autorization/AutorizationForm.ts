@@ -4,8 +4,9 @@ import { TextField } from '../../../controls';
 import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
-import { login, parseAuthError } from '../../../../services/AuthService';
+import { login } from '../../../../services/AuthService';
 import { LoginDto } from '../../../../types/api/authTypes';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { AutorizationFormProps } from './autorizationFormProps';
 import template from './autorizationFormTemplate.hbs?raw';
 import '../../formsStyles.scss';
@@ -53,9 +54,9 @@ export class AutorizationForm extends Block {
                     return;
                 }
                 login(this.getFieldsValues() as LoginDto)
-                    .catch((err) => {
+                    .catch((err: string) => {
                         (this.refs.validationMessage as Block)
-                            ?.setProps({validationMessage: parseAuthError(err)})
+                            ?.setProps({validationMessage: parseApiError(err)})
                     });
             },
             onRegister: (event: MouseEvent) => {

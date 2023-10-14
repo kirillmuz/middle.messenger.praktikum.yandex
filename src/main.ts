@@ -42,6 +42,7 @@ registerComponent(Components.AddChatDialog.Name, Components.AddChatDialog);
 registerComponent(Components.AddUserDialog.Name, Components.AddUserDialog);
 registerComponent(Components.DeleteUserDialog.Name, Components.DeleteUserDialog);
 registerComponent(Components.ChatMenuDialog.Name, Components.ChatMenuDialog);
+registerComponent(Components.FloatMessageDialog.Name, Components.FloatMessageDialog);
 registerComponent(Components.ChatItem.Name, Components.ChatItem);
 registerComponent(Components.ChatsList.Name, Components.ChatsList);
 registerComponent(Components.FeedBody.Name, Components.FeedBody);
