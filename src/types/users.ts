@@ -1,4 +1,9 @@
 /**
+ * Роль пользователя в чате
+ */
+export type ChatUserRole = 'admin' | 'regular';
+
+/**
  * Пользователь
  */
 export interface User {
@@ -111,4 +116,9 @@ export interface ChatUser {
      * Идентификатор
      */
     id?: number;
+
+    /**
+     * Роль
+     */
+    role?: ChatUserRole;
 }

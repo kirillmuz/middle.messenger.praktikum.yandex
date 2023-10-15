@@ -3,7 +3,7 @@ import { ApiHost } from '../constants/commonConstants';
 /**
  * Методы запроса
  */
-export const enum RequestMethods {
+const enum RequestMethods {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
@@ -14,7 +14,6 @@ export const enum RequestMethods {
  * Настройки запроса
  */
 export interface RequestOptions {
-    method: RequestMethods;
     headers?: object;
     data?: object;
     timeout?: number;
@@ -40,16 +39,13 @@ class HTTPTransport {
         this.url = `${ApiHost}${path}`;
     }
 
-    get = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
-        return this.request<TResponse>(
-            endpoint,
-            {...options, method: RequestMethods.GET}, 
-            options?.timeout
-        );
-    };
-
-    request = <TResponse>(endpoint: string, options: RequestOptions, timeout = 5000) => {
-        const {method, headers, data} = options;
+    private request = <TResponse>(
+        endpoint: string, 
+        method: RequestMethods, 
+        options: RequestOptions, 
+        timeout = 5000
+    ) => {
+        const {headers, data} = options;
 
         return new Promise<TResponse>((resolve, reject) => {
             const isGet = method === RequestMethods.GET || !data; 
@@ -90,7 +86,43 @@ class HTTPTransport {
                 xhr.send(JSON.stringify(data));
             }
         });
-    };          
+    };        
+
+    get = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
+        return this.request<TResponse>(
+            endpoint,
+            RequestMethods.GET,
+            {...options}, 
+            options?.timeout
+        );
+    };
+
+    post = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
+        return this.request<TResponse>(
+            endpoint,
+            RequestMethods.POST,
+            {...options}, 
+            options?.timeout
+        );
+    };
+
+    put = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
+        return this.request<TResponse>(
+            endpoint,
+            RequestMethods.PUT,
+            {...options}, 
+            options?.timeout
+        );
+    };
+
+    delete = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
+        return this.request<TResponse>(
+            endpoint,
+            RequestMethods.DELETE,
+            {...options}, 
+            options?.timeout
+        );
+    };      
 }
 
 export default HTTPTransport;

@@ -1,3 +1,5 @@
+import { ChatUserRole } from '../users';
+
 /**
  * Объект пользователя
  */
@@ -61,4 +63,5 @@ export interface ChatUserDto {
     login: string;
     avatar: string;
     id?: number;
+    role?: ChatUserRole;
 }

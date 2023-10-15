@@ -17,7 +17,8 @@ const initialState: AppState = {
     token: undefined,
     messages: [],
     currentChatCachedUsers: [],
-    floatMessage: undefined
+    floatMessage: undefined,
+    selectedChatUsers: []
 }
 
 /**

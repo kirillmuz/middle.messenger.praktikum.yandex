@@ -36,6 +36,21 @@ export type HTMLInputTypeAttribute  =
 export type TitleType = 'smal' | 'bold';
 
 /**
+ * Элемент выпадающего списка
+ */
+export interface SelectOption {
+    /**
+     * Значение
+     */
+    value: string;
+    
+    /**
+     * Отображаемый текст
+     */
+    text: string;
+}
+
+/**
  * Персональные данные профиля пользователя
  */
 export interface ProfileData {

@@ -39,10 +39,12 @@ export class AddUserForm extends Block {
                 }
                 const { userLogin } = this.getFieldsValues();
                 const chatId = window.store?.getState().selectedChat?.id ?? 0;
-                addUserToChat(chatId, userLogin?.toString() ?? '').then(() => {
+                addUserToChat(chatId, userLogin?.toString() ?? '').then((res) => {
+                    const existingChatUsers = window.store?.getState().selectedChatUsers ?? [];
                     window.store?.set({
                         addUserDialogOpened: false,
-                        floatMessage: 'Пользователь успешно добавлен в чат'
+                        floatMessage: 'Пользователь успешно добавлен в чат',
+                        selectedChatUsers: [...existingChatUsers, res]
                     });
                 }).catch((err: string) => {
                     (this.refs.validationMessage as Block)

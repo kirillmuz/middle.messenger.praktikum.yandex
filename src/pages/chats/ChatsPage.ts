@@ -2,7 +2,7 @@ import Block from '../../core/Block';
 import Router from '../../core/Router';
 import { RoutesAdresses } from '../../constants/commonConstants';
 import { ChatsPageProps } from './chatsPageProps';
-import { getChatsList } from '../../services/ChatsService';
+import { getChatUsers, getChatsList } from '../../services/ChatsService';
 import { initStore } from '../../utils/storeUtils';
 import { closeChatConnection, initChat } from '../../services/MessagesService';
 import template from './chatsPageTemplate.hbs?raw';
@@ -47,6 +47,15 @@ export class ChatsPage extends Block {
             } as ChatsPageProps);
         });
         initChat();
+        
+        const selectedChat = window.store?.getState().selectedChat;
+        if(selectedChat) {
+            getChatUsers(selectedChat.id).then(res => {
+                window.store?.set({
+                    selectedChatUsers: res
+                });
+            });
+        }
     }
 
     protected componentWillUnmount(): void {

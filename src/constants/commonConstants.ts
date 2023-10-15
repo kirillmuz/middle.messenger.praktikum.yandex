@@ -29,5 +29,6 @@ export const enum Errors {
     UserAlreadyInSystem = 'User already in system',
     IncorrectCreds = 'Login or password is incorrect',
     EmailAlreadyExists = 'Email already exists',
-    CookieIsNotValid = 'Cookie is not valid'
+    CookieIsNotValid = 'Cookie is not valid',
+    UserNotFound = 'User not found'
 }

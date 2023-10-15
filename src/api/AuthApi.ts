@@ -1,6 +1,6 @@
 import { LoginDto } from '../types/api/authTypes';
 import { UserDto, UserRegistrationDataDto, UserRegistrationRequestDto } from '../types/api/userTypes';
-import HTTPTransport, { RequestMethods } from './HTTPTransport';
+import HTTPTransport from './HTTPTransport';
 
 const authApi = new HTTPTransport('/auth');
 
@@ -12,8 +12,7 @@ export default class AuthApi {
      * Запрос на регистрацию пользователя
      */
     async register(data: UserRegistrationDataDto): Promise<UserRegistrationRequestDto | Error> {
-        return authApi.request('/signup', {
-            method: RequestMethods.POST,
+        return authApi.post('/signup', {
             headers: {'Content-Type': 'application/json'},
             data
         });
@@ -23,8 +22,7 @@ export default class AuthApi {
      * Запрос на вход
      */
     async login(data: LoginDto): Promise<void | Error> {
-        return authApi.request('/signin', {
-            method: RequestMethods.POST,
+        return authApi.post('/signin', {
             headers: {'Content-Type': 'application/json'},
             data
         });
@@ -34,9 +32,7 @@ export default class AuthApi {
      * Запрос на выход
      */
     async logout(): Promise<void | Error> {
-        return authApi.request('/logout', {
-            method: RequestMethods.POST
-        });
+        return authApi.post('/logout');
     }
 
     /**

@@ -1,5 +1,5 @@
 import Block from '../../../../core/Block';
-import { TextField } from '../../../controls';
+import { Select } from '../../../controls';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
 import { deleteUserFromChat } from '../../../../services/ChatsService';
@@ -12,7 +12,7 @@ import '../chatFormsStyles.scss';
  * Значение полей формы
  */
 interface FieldsValues {
-    userLogin?: boolean | string;
+    selectedUserId?: boolean | string;
 }
 
 /**
@@ -25,10 +25,12 @@ export class DeleteUserForm extends Block {
     public static Name = 'DeleteUserForm';
 
     constructor(props: DeleteUserFormProps) {
+        const usersList = window.store?.getState().selectedChatUsers ?? [];
+
         super({
             ...props,
             validate: {
-                userLogin: (value?: string) => {
+                selectedUser: (value?: string) => {
                     return fieldsValidationUtils.required(value);
                 }
             },
@@ -37,18 +39,25 @@ export class DeleteUserForm extends Block {
                 if (!this.validate()) {
                     return;
                 }
-                const { userLogin } = this.getFieldsValues();
+                const selectedUserId = this.getFieldsValues().selectedUserId ?? 0;
                 const chatId = window.store?.getState().selectedChat?.id ?? 0;
-                deleteUserFromChat(chatId, userLogin?.toString() ?? '').then(() => {
+                deleteUserFromChat(chatId, parseInt(selectedUserId?.toString())).then((res) => {
+                    const existingChatUsers = window.store?.getState().selectedChatUsers ?? [];
                     window.store?.set({
                         deleteUserDialogOpened: false,
-                        floatMessage: 'Пользователь успешно удален из чата'
+                        floatMessage: 'Пользователь успешно удален из чата',
+                        selectedChatUsers: existingChatUsers.filter(u => u.id !== res.id)
                     });
                 }).catch((err: string) => {
                     (this.refs.validationMessage as Block)
                         ?.setProps({validationMessage: parseApiError(err)});
                 });
-            }
+            },
+            usersListOptions: usersList.filter(u => u.role !== 'admin')
+                .map(u=>{return {
+                    text: u.login ?? `${u.secondName} ${u.firstName}`,
+                    value: u.id ?? '' 
+                }})
         } as DeleteUserFormProps);
     }
 
@@ -65,7 +74,7 @@ export class DeleteUserForm extends Block {
      */
     private getFieldsValues(): FieldsValues {
         return {
-            userLogin: (this.refs.chatName as TextField)?.value()
+            selectedUserId: (this.refs.userSelect as Select)?.value()
         }
     }
 
