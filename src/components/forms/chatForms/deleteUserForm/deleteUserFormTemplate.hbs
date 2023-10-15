@@ -2,7 +2,7 @@
     {{#> FormContainer className="form-content" }}
         {{{ Title text="Удалить пользователя" }}}
         <div class="form-content__form-block form-content__fields">
-            {{{ TextField label="Логин пользователя" type="text" placeholder="Укажите логин" name="userLogin" ref="userLogin" validate=validate.userLogin }}}
+            {{{ Select options=usersListOptions ref="userSelect" validate=validate.selectedUser label="Пользователи" }}}
         </div>
         <div class="form-content__form-block form-content__actions">
             {{{ Button text="Удалить" type="prymary" onClick=onUserDelete }}}

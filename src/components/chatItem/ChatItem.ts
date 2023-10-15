@@ -3,10 +3,10 @@ import { ApiHost } from '../../constants/commonConstants';
 import { getDate, getTime, isToday } from '../../utils/dateTimeUtils';
 import { initChat } from '../../services/MessagesService';
 import { Message } from '../../types/chats';
+import { getChatUsers } from '../../services/ChatsService';
 import { ChatItemProps } from './chatItemProps';
 import template from './chatItemTemplare.hbs?raw';
 import './chatItemStyles.scss';
-
 
 /**
  * Компонент "Элемент чата"
@@ -56,6 +56,11 @@ export class ChatItem extends Block {
                     unreadCount: props.unreadCount,
                     lastMessage: props.lastMessage
                 }});
+                getChatUsers(props.id).then(res => {
+                    window.store?.set({
+                        selectedChatUsers: res
+                    });
+                });
                 initChat();
             }
         }

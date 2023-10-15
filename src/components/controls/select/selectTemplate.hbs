@@ -1,0 +1,10 @@
+<div class="drop-down">
+    <label class="drop-down__label">{{label}}</label>
+    <select class="drop-down__select" ref="select">
+        <option disabled>{{placeholder}}</option>
+        {{#each options}}
+            <option value="{{this.value}}">{{this.text}}</option>
+        {{/each}}
+    </select>
+    {{{ ValidationMessage ref="validationMessage" }}}
+</div>

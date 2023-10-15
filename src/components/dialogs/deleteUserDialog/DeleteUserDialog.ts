@@ -33,4 +33,7 @@ class DeleteUserDialog extends Block {
 /**
  * Диалоговое окно удаления пользователя
  */
-export default connect((state) => ({show: state.deleteUserDialogOpened}))(DeleteUserDialog);
+export default connect((state) => ({
+    show: state.deleteUserDialogOpened, 
+    chatUsers: state.selectedChatUsers
+}))(DeleteUserDialog);

@@ -6,7 +6,8 @@ import {
     DeletedChatDto, 
     NewChatDto 
 } from '../types/api/chatsTypes';
-import HTTPTransport, { RequestMethods } from './HTTPTransport';
+import { ChatUserDto } from '../types/api/userTypes';
+import HTTPTransport from './HTTPTransport';
 
 const chatsApi = new HTTPTransport('/chats');
 
@@ -25,8 +26,7 @@ export default class ChatsApi {
      * Создать чат
      */
     async createChat(data: CreateChatDto): Promise<NewChatDto | Error > {
-        return chatsApi.request('', {
-            method: RequestMethods.POST,
+        return chatsApi.post('', {
             headers: {'Content-Type': 'application/json'},
             data
         })
@@ -36,8 +36,7 @@ export default class ChatsApi {
      * Удалить чат
      */
     async deleteChat(data: DeleteChatDto): Promise<DeletedChatDto | Error > {
-        return chatsApi.request('', {
-            method: RequestMethods.DELETE,
+        return chatsApi.delete('', {
             headers: {'Content-Type': 'application/json'},
             data
         })
@@ -50,10 +49,7 @@ export default class ChatsApi {
         const data = new FormData();
         data.append('chatId', chatId.toString());
         data.append('avatar', file);
-        return chatsApi.request('/avatar', {
-            method: RequestMethods.PUT,
-            data
-        });
+        return chatsApi.put('/avatar', {data});
     }
 
     /**
@@ -64,8 +60,7 @@ export default class ChatsApi {
             chatId,
             users: [userId]
         }
-        return chatsApi.request('/users', {
-            method: RequestMethods.PUT,
+        return chatsApi.put('/users', {
             headers: {'Content-Type': 'application/json'},
             data
         });
@@ -79,8 +74,7 @@ export default class ChatsApi {
             chatId,
             users: [userId]
         }
-        return chatsApi.request('/users', {
-            method: RequestMethods.DELETE,
+        return chatsApi.delete('/users', {
             headers: {'Content-Type': 'application/json'},
             data
         });
@@ -89,10 +83,16 @@ export default class ChatsApi {
     /**
      * Получить токен чата
      */
-    async getChatToken(chatId: number): Promise<ChatTokenDto | Error > {
-        return chatsApi.request(`/token/${chatId}`, {
-            method: RequestMethods.POST,
+    async getChatToken(chatId: number): Promise<ChatTokenDto | Error> {
+        return chatsApi.post(`/token/${chatId}`, {
             headers: {'Content-Type': 'application/json'}
         })
+    }
+
+    /**
+     * Получить пользователей чата
+     */
+    async getChatUsers(chatId: number): Promise<Array<ChatUserDto> | Error> {
+        return chatsApi.get(`/${chatId}/users`);
     }
 }

@@ -1,9 +1,10 @@
 import ChatsApi from '../api/ChatsApi';
 import { ChatDto, ChatTokenDto, DeletedChatDto, NewChatDto } from '../types/api/chatsTypes';
+import { ChatUserDto } from '../types/api/userTypes';
 import { Chat } from '../types/chats';
-import { mapChatDtoToModel } from '../utils/mapDtoToModels';
+import { mapChatDtoToModel, mapChatUserDtoToModel } from '../utils/mapDtoToModels';
 import { initStore } from '../utils/storeUtils';
-import { findUser } from './UsersService';
+import { findUser, getUserById } from './UsersService';
 
 initStore();
 const chatsApi = new ChatsApi();
@@ -76,15 +77,23 @@ const changeAvatar = async(chatId: number, file: File) => {
  */
 const addUserToChat = async(chatId: number, login: string) => {
     const user = await findUser(login);
+    if(!user) {
+        throw new Error('{reason: User not found}');
+    }
     await chatsApi.addUserToChat(user.id!, chatId);
+    return user;
 }
 
 /**
  * Удалить пользователя из чата
  */
-const deleteUserFromChat = async(chatId: number, login: string) => {
-    const user = await findUser(login);
+const deleteUserFromChat = async(chatId: number, userId: number) => {
+    const user = await getUserById(userId);
+    if(!user) {
+        throw new Error('{reason: User not found}');
+    }
     await chatsApi.deleteUserFromChat(user.id!, chatId);
+    return user;
 }
 
 /**
@@ -95,6 +104,14 @@ const getChatToken = async(chatId: number) => {
     return (token as ChatTokenDto).token;
 }
 
+/**
+ * Получить список пользователей
+ */
+const getChatUsers = async(chatId: number) => {
+    const chatUsers = await chatsApi.getChatUsers(chatId);
+    return (chatUsers as Array<ChatUserDto>).map(cu => mapChatUserDtoToModel(cu));
+}
+
 export {
     getChatsList,
     createChat,
@@ -102,5 +119,6 @@ export {
     changeAvatar,
     addUserToChat,
     deleteUserFromChat,
-    getChatToken
+    getChatToken,
+    getChatUsers
 }

@@ -24,6 +24,7 @@ registerComponent(Components.StreachButtonLeft.Name, Components.StreachButtonLef
 registerComponent(Components.InlineButton.Name, Components.InlineButton);
 registerComponent(Components.ValidationMessage.Name, Components.ValidationMessage);
 registerComponent(Components.InputBase.Name, Components.InputBase);
+registerComponent(Components.Select.Name, Components.Select);
 registerComponent(Components.InlineTextEditable.Name, Components.InlineTextEditable);
 registerComponent(Components.Message.Name, Components.Message);
 registerComponent(Components.TextField.Name, Components.TextField);

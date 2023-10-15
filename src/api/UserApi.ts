@@ -1,5 +1,5 @@
 import { ChatUserDto, UserDto, UserPasswordDataDto, UserProfileDataDto } from '../types/api/userTypes';
-import HTTPTransport, { RequestMethods } from './HTTPTransport';
+import HTTPTransport from './HTTPTransport';
 
 const userApi = new HTTPTransport('/user');
 
@@ -11,8 +11,7 @@ export default class UserApi {
      * Запрос на смену данных пользователя
      */
     async changeProfileData(data: UserProfileDataDto): Promise<UserDto | Error> {
-        return userApi.request('/profile', {
-            method: RequestMethods.PUT,
+        return userApi.put('/profile', {
             headers: {'Content-Type': 'application/json'},
             data
         });
@@ -24,18 +23,14 @@ export default class UserApi {
     async changeAvatar(file: File): Promise<UserDto | Error> {
         const data = new FormData();
         data.append('avatar', file);
-        return userApi.request('/profile/avatar', {
-            method: RequestMethods.PUT,
-            data
-        });
+        return userApi.put('/profile/avatar', {data});
     }
 
     /**
      * Запрос на смену пароля
      */
     async changePassword(data: UserPasswordDataDto): Promise<void | Error> {
-        return userApi.request('/password', {
-            method: RequestMethods.PUT,
+        return userApi.put('/password', {
             headers: {'Content-Type': 'application/json'},
             data
         });
@@ -46,8 +41,7 @@ export default class UserApi {
      */
     async findUser(login: string): Promise<Array<ChatUserDto> | Error> {
         const data = {login};
-        return userApi.request('/search', {
-            method: RequestMethods.POST,
+        return userApi.post('/search', {
             headers: {'Content-Type': 'application/json'},
             data
         });

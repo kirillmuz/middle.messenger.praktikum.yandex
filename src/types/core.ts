@@ -1,6 +1,6 @@
 import { Chat } from './chats';
 import { RealtimeMessage } from './messges';
-import { User } from './users';
+import { ChatUser, User } from './users';
 
 /**
  * Состояние приложения
@@ -64,4 +64,9 @@ export interface AppState extends Record<string, unknown> {
      * Всплывающее сообщение
      */
     floatMessage?: string;
+
+    /**
+     * Список пользователей выбранного чата
+     */
+    selectedChatUsers?: Array<ChatUser>
 }
