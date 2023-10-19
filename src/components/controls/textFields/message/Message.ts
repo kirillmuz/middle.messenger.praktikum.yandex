@@ -30,6 +30,14 @@ export class Message extends Block {
         return this.getValue();
     }
 
+    public setValue(value: string) {
+        if(this.refs.input instanceof Block) {
+            (this.refs.input.getElement() as HTMLInputElement).value = value;
+        } else {
+            return (this.refs.input as HTMLInputElement).value = value;
+        }
+    }
+
     private getValue() {
         if(this.refs.input instanceof Block) {
             return (this.refs.input.getElement() as HTMLInputElement)?.value ?? '';

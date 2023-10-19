@@ -1,1 +1,1 @@
-export { ChangeProfileDataPage } from './ChangeProfileDataPage';
+export { default as ChangeProfileDataPage } from './ChangeProfileDataPage';

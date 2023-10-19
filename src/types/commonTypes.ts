@@ -1,5 +1,11 @@
+/**
+ * Тип кнопки
+ */
 export type ButtonType = 'prymary' | 'secondary' | 'important';
 
+/**
+ * Тип html input
+ */
 export type HTMLInputTypeAttribute  = 
     'button' | 
     'checkbox' | 
@@ -30,69 +36,18 @@ export type HTMLInputTypeAttribute  =
 export type TitleType = 'smal' | 'bold';
 
 /**
- * Элемент чата
+ * Элемент выпадающего списка
  */
-export interface ChatItem {
+export interface SelectOption {
     /**
-     * Название чата
+     * Значение
      */
-    chatName: string;
-
+    value: string;
+    
     /**
-     * Последнее сообщение
+     * Отображаемый текст
      */
-    lastMessage?: string;
-
-    /**
-     * Выбран ли элемент
-     */
-    selected?: boolean;
-
-    /**
-     * Дата отправки
-     */
-    sentTime?: string;
-
-    /**
-     * Кол-во непрочитанных сообщений
-     */
-    unreadedMessagesCount?: number;
-
-    /**
-     * Отправитель
-     */
-    who?: string;
-}
-
-/**
- * Тип сообщения ленты
- */
-export type MessageType = 'incoming' | 'outgoing';
-
-
-/**
- * Сообщение ленты
- */
-export interface FeedMessage {
-    /**
-     * Текст сообщения
-     */
-    message: string;
-
-    /**
-     * Тип сообщения
-     */
-    type: MessageType;
-
-    /**
-     * Время отправки
-     */
-    sentTime: string;
-
-    /**
-     * Отправитель
-     */
-    who?: string;
+    text: string;
 }
 
 /**

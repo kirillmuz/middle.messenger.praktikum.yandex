@@ -1,10 +1,11 @@
 import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
 import { ProfileData } from '../../../../types/commonTypes';
-import { PagesNames } from '../../../../constants/commonConstants';
-import { navigate } from '../../../../utils/navigationUtils';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { changeProfileData } from '../../../../services/UsersService';
+import { User } from '../../../../types/users';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import template from './changeProfileDataFormTemplate.hbs?raw';
 
 /**
@@ -66,11 +67,11 @@ export class ChangeProfileDataForm extends Block {
                 if(!this.validate()) {
                     return;
                 }
-                console.log({
-                    component: ChangeProfileDataForm.Name,
-                    ...this.getFieldsValues()
-                });
-                navigate(PagesNames.Profile);
+                changeProfileData(this.getFieldsValues() as User)
+                    .catch(err => {
+                        (this.refs.validationMessage as Block)
+                            ?.setProps({validationMessage: parseApiError(err)})
+                    });
             }
         });
     }

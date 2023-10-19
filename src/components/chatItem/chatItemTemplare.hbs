@@ -1,41 +1,24 @@
 <div class="chat-item {{#if selected}}chat-item_selected{{/if}}">
-    <div class="chat-item__image"></div>
+    <div class="chat-item__image" 
+        {{#if avatar}}
+            style="background-image: url({{resourcesUrl}}{{avatar}}); background-size: cover;"
+        {{/if}}
+    ></div>
     <div class="chat-item__info">
-        <div class="chat-item__title">{{chatName}}</div>
+        <div class="chat-item__title">{{title}}</div>
         <span class="chat-item__short-feed">
-            {{#if who}}
-                <span class="chat-item__short-feed-who">{{who}}:</span>
+            {{#if lastMessage}}
+                <span class="chat-item__short-feed-who">{{lastMessage.user.displayName}}:</span>
+                {{lastMessage.content}}
             {{/if}}
-            {{lastMessage}}
         </span>
     </div>
     <div class="chat-item__metrics">
-        <span class="chat-item__time">{{sentTime}}</span>
-        {{#if unreadedMessagesCount}}
-            <div class="chat-item__counter">{{unreadedMessagesCount}}</div>
+        {{#if lastMessage}}
+            <span class="chat-item__time">{{lastMessage.time}}</span>
+        {{/if}}
+        {{#if unreadCount}}
+            <div class="chat-item__counter">{{unreadCount}}</div>
         {{/if}}
     </div>
 </div>
-
-
-
-
-
-{{!-- 
-
-<div class="chat-item chat-item_selected">
-    <div class="chat-item__image"></div>
-    <div class="chat-item__info">
-        <div class="chat-item__title">Общий чат</div>
-        <span class="chat-item__short-feed">
-            <span class="chat-item__short-feed-who">Вы:</span>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem alias perferendis assumenda placeat esse ea ratione quo animi consectetur, quae impedit exercitationem voluptatibus enim doloribus obcaecati ipsa labore minima earum?
-        </span>
-    </div>
-    <div class="chat-item__metrics">
-        <span class="chat-item__time">10:49</span>
-        <div class="chat-item__counter">3</div>
-    </div>
-</div>
-
- --}}

@@ -1,0 +1,17 @@
+<div class="feed">
+    {{#if selectedChat}}
+        <div class="feed__header">
+            <div class="feed__header-image"
+                {{#if selectedChat.avatar}}
+                    style="background-image: url(https://ya-praktikum.tech/api/v2/resources/{{selectedChat.avatar}}); background-size: cover;"
+                {{/if}}
+            ></div>
+            <span class="feed-header-title">{{selectedChat.title}}</span>
+            {{{ ChatMenu }}}
+        </div>
+        {{{ FeedBody }}}
+        {{{ FeedFooter }}}
+    {{else}}
+        <div class="feed__no-selected">Выберите, кому хотите написать...</div>
+    {{/if}}
+</div>

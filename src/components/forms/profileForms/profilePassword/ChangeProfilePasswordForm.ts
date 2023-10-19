@@ -1,9 +1,9 @@
 import Block from '../../../../core/Block';
 import { InlineTextEditable } from '../../../controls';
-import { PagesNames } from '../../../../constants/commonConstants';
-import { navigate } from '../../../../utils/navigationUtils';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { changePassword } from '../../../../services/UsersService';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { ChangeProfilePasswordFormProps } from './changeProfilePasswordFormProps';
 import template from './changePasswordFormTemplate.hbs?raw';
 
@@ -47,11 +47,14 @@ export class ChangePasswordForm extends Block {
                 if(!this.validate()) {
                     return;
                 }
-                console.log({
-                    component: ChangePasswordForm.Name,
-                    ...this.getFieldsValues()
+                const fieldsValues = this.getFieldsValues()
+                changePassword({
+                    newPassword: fieldsValues.newPassword!.toString(),
+                    oldPassword: fieldsValues.oldPassword!.toString()
+                }).catch(err => {
+                    (this.refs.validationMessage as Block)
+                        ?.setProps({validationMessage: parseApiError(err)})
                 });
-                navigate(PagesNames.Profile);
             }
         });
     }
@@ -60,6 +63,12 @@ export class ChangePasswordForm extends Block {
      * Валидация
      */
     private validate(): boolean {
+        const {newPassword, repeateNewPassword} = this.getFieldsValues();
+        if(newPassword !== repeateNewPassword) {
+            (this.refs.validationMessage as Block)
+                ?.setProps({validationMessage: 'Новый и повторенный пароль не совпадают'});
+            return false;
+        }
         return formsValidationUtils
             .validateForm(this.getFieldsValues());
     }

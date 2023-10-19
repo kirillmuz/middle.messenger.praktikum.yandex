@@ -1,7 +1,7 @@
 import Block from '../../core/Block';
-import { navigate } from '../../utils/navigationUtils';
 import template from './errorPageTemplate.hbs?raw';
 import { ErrorPageProps } from './errorPageProps';
+import Router from '../../core/Router';
 import '../pagesStyles.scss';
 import './errorPageStyles.scss';
 
@@ -14,14 +14,20 @@ export class ErrorPage extends Block {
      */
     public static Name = 'ErrorPage';
 
+    /**
+     * Роутер
+     */
+    private _router: Router;
+
     constructor(props: ErrorPageProps) {
         super({
             ...props,
             onGoBack: (event: MouseEvent) => {
                 event.preventDefault();
-                navigate(props.goBackPage);
+                this._router.go(props.goBackPage);
             }
         });
+        this._router = new Router();
     }
 
     protected render(): string {

@@ -1,1 +1,1 @@
-export { FeedBody } from './FeedBody';
+export { default as FeedBody } from './FeedBody';

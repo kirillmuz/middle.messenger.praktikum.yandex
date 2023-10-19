@@ -1,0 +1,12 @@
+<div class="form-wrapper chat-form {{className}}">
+    {{#> FormContainer className="form-content" }}
+        {{{ Title text="Удалить пользователя" }}}
+        <div class="form-content__form-block form-content__fields">
+            {{{ Select options=usersListOptions ref="userSelect" validate=validate.selectedUser label="Пользователи" }}}
+        </div>
+        <div class="form-content__form-block form-content__actions">
+            {{{ Button text="Удалить" type="prymary" onClick=onUserDelete }}}
+        </div>
+        {{{ ValidationMessage validationMessage=error ref="validationMessage" }}}
+    {{/FormContainer}}
+</div>

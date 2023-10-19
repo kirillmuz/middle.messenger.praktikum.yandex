@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+
+.chat-menu {
+    background-image: url('../../../assets/icons/menuKebabaIcon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    margin-left: auto;
+    width: 10px;
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: $color-dirtywhite;
+    }
+}

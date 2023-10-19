@@ -1,4 +1,4 @@
-import { FeedMessage } from '../../../types/commonTypes';
+import { RealtimeMessage } from '../../../types/messges';
 
 /**
  * Свойства компонента "Лента"
@@ -7,5 +7,5 @@ export interface FeedBodyProps {
     /**
      * Список сообщений
      */
-    messagesList: Array<FeedMessage>;
+    messagesList: Array<RealtimeMessage>;
 }

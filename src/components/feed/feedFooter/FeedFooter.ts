@@ -1,10 +1,10 @@
 import Block from '../../../core/Block';
 import { Message } from '../../controls';
 import { fieldsValidationUtils } from '../../../utils/fieldsValidationUtils';
+import { sendMessage } from '../../../services/MessagesService';
 import { FeedFooterProps } from './feedFooterProps';
 import template from './feedFooterTemplate.hbs?raw';
 import './feedFooterStyles.scss';
-
 
 /**
  * Компонент "Подвал ленты"
@@ -26,10 +26,10 @@ export class FeedFooter extends Block {
             sendMessage: (event: MouseEvent) => {
                 event.preventDefault();
                 const message =  (this.refs.message as Message)?.value();
-                console.log({
-                    component: FeedFooter.Name,
-                    message
-                });
+                if(message) {
+                    sendMessage(message.toString());
+                    (this.refs.message as Message).setValue('');
+                }
             }
         });
     }

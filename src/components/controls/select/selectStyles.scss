@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+
+.drop-down {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &__select {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $color-blue;
+        outline: none;
+    }
+
+    &__label {
+        color: $color-grey;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}

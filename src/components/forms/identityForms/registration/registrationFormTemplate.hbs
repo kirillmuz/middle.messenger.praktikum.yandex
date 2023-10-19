@@ -1,4 +1,4 @@
-<div class="form-wrapper">
+<div class="form-wrapper identity-form">
     {{#> FormContainer className="form-content" }}
         {{{ Title text="Регистрация" }}}
         <div class="form-content__form-block form-content__fields">
@@ -6,7 +6,6 @@
             {{{ TextField label="Логин" type="text" placeholder="Логин" name="login" ref="login" validate=validate.login }}}
             {{{ TextField label="Фамилия" type="text" placeholder="Фамилия" name="second_name" ref="secondName" validate=validate.secondName }}}
             {{{ TextField label="Имя" type="text" placeholder="Имя" name="first_name" ref="firstName" validate=validate.firstName }}}
-            {{{ TextField label="Отчество" type="text" placeholder="Отчество" name="midle_name" ref="midleName" validate=validate.midleName }}}
             {{{ TextField label="Телефон" type="tel" placeholder="Телефон" name="phone" ref="phone" validate=validate.phone }}}
             {{{ TextField label="Пароль" type="password" placeholder="Пароль" name="password" ref="password" validate=validate.password }}}
             {{{ TextField label="Повторить пароль" type="password" placeholder="Повторить пароль" name="repeate_password" ref="repeatePassword" validate=validate.repeatePassword }}}
@@ -15,5 +14,6 @@
             {{{ Button text="Зарегистрироваться" type="prymary" goToPage="chats" onClick=onRegister }}}
             {{{ Button text="Войти" type="secondary" goToPage="login" onClick=onLogin }}}
         </div>
+        {{{ ValidationMessage validationMessage=error ref="validationMessage" }}}
     {{/FormContainer}}
 </div>

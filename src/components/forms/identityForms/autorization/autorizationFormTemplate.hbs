@@ -1,4 +1,4 @@
-<div class="form-wrapper">
+<div class="form-wrapper identity-form">
     {{#> FormContainer className="form-content" }}
         {{{ Title text="Вход" }}}
         <div class="form-content__form-block form-content__fields">
@@ -9,5 +9,6 @@
             {{{ Button text="Войти" type="prymary" goToPage="chats" onClick=onLogin }}}
             {{{ Button text="Зарегистрироваться" type="secondary"  goToPage="registration" onClick=onRegister }}}
         </div>
+        {{{ ValidationMessage validationMessage=error ref="validationMessage" }}}
     {{/FormContainer}}
 </div>

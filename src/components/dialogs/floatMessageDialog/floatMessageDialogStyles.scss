@@ -1,0 +1,12 @@
+.float-message {
+    padding: 8px 16px;
+    box-shadow: 0 0 6px 0 #00000024;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #1e1e1e;
+    position: fixed;
+    top: 10px;
+    right: 50px;
+}

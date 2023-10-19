@@ -1,0 +1,15 @@
+@import '../../../styles/variables';
+
+.chat-menu-dialog {
+    position: fixed;
+    top: 42px;
+    right: 26px;
+    background: $color-white;
+    border-radius: 2px;
+    box-shadow: 0 0 6px 0 $color-shadow;
+    padding: 10px;
+
+    .inline-button:last-child, .itxt-editable:last-child {
+        border-bottom: none;
+    }
+}

@@ -1,11 +1,15 @@
 import Block from '../../../../core/Block';
+import Router from '../../../../core/Router';
 import { TextField } from '../../../controls';
-import { navigate } from '../../../../utils/navigationUtils';
-import { PagesNames } from '../../../../constants/commonConstants';
+import { RoutesAdresses } from '../../../../constants/commonConstants';
 import { fieldsValidationUtils } from '../../../../utils/fieldsValidationUtils';
 import { formsValidationUtils } from '../../../../utils/formsValidationUtils';
+import { login } from '../../../../services/AuthService';
+import { LoginDto } from '../../../../types/api/authTypes';
+import { parseApiError } from '../../../../utils/errorsUtils';
 import { AutorizationFormProps } from './autorizationFormProps';
 import template from './autorizationFormTemplate.hbs?raw';
+import '../../formsStyles.scss';
 import '../identityFormsStyles.scss';
 
 /**
@@ -25,6 +29,11 @@ export class AutorizationForm extends Block {
      */
     public static Name = 'AutorizationForm';
 
+    /**
+     * Роутер
+     */
+    private _router: Router;
+
     constructor(props: AutorizationFormProps) {
         super({
             ...props,
@@ -32,29 +41,30 @@ export class AutorizationForm extends Block {
             // т.к. на логинке рассказывать про формат логина и пароля
             // неправильно, более обширная валидация будет на лругих формах
             validate: {
-                login: (value?: string) =>{
+                login: (value?: string) => {
                     return fieldsValidationUtils.required(value);
                 },
-                password: (value?: string) =>{
+                password: (value?: string) => {
                     return fieldsValidationUtils.required(value);
                 }
             },
             onLogin: (event: MouseEvent) => {
                 event.preventDefault();
-                if(!this.validate()) {
+                if (!this.validate()) {
                     return;
                 }
-                console.log({
-                    component: AutorizationForm.Name,
-                    ...this.getFieldsValues()
-                });
-                navigate(PagesNames.Chats);
+                login(this.getFieldsValues() as LoginDto)
+                    .catch((err: string) => {
+                        (this.refs.validationMessage as Block)
+                            ?.setProps({validationMessage: parseApiError(err)})
+                    });
             },
             onRegister: (event: MouseEvent) => {
                 event.preventDefault();
-                navigate(PagesNames.Registration);
+                this._router.go(RoutesAdresses.Registration);
             }
         });
+        this._router = new Router();
     }
 
     /**

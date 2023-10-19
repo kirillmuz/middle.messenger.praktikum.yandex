@@ -1,0 +1,12 @@
+<div class="dialog-wrapper">
+    {{#if show}}
+        {{{ Underlay onUnderlayClick=onUnderlayClick underlayType="transparent" }}}
+        <div class="chat-menu-dialog">
+            <input type="file" id="chatAvatarFile" accept=".jpg, .png, .jpeg" style="display: none;">
+            {{{ InlineButton text="Сменить аватар" type="secondary" onClick=onChangeAvatar }}}
+            {{{ InlineButton text="Добавить пользователя" type="secondary" onClick=onAddUser }}}
+            {{{ InlineButton text="Удалить пользователя" type="secondary" onClick=onDeleteUser }}}
+            {{{ InlineButton text="Удалить чат" type="important" onClick=onDeleteChat }}}
+        </div>
+    {{/if}}
+</div>>
