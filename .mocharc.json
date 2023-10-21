@@ -1,0 +1,9 @@
+{
+    "extensions": ["ts", "tsx"],
+    "spec": [
+      "src/**/*.test.*"
+    ],
+    "watch-files": [
+      "src"
+    ]
+  }
