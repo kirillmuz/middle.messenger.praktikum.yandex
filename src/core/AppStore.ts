@@ -1,7 +1,5 @@
 import { EventBus } from './EventBus';
 
-const testPreCommit = 'dsdfgnsl gsdlknf kjgnsdfklj gnkjdfn kjgndfjnh kjgfh nfdgk hnfgjd hlkdnfgklj hnfdkjg hnlkfdgl ndfg lkdfn hklfngk hnlkgf hnlnf lkdnlhkfg gf lknfglkh nfglkh n';
-
 /**
  * События хранилища
  */
