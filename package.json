@@ -15,11 +15,12 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "stylelint": "stylelint **/*.scss",
-    "test": "mocha"
+    "test": "mocha",
+    "check": "npm-run-all lint stylelint test "
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-all lint stylelint test"
+      "pre-commit": "check"
     }
   },
   "devDependencies": {
