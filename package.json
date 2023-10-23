@@ -16,8 +16,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "stylelint": "stylelint **/*.scss",
     "test": "mocha",
-    "check": "npm-run-all lint stylelint test",
-    "prepare": "npx husky-init && husky install" 
+    "check": "npm-run-all lint stylelint test"
   },
   "devDependencies": {
     "@types/chai": "^4.3.9",
