@@ -1,6 +1,36 @@
 import { ApiHost } from '../constants/commonConstants';
 
 /**
+ * Тип метода запроса
+ */
+type HTTPMethod = <R=unknown>(url: string, options?: RequestOptions) => Promise<R>
+
+/**
+ * Контракт для HTTPTransport 
+ */
+interface IHTTPTransport {
+    /**
+     * GET запрос
+     */
+    get: HTTPMethod;
+    
+    /**
+     * POST запрос
+     */
+    post: HTTPMethod;
+    
+    /**
+     * PUT запрос
+     */
+    put: HTTPMethod;
+    
+    /**
+     * DELETE запрос
+     */
+    delete: HTTPMethod;
+}
+
+/**
  * Методы запроса
  */
 const enum RequestMethods {
@@ -32,7 +62,7 @@ const queryStringify = (data: object) => {
 /**
  * Класс взаимодействия с API
  */
-class HTTPTransport {
+class HTTPTransport implements IHTTPTransport {
     private url: string = '';
 
     constructor(path: string) {
@@ -46,13 +76,12 @@ class HTTPTransport {
         timeout = 5000
     ) => {
         const {headers, data} = options;
-
         return new Promise<TResponse>((resolve, reject) => {
             const isGet = method === RequestMethods.GET || !data; 
             const xhr = new XMLHttpRequest();  
-            xhr.open(method, isGet && !!data 
+            xhr.open(method, encodeURI(isGet && !!data 
                 ? `${this.url}${endpoint}${queryStringify(data)}` 
-                : `${this.url}${endpoint}`
+                : `${this.url}${endpoint}`)
             );
 
             if(headers && typeof(headers) === 'object') {
@@ -88,8 +117,8 @@ class HTTPTransport {
         });
     };        
 
-    get = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
-        return this.request<TResponse>(
+    get: HTTPMethod = (endpoint: string, options?: RequestOptions) => {		 
+        return this.request(
             endpoint,
             RequestMethods.GET,
             {...options}, 
@@ -97,8 +126,8 @@ class HTTPTransport {
         );
     };
 
-    post = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
-        return this.request<TResponse>(
+    post: HTTPMethod = (endpoint: string, options?: RequestOptions) => {		 
+        return this.request(
             endpoint,
             RequestMethods.POST,
             {...options}, 
@@ -106,8 +135,8 @@ class HTTPTransport {
         );
     };
 
-    put = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
-        return this.request<TResponse>(
+    put: HTTPMethod = (endpoint: string, options?: RequestOptions) => {		 
+        return this.request(
             endpoint,
             RequestMethods.PUT,
             {...options}, 
@@ -115,14 +144,14 @@ class HTTPTransport {
         );
     };
 
-    delete = <TResponse>(endpoint: string, options?: RequestOptions) => {		 
-        return this.request<TResponse>(
+    delete: HTTPMethod = (endpoint: string, options?: RequestOptions) => {		 
+        return this.request(
             endpoint,
             RequestMethods.DELETE,
             {...options}, 
             options?.timeout
         );
-    };      
+    };
 }
 
 export default HTTPTransport;
