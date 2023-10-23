@@ -47,6 +47,16 @@ npm run lint:fix
 npm run stylelint
 ```
 
+— запуск тестов:
+```
+npm run test
+```
+
+— запуск комплексной проверки проекта- тесты и соответствие код-стайлу:
+```
+npm run check
+```
+
 ## Навигация по страницам происходит по кликам на кнопки в интерфейсе
 ### Навигация реализована с помощью роутера, также реализован механизм проверки прав на страницу
 1) Страница "Вход"
@@ -93,6 +103,10 @@ npm run stylelint
 
 ## Реализован API взаимодействия с чатом
 ## Реализован API обмена сообщениями в реальном времени (через протокол WebSocket)
+## Проведен аудит проекта
+## Настроен precommit с использованием Husky
+## Добавлены unit-тесты для основной функциональности: Block, HTTPTransport, Router
+
 
 ## Pull request первого спринта:
 https://github.com/kirillmuz/middle.messenger.praktikum.yandex/pull/2
@@ -100,3 +114,7 @@ https://github.com/kirillmuz/middle.messenger.praktikum.yandex/pull/2
 
 ## Pull request второго спринта:
 https://github.com/kirillmuz/middle.messenger.praktikum.yandex/pull/3
+
+
+## Pull request третьего спринта:
+https://github.com/kirillmuz/middle.messenger.praktikum.yandex/pull/4
