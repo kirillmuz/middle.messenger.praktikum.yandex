@@ -162,6 +162,16 @@ class Block {
         if(!this.element) {
             this.render()
         }
+        // Хак от наставника, чтобы вызвать CDM только после добавления в DOM
+        if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+            setTimeout(() => {
+                if (
+                    this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE
+                ) {
+                    this.dispatchComponentDidMount();
+                }
+            }, 100);
+        }
         return this.element as HTMLElement;
     }
 
